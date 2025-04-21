@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Premium TikTok Downloader | No Watermark</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -14,7 +14,7 @@
       min-height: 100vh;
       margin: 0;
     }
-
+    
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -24,7 +24,7 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
-
+    
     .logo {
       font-size: 2.5rem;
       font-weight: 600;
@@ -33,15 +33,16 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      font-family: 'Fredoka One', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
-
+    
     .tagline {
       font-size: 1rem;
       margin-bottom: 30px;
       color: #aaa;
+      font-family: 'Poppins', sans-serif;
     }
-
+    
     input {
       padding: 15px;
       width: 80%;
@@ -50,16 +51,17 @@
       margin: 10px 0;
       background: rgba(255, 255, 255, 0.2);
       color: white;
+      font-family: 'Roboto', sans-serif; /* Simple font for input */
       font-size: 1rem;
       transition: all 0.3s;
     }
-
+    
     input:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
     }
-
+    
     button {
       padding: 15px 30px;
       border: none;
@@ -71,39 +73,42 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
     }
-
+    
     button:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 255, 153, 0.3);
     }
-
+    
     button:disabled {
       background: #555;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
     }
-
+    
     #result {
       margin-top: 30px;
       padding: 15px;
       border-radius: 8px;
       background: rgba(0, 255, 153, 0.1);
       transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
     }
-
+    
     a {
       color: #00ffcc;
       font-size: 1.1rem;
       text-decoration: none;
       font-weight: 600;
+      font-family: 'Poppins', sans-serif;
     }
-
+    
     a:hover {
       text-decoration: underline;
     }
-
+    
     .countdown {
       font-size: 1.5rem;
       color: #fff;
@@ -111,7 +116,7 @@
       text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
       animation: neonGlow 1.5s ease-in-out infinite alternate;
     }
-
+    
     @keyframes neonGlow {
       from {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff;
@@ -120,32 +125,31 @@
         text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
       }
     }
-
+    
     .features {
       display: flex;
       justify-content: space-around;
       margin-top: 40px;
       flex-wrap: wrap;
     }
-
+    
     .feature {
       width: 30%;
       min-width: 150px;
       margin: 10px;
     }
-
+    
     .feature-icon {
       font-size: 2rem;
       margin-bottom: 10px;
       color: #00ff99;
-      font-family: 'Fredoka One', sans-serif;
     }
-
+    
     .error {
       color: #ff6b6b;
       font-weight: bold;
     }
-
+    
     .ad-notice {
       font-size: 0.8rem;
       color: #aaa;
@@ -157,15 +161,15 @@
   <div class="container">
     <div class="logo">TikDown Pro</div>
     <div class="tagline">Download High Quality TikTok Videos Without Watermark</div>
-
+    
     <input type="text" id="url" placeholder="Paste TikTok video link here..." />
     <br>
     <button onclick="processDownload()" id="downloadBtn">Download Now</button>
-
+    
     <div id="result"></div>
     <div id="countdown" class="countdown"></div>
     <div id="adNotice" class="ad-notice"></div>
-
+    
     <div class="features">
       <div class="feature">
         <div class="feature-icon">⚡</div>
@@ -187,35 +191,35 @@
 
   <script>
     const AFFILIATE_LINK = "https://uvoonaix.top/4/9242697";
-
+    
     async function processDownload() {
       const url = document.getElementById("url").value;
       const result = document.getElementById("result");
       const downloadBtn = document.getElementById("downloadBtn");
       const countdown = document.getElementById("countdown");
       const adNotice = document.getElementById("adNotice");
-
+      
       result.innerHTML = "";
       countdown.innerHTML = "";
       adNotice.innerHTML = "";
-
+      
       if (!url) {
         result.innerHTML = '<div class="error">Please enter a TikTok URL first!</div>';
         return;
       }
-
+      
       downloadBtn.disabled = true;
       result.innerHTML = "Checking link...";
       adNotice.innerHTML = "Please wait while we prepare your download...";
-
+      
       try {
         if (!url.includes("tiktok.com")) {
           throw new Error("Please enter a valid TikTok URL (must contain tiktok.com)");
         }
-
+        
         let seconds = 5;
         countdown.innerHTML = `Download starts in: ${seconds}`;
-
+        
         const countdownInterval = setInterval(() => {
           seconds--;
           countdown.innerHTML = `Download starts in: ${seconds}`;
@@ -225,25 +229,25 @@
             redirectToAffiliate();
           }
         }, 1000);
-
+        
       } catch (e) {
         result.innerHTML = `<div class="error">Error: ${e.message}</div>`;
         console.error("Download error:", e);
         downloadBtn.disabled = false;
       }
     }
-
+    
     function redirectToAffiliate() {
       const result = document.getElementById("result");
       const countdown = document.getElementById("countdown");
       const adNotice = document.getElementById("adNotice");
-
+      
       result.innerHTML = "Preparing your download...";
       countdown.innerHTML = "Redirecting...";
       adNotice.innerHTML = "You'll be automatically redirected back after 5 seconds";
-
+      
       const affiliateWindow = window.open(AFFILIATE_LINK, "_blank");
-
+      
       setTimeout(() => {
         if (!affiliateWindow.closed) {
           affiliateWindow.close();
@@ -251,29 +255,29 @@
         startActualDownload();
       }, 5000);
     }
-
+    
     async function startActualDownload() {
       const url = document.getElementById("url").value;
       const result = document.getElementById("result");
       const countdown = document.getElementById("countdown");
       const downloadBtn = document.getElementById("downloadBtn");
-
+      
       try {
         result.innerHTML = "Finalizing your download...";
         countdown.innerHTML = "Almost done!";
-
+        
         const apiResponse = await fetch(`https://tikwm.com/api/?url=${encodeURIComponent(url)}`);
         const data = await apiResponse.json();
 
         if (data && data.data && data.data.play) {
           const downloadUrl = data.data.play;
-
+          
           result.innerHTML = `
             <a href="${downloadUrl}" download="tiktok_video.mp4">
               ✅ Click here if download doesn't start automatically
             </a>
           `;
-
+          
           setTimeout(() => {
             window.location.href = downloadUrl;
           }, 2000);
