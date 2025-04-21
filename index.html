@@ -3,49 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Premium TikTok Downloader | No Watermark</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Russo+One&family=Rajdhani:wght@400;700&family=Exo+2:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg, #1a1a2e, #16213e);
       color: #fff;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Exo 2', sans-serif;
       text-align: center;
       padding-top: 50px;
       min-height: 100vh;
       margin: 0;
     }
-    
+
     .container {
       max-width: 600px;
       margin: 0 auto;
       padding: 30px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
-    
+
     .logo {
-      font-size: 2.5rem;
-      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
       margin-bottom: 10px;
       background: linear-gradient(90deg, #00ff99, #00ccff);
       -webkit-background-clip: text;
-      background-clip: text;
       color: transparent;
-      font-family: 'Monoton', cursive;
     }
 
     .tagline {
-      font-size: 1.2rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
       margin-bottom: 30px;
       color: #aaa;
-      font-family: 'Russo One', sans-serif;
-      letter-spacing: 2px;
     }
-    
+
     input {
       padding: 15px;
       width: 80%;
@@ -56,16 +52,17 @@
       color: white;
       font-size: 1rem;
       transition: all 0.3s;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Exo 2', sans-serif;
     }
-    
+
     input:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
     }
-    
+
     button {
+      font-family: 'Rajdhani', sans-serif;
       padding: 15px 30px;
       border: none;
       border-radius: 8px;
@@ -76,21 +73,13 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
-      font-family: 'Poppins', sans-serif;
     }
-    
+
     button:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 255, 153, 0.3);
     }
-    
-    button:disabled {
-      background: #555;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-    
+
     #result {
       margin-top: 30px;
       padding: 15px;
@@ -98,15 +87,15 @@
       background: rgba(0, 255, 153, 0.1);
       transition: all 0.3s;
     }
-    
+
     a {
       color: #00ffcc;
       font-size: 1.1rem;
       text-decoration: none;
       font-weight: 600;
-      font-family: 'Russo One', sans-serif;
+      font-family: 'Exo 2', sans-serif;
     }
-    
+
     a:hover {
       text-decoration: underline;
     }
@@ -116,113 +105,94 @@
       font-weight: bold;
     }
 
-    /* Neon animation for features and additional info */
-    .neon-box {
+    .features-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
       margin-top: 40px;
-      padding: 20px;
-      background: rgba(0, 255, 153, 0.1);
-      border-radius: 15px;
-      animation: neonGlow 1.5s ease-in-out infinite alternate;
-      text-align: left;
+      justify-items: center;
     }
 
-    .neon-box h3 {
-      font-size: 1.5rem;
+    .feature-rect {
+      padding: 20px 25px;
+      border: 2px solid #ff003c;
+      border-radius: 12px;
+      color: white;
+      font-size: 1.1rem;
       font-family: 'Russo One', sans-serif;
-      background: linear-gradient(90deg, #ff0066, #00ccff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: 1px;
+      background: rgba(255, 0, 60, 0.05);
+      text-align: center;
+      min-width: 180px;
+      animation: neonBorder 1.5s infinite alternate;
     }
 
-    .neon-box p {
-      font-size: 1rem;
-      color: #ddd;
-      margin-bottom: 10px;
-    }
-
-    @keyframes neonGlow {
+    @keyframes neonBorder {
       from {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff;
+        box-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c;
       }
       to {
-        text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+        box-shadow: 0 0 20px #ff003c, 0 0 40px #ff003c;
       }
     }
-    
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">TikDown Pro</div>
     <div class="tagline">Download High Quality TikTok Videos Without Watermark</div>
-    
+
     <input type="text" id="url" placeholder="Paste TikTok video link here..." />
     <br>
-    <button onclick="processDownload()" id="downloadBtn">Download Now</button>
-    
+    <button onclick="startDownload()">Download Now</button>
+
     <div id="result"></div>
-    
-    <!-- Neon Feature Box -->
-    <div class="neon-box">
-      <h3>Why Choose TikDown Pro?</h3>
-      <p>✅ **Without Watermark** - Enjoy clean, high-quality TikTok videos.</p>
-      <p>💯 **Free Service** - No payments required for downloading.</p>
-      <p>⚡ **Fast Downloads** - Get your videos in seconds.</p>
-      <p>🔒 **Secure & Safe** - Your data privacy is important to us.</p>
+
+    <!-- Neon Feature Boxes -->
+    <div class="features-box">
+      <div class="feature-rect">💯 Free</div>
+      <div class="feature-rect">Without Watermark</div>
+      <div class="feature-rect">High Quality Videos</div>
+      <div class="feature-rect">Fast & Secure</div>
     </div>
   </div>
 
   <script>
-    async function processDownload() {
+    async function startDownload() {
       const url = document.getElementById("url").value;
       const result = document.getElementById("result");
-      const downloadBtn = document.getElementById("downloadBtn");
-      
-      // Reset previous messages
-      result.innerHTML = "";
-      
       if (!url) {
         result.innerHTML = '<div class="error">Please enter a TikTok URL first!</div>';
         return;
       }
-      
-      // Disable button during processing
-      downloadBtn.disabled = true;
-      result.innerHTML = "Checking link...";
-      
+
       try {
-        // First check if URL is valid TikTok URL
         if (!url.includes("tiktok.com")) {
           throw new Error("Please enter a valid TikTok URL (must contain tiktok.com)");
         }
-        
-        // Call TikTok API to get actual download link
+
+        result.innerHTML = "Fetching video...";
+
         const apiResponse = await fetch(`https://tikwm.com/api/?url=${encodeURIComponent(url)}`);
         const data = await apiResponse.json();
 
         if (data && data.data && data.data.play) {
           const downloadUrl = data.data.play;
-          
+
           result.innerHTML = `
             <a href="${downloadUrl}" download="tiktok_video.mp4">
               ✅ Click here if download doesn't start automatically
             </a>
           `;
-          
-          // Auto download after 2 seconds
+
+          // Auto download after 2 sec
           setTimeout(() => {
             window.location.href = downloadUrl;
           }, 2000);
         } else {
-          throw new Error("Could not get download link for this video");
+          throw new Error("Could not retrieve video link.");
         }
       } catch (e) {
         result.innerHTML = `<div class="error">Error: ${e.message}</div>`;
-        console.error("Download error:", e);
-      } finally {
-        downloadBtn.disabled = false;
       }
     }
   </script>
