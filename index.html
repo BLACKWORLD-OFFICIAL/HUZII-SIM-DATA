@@ -1,120 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Neon Downloader</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Social Media Video Downloader</title>
   <style>
     body {
-      margin: 0;
-      background: #0d0d0d;
-      font-family: 'Orbitron', sans-serif;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
-    }
-
-    h1 {
-      font-size: 3em;
+      background-color: #0d0d0d;
+      font-family: Arial, sans-serif;
       color: #00ffe7;
-      text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
-      margin-bottom: 20px;
-    }
-
-    .container {
-      background: #111;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px #00ffe7;
-      width: 90%;
-      max-width: 600px;
       text-align: center;
+      padding: 50px;
     }
-
-    input[type="text"] {
-      width: 100%;
+    input {
       padding: 15px;
-      font-size: 1.1em;
-      border: none;
+      width: 80%;
+      max-width: 500px;
+      font-size: 16px;
       border-radius: 10px;
-      margin-bottom: 20px;
+      border: none;
+      outline: none;
       background: #1a1a1a;
       color: #00ffe7;
-      outline: none;
-      box-shadow: inset 0 0 10px #00ffe7;
+      box-shadow: 0 0 10px #00ffe7;
     }
-
     button {
+      margin-top: 20px;
       padding: 12px 30px;
-      font-size: 1em;
-      font-weight: bold;
-      color: #000;
-      background: #00ffe7;
+      font-size: 18px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 0 15px #00ffe7, 0 0 40px #00ffe7;
+      background-color: #00ffe7;
+      color: #000;
+      box-shadow: 0 0 20px #00ffe7;
     }
-
-    button:hover {
-      background: #00ffbb;
-      box-shadow: 0 0 25px #00ffbb, 0 0 60px #00ffbb;
+    #result {
+      margin-top: 30px;
     }
-
-    .message {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #0ff;
+    a {
+      color: #00ffe7;
+      font-size: 18px;
+      text-decoration: underline;
     }
-
-    .timer {
-      font-size: 2em;
-      margin-top: 20px;
-      display: none;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
   </style>
 </head>
 <body>
-  <h1>Neon Video Downloader</h1>
-  <div class="container">
-    <input type="text" id="videoURL" placeholder="Paste video URL here..." />
-    <button onclick="startDownload()">Download</button>
-    <div class="timer" id="countdown">10</div>
-    <div class="message" id="statusMsg"></div>
-  </div>
+  <h1>Multi-Social Media Video Downloader</h1>
+  <p>Download videos from TikTok, YouTube, Instagram, Facebook, and Twitter!</p>
+  <input type="text" id="socialMediaUrl" placeholder="Paste video URL here..." />
+  <br>
+  <button onclick="downloadVideo()">Download</button>
+  <div id="result"></div>
 
   <script>
-    function startDownload() {
-      const url = document.getElementById("videoURL").value;
-      const statusMsg = document.getElementById("statusMsg");
-      const countdown = document.getElementById("countdown");
+    async function downloadVideo() {
+      const url = document.getElementById("socialMediaUrl").value;
+      const resultDiv = document.getElementById("result");
 
       if (!url) {
-        statusMsg.innerText = "Please paste a valid URL.";
+        resultDiv.innerHTML = "Please enter a valid URL.";
         return;
       }
 
-      let timeLeft = 10;
-      countdown.style.display = "block";
-      statusMsg.innerText = "Preparing your download...";
+      resultDiv.innerHTML = "Fetching video...";
 
-      const timer = setInterval(() => {
-        countdown.innerText = timeLeft + "s";
-        timeLeft--;
-
-        if (timeLeft < 0) {
-          clearInterval(timer);
-          countdown.style.display = "none";
-          statusMsg.innerHTML = "Download ready! <br><a href='#' style='color:#00ffe7;text-decoration:underline;'>Click here to download</a>";
+      try {
+        // Identify the platform from the URL
+        let platform;
+        if (url.includes("tiktok.com")) {
+          platform = "tiktok";
+        } else if (url.includes("youtube.com")) {
+          platform = "youtube";
+        } else if (url.includes("instagram.com")) {
+          platform = "instagram";
+        } else if (url.includes("facebook.com")) {
+          platform = "facebook";
+        } else if (url.includes("twitter.com")) {
+          platform = "twitter";
+        } else {
+          resultDiv.innerHTML = "Invalid URL. Please check the URL and try again.";
+          return;
         }
-      }, 1000);
+
+        // Fetch the video download link based on the platform
+        let apiUrl = "";
+        switch (platform) {
+          case "tiktok":
+            apiUrl = `https://api.tikmate.app/api/lookup?url=${encodeURIComponent(url)}`;
+            break;
+          case "youtube":
+            apiUrl = `https://api.savetube.me/api/v1/video?url=${encodeURIComponent(url)}`;
+            break;
+          case "instagram":
+            apiUrl = `https://api.insta-downloader.io/download?url=${encodeURIComponent(url)}`;
+            break;
+          case "facebook":
+            apiUrl = `https://api.fbdownloader.net/api/v1/download?url=${encodeURIComponent(url)}`;
+            break;
+          case "twitter":
+            apiUrl = `https://api.tweetdownload.net/api/v1/download?url=${encodeURIComponent(url)}`;
+            break;
+          default:
+            resultDiv.innerHTML = "Unsupported platform.";
+            return;
+        }
+
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (!data || !data.downloadUrl) {
+          resultDiv.innerHTML = "Failed to fetch video. Try again later.";
+          return;
+        }
+
+        const videoUrl = data.downloadUrl;
+
+        resultDiv.innerHTML = `<br>Download ready:<br><a href="${videoUrl}" download target="_blank">Click here to download video</a>`;
+      } catch (err) {
+        console.error(err);
+        resultDiv.innerHTML = "Error occurred while downloading.";
+      }
     }
   </script>
 </body>
