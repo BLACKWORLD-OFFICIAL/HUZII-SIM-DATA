@@ -127,6 +127,11 @@
       margin-bottom: 10px;
       color: #00ff99;
     }
+    
+    .error {
+      color: #ff6b6b;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -167,8 +172,12 @@
       const downloadBtn = document.getElementById("downloadBtn");
       const countdown = document.getElementById("countdown");
       
+      // Reset previous messages
+      result.innerHTML = "";
+      countdown.innerHTML = "";
+      
       if (!url) {
-        result.innerHTML = "Please enter a TikTok URL first!";
+        result.innerHTML = '<div class="error">Please enter a TikTok URL first!</div>';
         return;
       }
       
@@ -176,13 +185,13 @@
       downloadBtn.disabled = true;
       result.innerHTML = "Checking link...";
       
-      // Show countdown (reduced to 5 seconds)
+      // Show countdown (5 seconds)
       let seconds = 5;
-      countdown.innerHTML = `Please wait ${seconds} seconds...`;
+      countdown.innerHTML = `Preparing download... ${seconds} seconds`;
       
       const countdownInterval = setInterval(() => {
         seconds--;
-        countdown.innerHTML = `Please wait ${seconds} seconds...`;
+        countdown.innerHTML = `Preparing download... ${seconds} seconds`;
         if (seconds <= 0) {
           clearInterval(countdownInterval);
         }
@@ -191,37 +200,47 @@
       try {
         // First check if URL is valid TikTok URL
         if (!url.includes("tiktok.com")) {
-          throw new Error("Please enter a valid TikTok URL");
+          throw new Error("Please enter a valid TikTok URL (must contain tiktok.com)");
         }
         
         // Show processing message
         result.innerHTML = "Processing your request...";
         
-        // Simulate processing delay (you can remove this in production)
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Here we'll use a working TikTok download API
+        const apiResponse = await fetch(`https://tikwm.com/api/?url=${encodeURIComponent(url)}`);
         
-        // YOUR CUSTOM LINK HERE
-        const customDownloadLink = "https://your-custom-download-link-here.com";
+        if (!apiResponse.ok) {
+          throw new Error("Failed to connect to download service");
+        }
         
-        result.innerHTML = `
-          <a href="${customDownloadLink}" download="tiktok_video.mp4">
-            ✅ Click here to download your video
-          </a>
-          <p>Video will download automatically in 3 seconds...</p>
-        `;
+        const data = await apiResponse.json();
+
+        if (data && data.data && data.data.play) {
+          const downloadUrl = data.data.play;
           
-        // Auto download after 3 seconds
-        setTimeout(() => {
-          window.open(customDownloadLink, "_blank");
-        }, 3000);
-        
+          result.innerHTML = `
+            <a href="${downloadUrl}" download="tiktok_video.mp4">
+              ✅ Click here to download your video
+            </a>
+            <p>Preparing automatic download...</p>
+          `;
+          
+          // Auto download after 2 seconds
+          setTimeout(() => {
+            window.location.href = downloadUrl;
+          }, 2000);
+        } else {
+          throw new Error("Could not get download link from this video");
+        }
       } catch (e) {
-        result.innerHTML = "Error: " + e.message;
-        console.error(e);
+        result.innerHTML = `<div class="error">Error: ${e.message}</div>`;
+        console.error("Download error:", e);
       } finally {
         downloadBtn.disabled = false;
         clearInterval(countdownInterval);
-        countdown.innerHTML = "";
+        if (seconds > 0) {
+          countdown.innerHTML = "";
+        }
       }
     }
   </script>
