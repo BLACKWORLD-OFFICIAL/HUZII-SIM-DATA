@@ -2,105 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TikTok Video Downloader</title>
   <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     body {
-        font-family: Arial, sans-serif;
-        background-color: #1e1e1e;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+      background: #0d0d0d;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
     }
-
-    .container {
-        text-align: center;
-        width: 90%;
-        max-width: 500px;
+    h1 {
+      margin-bottom: 20px;
     }
-
     input {
-        padding: 10px;
-        width: 100%;
-        margin: 20px 0;
-        border: 2px solid #fff;
-        background-color: #333;
-        color: white;
+      padding: 10px;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 15px;
     }
-
     button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #ff5733;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
+      padding: 10px 20px;
+      background: #00cc66;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
     button:hover {
-        background-color: #e74c3c;
+      background: #00b359;
     }
-
-    #downloadLink a {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #28a745;
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-    }
-
-    #downloadLink a:hover {
-        background-color: #218838;
+    a {
+      margin-top: 20px;
+      display: block;
+      color: #00ff99;
+      text-decoration: none;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>TikTok Video Downloader</h1>
-    <form id="downloadForm">
-      <input type="url" id="videoUrl" placeholder="Paste TikTok Video URL here" required>
-      <button type="submit">Download</button>
-    </form>
-    <div id="downloadLink" style="display:none;">
-      <a id="downloadBtn" href="" download>Click here to download video</a>
-    </div>
-  </div>
+  <h1>TikTok Video Downloader</h1>
+  <input type="text" id="linkInput" placeholder="Paste TikTok video URL here">
+  <button onclick="downloadVideo()">Download</button>
+  <a id="downloadLink" href="#" target="_blank" style="display:none;">Click here to download video</a>
 
   <script>
-    document.getElementById('downloadForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    async function downloadVideo() {
+      const url = document.getElementById("linkInput").value;
+      if (!url) {
+        alert("Please enter a valid TikTok video URL.");
+        return;
+      }
 
-        let videoUrl = document.getElementById('videoUrl').value;
-        if (videoUrl) {
-            let apiUrl = `https://tiktok-downloader.apis-bj-devs.workers.dev/?url=${videoUrl}`;
-            
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.video_url) {
-                        document.getElementById('downloadLink').style.display = 'block';
-                        document.getElementById('downloadBtn').href = data.video_url;
-                    } else {
-                        alert('Could not fetch video. Please try again.');
-                    }
-                })
-                .catch(err => {
-                    alert('An error occurred. Please try again.');
-                });
-        } else {
-            alert('Please enter a valid URL.');
-        }
-    });
+      const formData = new URLSearchParams();
+      formData.append("id", url);
+      formData.append("locale", "en");
+
+      const res = await fetch("https://ssstik.io/abc?url=dl", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formData
+      });
+
+      const html = await res.text();
+      const noWatermarkMatch = html.match(/href="(.*?)"[^>]*>Download Server 1<\/a>/);
+
+      if (noWatermarkMatch) {
+        const downloadUrl = noWatermarkMatch[1];
+        const link = document.getElementById("downloadLink");
+        link.href = downloadUrl;
+        link.style.display = "block";
+        link.innerText = "Click here to download without watermark";
+      } else {
+        alert("Failed to fetch download link. Try a different video.");
+      }
+    }
   </script>
 </body>
 </html>
