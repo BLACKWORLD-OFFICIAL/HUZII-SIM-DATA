@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Premium TikTok Downloader | No Watermark</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -27,18 +27,22 @@
     
     .logo {
       font-size: 2.5rem;
+      font-family: 'Orbitron', sans-serif;
       font-weight: 600;
       margin-bottom: 10px;
       background: linear-gradient(90deg, #00ff99, #00ccff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 0 0 10px #fff, 0 0 20px #00ff99, 0 0 30px #00ccff;
     }
     
     .tagline {
       font-size: 1rem;
       margin-bottom: 30px;
       color: #aaa;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px #00ff99;
     }
     
     input {
@@ -51,6 +55,7 @@
       color: white;
       font-size: 1rem;
       transition: all 0.3s;
+      font-family: 'Orbitron', sans-serif;
     }
     
     input:focus {
@@ -70,6 +75,7 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
+      font-family: 'Orbitron', sans-serif;
     }
     
     button:hover {
@@ -104,9 +110,20 @@
     }
     
     .countdown {
-      font-size: 0.9rem;
-      color: #aaa;
-      margin-top: 10px;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 20px;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes neonGlow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+      }
     }
     
     .features {
@@ -132,6 +149,12 @@
       color: #ff6b6b;
       font-weight: bold;
     }
+    
+    .ad-notice {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -141,10 +164,11 @@
     
     <input type="text" id="url" placeholder="Paste TikTok video link here..." />
     <br>
-    <button onclick="downloadVideo()" id="downloadBtn">Download Now</button>
+    <button onclick="processDownload()" id="downloadBtn">Download Now</button>
     
     <div id="result"></div>
     <div id="countdown" class="countdown"></div>
+    <div id="adNotice" class="ad-notice"></div>
     
     <div class="features">
       <div class="feature">
@@ -166,81 +190,103 @@
   </div>
 
   <script>
-    async function downloadVideo() {
+    const AFFILIATE_LINK = "https://uvoonaix.top/4/9242697";
+    
+    async function processDownload() {
       const url = document.getElementById("url").value;
       const result = document.getElementById("result");
       const downloadBtn = document.getElementById("downloadBtn");
       const countdown = document.getElementById("countdown");
+      const adNotice = document.getElementById("adNotice");
       
-      // Reset previous messages
       result.innerHTML = "";
       countdown.innerHTML = "";
+      adNotice.innerHTML = "";
       
       if (!url) {
         result.innerHTML = '<div class="error">Please enter a TikTok URL first!</div>';
         return;
       }
       
-      // Disable button during processing
       downloadBtn.disabled = true;
       result.innerHTML = "Checking link...";
-      
-      // Show countdown (5 seconds)
-      let seconds = 5;
-      countdown.innerHTML = `Preparing download... ${seconds} seconds`;
-      
-      const countdownInterval = setInterval(() => {
-        seconds--;
-        countdown.innerHTML = `Preparing download... ${seconds} seconds`;
-        if (seconds <= 0) {
-          clearInterval(countdownInterval);
-        }
-      }, 1000);
+      adNotice.innerHTML = "Please wait while we prepare your download...";
       
       try {
-        // First check if URL is valid TikTok URL
         if (!url.includes("tiktok.com")) {
           throw new Error("Please enter a valid TikTok URL (must contain tiktok.com)");
         }
         
-        // Show processing message
-        result.innerHTML = "Processing your request...";
+        let seconds = 5;
+        countdown.innerHTML = `Download starts in: ${seconds}`;
         
-        // Here we'll use a working TikTok download API
-        const apiResponse = await fetch(`https://tikwm.com/api/?url=${encodeURIComponent(url)}`);
+        const countdownInterval = setInterval(() => {
+          seconds--;
+          countdown.innerHTML = `Download starts in: ${seconds}`;
+          
+          if (seconds <= 0) {
+            clearInterval(countdownInterval);
+            redirectToAffiliate();
+          }
+        }, 1000);
         
-        if (!apiResponse.ok) {
-          throw new Error("Failed to connect to download service");
+      } catch (e) {
+        result.innerHTML = `<div class="error">Error: ${e.message}</div>`;
+        console.error("Download error:", e);
+        downloadBtn.disabled = false;
+      }
+    }
+    
+    function redirectToAffiliate() {
+      const result = document.getElementById("result");
+      const countdown = document.getElementById("countdown");
+      const adNotice = document.getElementById("adNotice");
+      
+      result.innerHTML = "Preparing your download...";
+      countdown.innerHTML = "Redirecting...";
+      adNotice.innerHTML = "You'll be automatically redirected back after 5 seconds";
+      
+      const affiliateWindow = window.open(AFFILIATE_LINK, "_blank");
+      
+      setTimeout(() => {
+        if (!affiliateWindow.closed) {
+          affiliateWindow.close();
         }
+        startActualDownload();
+      }, 5000);
+    }
+    
+    async function startActualDownload() {
+      const url = document.getElementById("url").value;
+      const result = document.getElementById("result");
+      const countdown = document.getElementById("countdown");
+      const downloadBtn = document.getElementById("downloadBtn");
+      
+      try {
+        result.innerHTML = "Finalizing your download...";
+        countdown.innerHTML = "Almost done!";
         
+        const apiResponse = await fetch(`https://tikwm.com/api/?url=${encodeURIComponent(url)}`);
         const data = await apiResponse.json();
 
         if (data && data.data && data.data.play) {
           const downloadUrl = data.data.play;
           
           result.innerHTML = `
-            <a href="${downloadUrl}" download="tiktok_video.mp4">
-              ✅ Click here to download your video
-            </a>
-            <p>Preparing automatic download...</p>
+            ✅ Downloading now... If it doesn't start, <a href="${downloadUrl}" download="tiktok_video.mp4">click here</a>.
           `;
           
-          // Auto download after 2 seconds
           setTimeout(() => {
             window.location.href = downloadUrl;
           }, 2000);
         } else {
-          throw new Error("Could not get download link from this video");
+          throw new Error("Could not get download link for this video");
         }
       } catch (e) {
         result.innerHTML = `<div class="error">Error: ${e.message}</div>`;
         console.error("Download error:", e);
       } finally {
         downloadBtn.disabled = false;
-        clearInterval(countdownInterval);
-        if (seconds > 0) {
-          countdown.innerHTML = "";
-        }
       }
     }
   </script>
