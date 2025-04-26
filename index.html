@@ -3,82 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Portal | Trusted Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Neon Investment Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --neon-blue: #00f7ff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #9d00ff;
+            --dark-bg: #0a0a1a;
+            --card-bg: rgba(15, 15, 35, 0.9);
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background: radial-gradient(circle at center, #0a0a1a, #000);
-            color: #e0e7ff;
+            font-family: 'Orbitron', sans-serif;
+            background: var(--dark-bg);
+            color: white;
             margin: 0;
+            padding: 0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(157, 0, 255, 0.1) 0%, transparent 20%);
         }
 
         .container {
-            background: rgba(10, 20, 40, 0.85);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+        }
+
+        .auth-box {
+            background: var(--card-bg);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), 
-                       inset 0 0 10px rgba(0, 102, 255, 0.2);
-            text-align: center;
-            width: 100%;
-            max-width: 450px;
-            border: 2px solid #0066ff;
-            position: relative;
+            box-shadow: 0 0 40px var(--neon-purple);
+            border: 2px solid var(--neon-blue);
             backdrop-filter: blur(5px);
-            transform: perspective(1000px) translateZ(0);
-            transition: transform 0.3s;
-            margin: 20px;
         }
 
-        .container:hover {
-            transform: perspective(1000px) translateZ(10px);
-        }
-
-        h2 {
-            color: #00ccff;
-            margin-bottom: 25px;
-            font-size: 32px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 204, 255, 0.7);
-            letter-spacing: 2px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00ccff, transparent);
+        h1, h2 {
+            font-family: 'Audiowide', sans-serif;
+            text-align: center;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+            letter-spacing: 3px;
+            margin-bottom: 30px;
         }
 
         .input-group {
             position: relative;
-            margin: 20px 0;
+            margin-bottom: 25px;
         }
 
-        input[type="text"],
-        input[type="password"] {
+        input {
             width: 100%;
-            padding: 12px 12px 12px 40px;
-            border: 1px solid #0066ff;
+            padding: 15px 15px 15px 45px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-purple);
             border-radius: 8px;
-            background: rgba(20, 30, 60, 0.7);
-            color: #e0e7ff;
+            color: white;
             font-size: 16px;
-            box-sizing: border-box;
-            box-shadow: inset 0 0 5px rgba(0, 102, 255, 0.3);
             transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
         }
 
         .input-icon {
@@ -86,98 +82,32 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #00ccff;
+            color: var(--neon-blue);
             font-size: 18px;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: #00ccff;
-            box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
-            padding-left: 45px;
         }
 
         button {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(45deg, #0066ff, #00ccff);
-            color: #fff;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: black;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-family: 'Audiowide', sans-serif;
+            font-size: 18px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4), 
-                      inset 0 0 5px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px var(--neon-blue);
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         button:hover {
-            background: linear-gradient(45deg, #0088ff, #00e6ff);
-            box-shadow: 0 6px 20px rgba(0, 136, 255, 0.6);
             transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--neon-blue);
         }
 
-        button::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                      transparent, 
-                      rgba(255,255,255,0.1), 
-                      transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        button:hover::after {
-            left: 150%;
-        }
-
-        .trust-badge {
-            margin: 25px 0;
-            padding: 15px;
-            background: rgba(0, 102, 255, 0.1);
-            border-radius: 8px;
-            border: 1px solid #0066ff;
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.2);
-        }
-
-        .trust-badge p {
-            margin: 0;
-            font-size: 14px;
-            color: #00ccff;
-        }
-
-        .trust-badge i {
-            margin-right: 8px;
-        }
-
-        .social-links {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: #00ccff;
-            font-size: 24px;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #00e6ff;
-            transform: scale(1.2);
-            text-shadow: 0 0 10px rgba(0, 230, 255, 0.7);
-        }
-
-        /* Tabs styling */
         .tabs {
             display: flex;
             justify-content: center;
@@ -187,134 +117,230 @@
 
         .tab {
             padding: 12px 30px;
-            background: rgba(20, 30, 60, 0.7);
-            color: #00ccff;
-            border: 1px solid #0066ff;
+            background: rgba(30, 30, 60, 0.7);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-purple);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
         .tab.active {
-            background: linear-gradient(45deg, #0066ff, #00ccff);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.5);
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: black;
+            box-shadow: 0 0 15px var(--neon-blue);
         }
 
-        .tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                      transparent, 
-                      rgba(255,255,255,0.1), 
-                      transparent);
-            transition: all 0.5s;
+        .trust-badge {
+            margin: 30px 0;
+            padding: 15px;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid var(--neon-blue);
+            text-align: center;
         }
 
-        .tab:hover::before {
-            left: 100%;
+        .trust-badge p {
+            margin: 5px 0;
+            color: var(--neon-blue);
+            font-size: 14px;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 25px;
-                margin: 15px;
-            }
-            
-            h2 {
-                font-size: 26px;
-            }
-            
-            .tab {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
+        .social-icons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            font-size: 30px;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink);
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--neon-blue);
+            transform: scale(1.2);
+        }
+
+        .error {
+            color: #ff4444;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 68, 68, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Secure Access Portal</h2>
-        
-        <div class="trust-badge">
-            <p><i class="fas fa-shield-alt"></i>Trusted Platform Since 2021</p>
-            <p><i class="fas fa-lock"></i>100% Secure Transactions</p>
-        </div>
+        <div class="auth-box">
+            <h1>NEON INVEST</h1>
+            
+            <div class="trust-badge">
+                <p><i class="fas fa-shield-alt"></i> Trusted Since 2021</p>
+                <p><i class="fas fa-users"></i> 50,000+ Happy Investors</p>
+            </div>
 
-        <div class="tabs">
-            <button class="tab active" onclick="showTab('login')">Secure Login</button>
-            <button class="tab" onclick="showTab('signup')">New Registration</button>
-        </div>
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('login')">Login</button>
+                <button class="tab" onclick="showTab('signup')">Sign Up</button>
+            </div>
 
-        <!-- Login Form -->
-        <div id="login" class="tab-content active">
-            <form>
-                <div class="input-group">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" placeholder="Access ID" required>
-                </div>
-                
-                <div class="input-group">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" placeholder="Security Key" required>
-                </div>
-                
-                <button type="submit">Authenticate</button>
-            </form>
-        </div>
+            <!-- Login Form -->
+            <div id="login" class="tab-content" style="display: block;">
+                <form id="loginForm">
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" placeholder="Username" id="loginUsername" required autocomplete="username">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" placeholder="Password" id="loginPassword" required autocomplete="current-password">
+                    </div>
+                    
+                    <button type="submit">Login</button>
+                </form>
+            </div>
 
-        <!-- Sign-Up Form -->
-        <div id="signup" class="tab-content">
-            <form>
-                <div class="input-group">
-                    <i class="fas fa-id-card input-icon"></i>
-                    <input type="text" placeholder="New Access ID" required>
-                </div>
-                
-                <div class="input-group">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" placeholder="Create Security Key" required>
-                </div>
-                
-                <div class="input-group">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" placeholder="Confirm Security Key" required>
-                </div>
-                
-                <button type="submit">Register Account</button>
-            </form>
-        </div>
-
-        <div class="social-links">
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <!-- Sign-Up Form -->
+            <div id="signup" class="tab-content">
+                <form id="signupForm">
+                    <div class="input-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" placeholder="Username" id="signupUsername" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" placeholder="Gmail" id="signupEmail" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" placeholder="Password" id="signupPassword" required>
+                    </div>
+                    
+                    <button type="submit">Create Account</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <script>
-        function showTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
+    <div class="social-icons">
+        <a href="https://t.me/TECHBYHUZII" target="_blank" class="social-icon">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://wa.me/923407699974" target="_blank" class="social-icon">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
-            // Remove active class from all tabs
+    <script>
+        // User database
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Show selected tab
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-
-            // Show selected tab content
-            document.getElementById(tabId).classList.add('active');
-
-            // Add active class to clicked tab
+            document.getElementById(tabId).style.display = 'block';
             event.currentTarget.classList.add('active');
+        }
+
+        // Signup form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('signupUsername').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            
+            // Check if username already exists
+            if(users.some(user => user.username === username)) {
+                showError('Username already taken!');
+                return;
+            }
+            
+            // Check if email already exists
+            if(users.some(user => user.email === email)) {
+                showError('Gmail already registered!');
+                return;
+            }
+            
+            // Add new user
+            users.push({
+                username,
+                email,
+                password
+            });
+            
+            localStorage.setItem('users', JSON.stringify(users));
+            showMessage('Account created successfully!');
+            this.reset();
+            showTab('login');
+            
+            // Auto-fill login form
+            document.getElementById('loginUsername').value = username;
+            document.getElementById('loginPassword').value = password;
+        });
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            const user = users.find(user => user.username === username && user.password === password);
+            
+            if(user) {
+                showMessage('Login successful!');
+                // Redirect to dashboard here
+            } else {
+                showError('Invalid username or password!');
+            }
+        });
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            document.querySelector('.auth-box').appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 3000);
+        }
+
+        // Show success message
+        function showMessage(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'error';
+            successDiv.style.color = '#00ff88';
+            successDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.querySelector('.auth-box').appendChild(successDiv);
+            setTimeout(() => successDiv.remove(), 3000);
+        }
+
+        // Auto-fill last registered user
+        if(users.length > 0) {
+            const lastUser = users[users.length - 1];
+            document.getElementById('loginUsername').value = lastUser.username;
+            document.getElementById('loginPassword').value = lastUser.password;
         }
     </script>
 </body>
