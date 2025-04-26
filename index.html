@@ -10,6 +10,7 @@
         :root {
             --neon-green: #00ff9d;
             --neon-blue: #0066ff;
+            --neon-purple: #9d00ff;
             --dark-bg: #0a0a1a;
             --text-white: #ffffff;
         }
@@ -35,10 +36,19 @@
             background: rgba(10, 20, 40, 0.85);
             padding: 2rem;
             border-radius: 15px;
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
             width: 90%;
             max-width: 450px;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Tektur', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.7);
         }
 
         .tabs {
@@ -56,11 +66,13 @@
             color: var(--neon-green);
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: bold;
         }
 
         .tab.active {
-            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
             color: white;
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.5);
         }
 
         .tab-content {
@@ -76,21 +88,54 @@
             padding: 1rem;
             margin: 0.8rem 0;
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-green);
+            border: 1px solid var(--neon-purple);
             color: white;
             border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
         }
 
         button {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
             border: none;
             border-radius: 8px;
-            color: black;
+            color: white;
             font-weight: bold;
             cursor: pointer;
             margin-top: 1rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.5);
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            color: var(--neon-green);
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: var(--neon-blue);
         }
 
         /* Plans Section */
@@ -110,20 +155,56 @@
 
         .plan-card {
             background: rgba(10, 20, 40, 0.7);
-            border: 1px solid var(--neon-green);
+            border: 1px solid var(--neon-purple);
             border-radius: 10px;
             padding: 1.5rem;
-            transition: transform 0.3s;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(157, 0, 255, 0.1)
+            );
+            transform: rotate(30deg);
+            transition: all 0.7s;
         }
 
         .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(157, 0, 255, 0.5);
+            border-color: var(--neon-green);
+        }
+
+        .plan-card:hover::before {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: rotate(30deg) translate(-10%, -10%);
+            }
+            100% {
+                transform: rotate(30deg) translate(10%, 10%);
+            }
         }
 
         .plan-name {
             color: var(--neon-green);
             margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
         }
 
         .withdrawal-note {
@@ -133,6 +214,7 @@
             padding: 0.5rem;
             background: rgba(0, 102, 255, 0.1);
             border-radius: 5px;
+            border-left: 3px solid var(--neon-blue);
         }
 
         /* Payment Modal */
@@ -153,9 +235,10 @@
             background: var(--dark-bg);
             padding: 2rem;
             border-radius: 15px;
-            border: 2px solid var(--neon-green);
+            border: 2px solid var(--neon-purple);
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
+            box-shadow: 0 0 30px rgba(157, 0, 255, 0.5);
         }
 
         .payment-details p {
@@ -178,7 +261,7 @@
             text-align: center;
             padding: 3rem 2rem;
             margin-top: 3rem;
-            border-top: 1px solid var(--neon-green);
+            border-top: 1px solid var(--neon-purple);
         }
 
         .social-links {
@@ -191,6 +274,20 @@
         .social-link {
             color: var(--neon-green);
             text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+        }
+
+        .social-link:hover {
+            color: var(--neon-blue);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -198,9 +295,11 @@
     <!-- Auth Section -->
     <div class="auth-container">
         <div class="container">
+            <div class="logo">FAM OFC VIP TOOL</div>
+            
             <div class="tabs">
-                <button class="tab active" onclick="showTab('login')">Login</button>
-                <button class="tab" onclick="showTab('signup')">Sign Up</button>
+                <button class="tab active" onclick="showTab('login', event)">Login</button>
+                <button class="tab" onclick="showTab('signup', event)">Sign Up</button>
             </div>
 
             <!-- Login Form -->
@@ -218,6 +317,16 @@
                 <input type="password" placeholder="Confirm Password" required>
                 <button type="submit">Create Account</button>
             </form>
+            
+            <!-- Social Icons -->
+            <div class="social-icons">
+                <a href="https://wa.me/923407699974" class="social-icon" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/TECHBYHUZII" class="social-icon" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -291,12 +400,12 @@
                 <p>Amount: <span id="planAmount">2500</span> PKR</p>
             </div>
 
-            <input type="text" placeholder="Transaction ID" id="transactionId">
-            <input type="number" placeholder="Amount Sent" id="amountSent">
+            <input type="text" placeholder="Transaction ID" id="transactionId" style="padding: 0.8rem; margin: 0.5rem 0;">
+            <input type="number" placeholder="Amount Sent" id="amountSent" style="padding: 0.8rem; margin: 0.5rem 0;">
 
             <div class="modal-buttons">
                 <button onclick="submitPayment()">Confirm Payment</button>
-                <button onclick="closePayment()" style="background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green);">Cancel</button>
+                <button onclick="closePayment()" style="background: transparent; border: 1px solid var(--neon-purple); color: var(--neon-green);">Cancel</button>
             </div>
 
             <p style="margin-top: 1rem; color: var(--neon-green);">
@@ -316,7 +425,7 @@
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             
             event.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
+            document.getElementById(tabId + 'Form').classList.add('active');
         }
 
         // Signup
@@ -345,7 +454,7 @@
             document.querySelector('.tab.active').classList.remove('active');
             document.querySelector('.tab-content.active').classList.remove('active');
             document.querySelector('[onclick*="login"]').classList.add('active');
-            document.getElementById('login').classList.add('active');
+            document.getElementById('loginForm').classList.add('active');
             
             this.reset();
         });
