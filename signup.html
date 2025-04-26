@@ -1,1 +1,202 @@
+<!-- index.html (Plans Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BALOCH EARNING PLATFORM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-cyan: #00f7ff;
+            --neon-purple: #9d00ff;
+            --dark-bg: #0a0a1a;
+        }
 
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .plans-container {
+            display: grid;
+            gap: 30px;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            background: linear-gradient(145deg, rgba(15,15,35,0.9), rgba(30,30,60,0.7));
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid var(--neon-cyan);
+            box-shadow: 0 0 40px rgba(0, 247, 255, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, rgba(0, 247, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: glow 6s linear infinite;
+        }
+
+        @keyframes glow {
+            0% { transform: rotate(45deg) translate(-50%, -50%); }
+            100% { transform: rotate(45deg) translate(50%, 50%); }
+        }
+
+        .plan-card h3 {
+            color: var(--neon-cyan);
+            font-size: 2.5em;
+            text-shadow: 0 0 20px var(--neon-cyan);
+            margin: 0 0 20px 0;
+        }
+
+        .plan-details {
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .plan-details span {
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+
+        .activate-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+            color: black;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Audiowide', sans-serif;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 0 25px var(--neon-purple);
+            transition: all 0.3s;
+        }
+
+        .withdrawal-section {
+            padding: 50px 20px;
+            text-align: center;
+            background: rgba(0, 102, 255, 0.05);
+            margin: 50px 0;
+        }
+
+        .method-badge {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 30px;
+            background: rgba(0, 247, 255, 0.1);
+            font-size: 1.1em;
+        }
+
+        .trust-banner {
+            padding: 30px;
+            background: linear-gradient(90deg, 
+                rgba(0, 102, 255, 0.1), 
+                rgba(157, 0, 255, 0.1));
+            text-align: center;
+            border-top: 3px solid var(--neon-cyan);
+            border-bottom: 3px solid var(--neon-cyan);
+        }
+    </style>
+</head>
+<body>
+    <div class="plans-container">
+        <!-- Silver Plan -->
+        <div class="plan-card">
+            <h3>SILVER PLAN</h3>
+            <div class="plan-details">
+                <p>Investment: <span>₹2500</span></p>
+                <p>Return: <span>₹5000</span> in 10 Days</p>
+            </div>
+            <button class="activate-btn">Activate Plan</button>
+        </div>
+
+        <!-- Gold Plan -->
+        <div class="plan-card">
+            <h3>GOLD PLAN</h3>
+            <div class="plan-details">
+                <p>Investment: <span>₹5000</span></p>
+                <p>Return: <span>₹10000</span> in 10 Days</p>
+            </div>
+            <button class="activate-btn">Activate Plan</button>
+        </div>
+
+        <!-- Platinum Plan -->
+        <div class="plan-card">
+            <h3>PLATINUM PLAN</h3>
+            <div class="plan-details">
+                <p>Investment: <span>₹10000</span></p>
+                <p>Return: <span>₹20000</span> in 10 Days</p>
+            </div>
+            <button class="activate-btn">Activate Plan</button>
+        </div>
+
+        <!-- Diamond Plan -->
+        <div class="plan-card">
+            <h3>DIAMOND PLAN</h3>
+            <div class="plan-details">
+                <p>Investment: <span>₹20000</span></p>
+                <p>Return: <span>₹40000</span> in 10 Days</p>
+            </div>
+            <button class="activate-btn">Activate Plan</button>
+        </div>
+    </div>
+
+    <div class="withdrawal-section">
+        <h2>Withdrawal Methods</h2>
+        <div class="payment-methods">
+            <span class="method-badge">Easypaisa</span>
+            <span class="method-badge">JazzCash</span>
+            <span class="method-badge">Bank Transfer</span>
+            <span class="method-badge">ATM</span>
+            <span class="method-badge">Sada Pay</span>
+            <span class="method-badge">Naya Pay</span>
+        </div>
+    </div>
+
+    <div class="trust-banner">
+        <h2>Trusted Since 2021</h2>
+        <p>100% Secure Transactions | 24/7 Customer Support</p>
+        <p>📞 Contact: +92 123 4567890</p>
+    </div>
+
+    <!-- Payment Modal Script -->
+    <script>
+        // Add payment modal functionality here
+        const activateBtns = document.querySelectorAll('.activate-btn');
+        
+        activateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const planName = btn.parentElement.querySelector('h3').textContent;
+                const investment = btn.parentElement.querySelector('span').textContent;
+                
+                const paymentDetails = `
+                    Send ${investment} to:
+                    Easypaisa/JazzCash: 03407699974
+                    After payment, WhatsApp screenshot to +923407699974
+                `;
+                
+                alert(`${planName}\n\n${paymentDetails}`);
+            });
+        });
+    </script>
+</body>
+</html>
