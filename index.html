@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BALOCH EARNING PLATFORM</title>
+    <title>BALOCH EARNING WEBSITE</title>
     <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -119,23 +119,37 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.5);
         }
 
-        /* Social Icons */
+        /* Social Icons - Always Visible */
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 1.5rem;
+            margin: 1.5rem 0;
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            z-index: 100;
         }
 
         .social-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--neon-green);
+            background: rgba(10, 20, 40, 0.8);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
             transition: all 0.3s;
         }
 
         .social-icon:hover {
             transform: scale(1.2);
             color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.7);
         }
 
         /* Plans Section */
@@ -143,6 +157,8 @@
             display: none;
             padding: 2rem;
             font-family: 'Tektur', sans-serif;
+            position: relative;
+            padding-bottom: 100px; /* Space for fixed social icons */
         }
 
         .plans-grid {
@@ -161,43 +177,36 @@
             transition: all 0.5s;
             position: relative;
             overflow: hidden;
+            animation: pulse 4s infinite;
         }
 
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                rgba(157, 0, 255, 0.1)
-            );
-            transform: rotate(30deg);
-            transition: all 0.7s;
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 5px rgba(157, 0, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(157, 0, 255, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(157, 0, 255, 0.3);
+            }
         }
 
         .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(157, 0, 255, 0.5);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(157, 0, 255, 0.7);
             border-color: var(--neon-green);
+            animation: none;
         }
 
-        .plan-card:hover::before {
-            animation: shine 1.5s;
+        .plan-card:hover .plan-name {
+            animation: colorChange 2s infinite;
         }
 
-        @keyframes shine {
-            0% {
-                transform: rotate(30deg) translate(-10%, -10%);
-            }
-            100% {
-                transform: rotate(30deg) translate(10%, 10%);
-            }
+        @keyframes colorChange {
+            0% { color: var(--neon-green); }
+            50% { color: var(--neon-blue); }
+            100% { color: var(--neon-green); }
         }
 
         .plan-name {
@@ -205,6 +214,7 @@
             margin-bottom: 1rem;
             font-size: 1.5rem;
             text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+            transition: all 0.5s;
         }
 
         .withdrawal-note {
@@ -233,16 +243,17 @@
 
         .payment-content {
             background: var(--dark-bg);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 15px;
             border: 2px solid var(--neon-purple);
             width: 90%;
-            max-width: 450px;
+            max-width: 400px;
             box-shadow: 0 0 30px rgba(157, 0, 255, 0.5);
         }
 
         .payment-details p {
-            margin: 1rem 0;
+            margin: 0.8rem 0;
+            font-size: 0.95rem;
         }
 
         .highlight {
@@ -253,7 +264,34 @@
         .modal-buttons {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
+        }
+
+        /* Active Plan Status */
+        .active-plan-status {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 20, 40, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+            z-index: 1001;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .active-plan-status h2 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .active-plan-details {
+            margin-bottom: 1.5rem;
         }
 
         /* Footer */
@@ -295,7 +333,7 @@
     <!-- Auth Section -->
     <div class="auth-container">
         <div class="container">
-            <div class="logo">FAM OFC VIP TOOL</div>
+            <div class="logo">BALOCH EARNING WEBSITE</div>
             
             <div class="tabs">
                 <button class="tab active" onclick="showTab('login', event)">Login</button>
@@ -317,17 +355,17 @@
                 <input type="password" placeholder="Confirm Password" required>
                 <button type="submit">Create Account</button>
             </form>
-            
-            <!-- Social Icons -->
-            <div class="social-icons">
-                <a href="https://wa.me/923407699974" class="social-icon" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://t.me/TECHBYHUZII" class="social-icon" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
-            </div>
         </div>
+    </div>
+
+    <!-- Always Visible Social Icons -->
+    <div class="social-icons">
+        <a href="https://wa.me/923407699974" class="social-icon" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://t.me/TECHBYHUZII" class="social-icon" target="_blank">
+            <i class="fab fa-telegram"></i>
+        </a>
     </div>
 
     <!-- Plans Section -->
@@ -385,7 +423,7 @@
                     <i class="fab fa-telegram"></i> TECHBYHUZII
                 </a>
             </div>
-            <p>© 2023 BALOCH EARNING PLATFORM</p>
+            <p>© 2023 BALOCH EARNING WEBSITE</p>
         </footer>
     </section>
 
@@ -400,8 +438,8 @@
                 <p>Amount: <span id="planAmount">2500</span> PKR</p>
             </div>
 
-            <input type="text" placeholder="Transaction ID" id="transactionId" style="padding: 0.8rem; margin: 0.5rem 0;">
-            <input type="number" placeholder="Amount Sent" id="amountSent" style="padding: 0.8rem; margin: 0.5rem 0;">
+            <input type="text" placeholder="Transaction ID" id="transactionId">
+            <input type="number" placeholder="Amount Sent" id="amountSent">
 
             <div class="modal-buttons">
                 <button onclick="submitPayment()">Confirm Payment</button>
@@ -414,10 +452,24 @@
         </div>
     </div>
 
+    <!-- Active Plan Status -->
+    <div class="active-plan-status" id="activePlanStatus">
+        <h2>PLAN ACTIVATED SUCCESSFULLY!</h2>
+        <div class="active-plan-details">
+            <p><strong>Plan:</strong> <span id="activatedPlanName">Silver Plan</span></p>
+            <p><strong>Amount:</strong> <span id="activatedPlanAmount">2500</span> PKR</p>
+            <p><strong>Transaction ID:</strong> <span id="activatedTransactionId">ABC123</span></p>
+            <p><strong>Activation Date:</strong> <span id="activationDate">27/04/2025</span></p>
+            <p><strong>Maturity Date:</strong> <span id="maturityDate">07/05/2025</span></p>
+        </div>
+        <button onclick="closeActivePlanStatus()">OK</button>
+    </div>
+
     <script>
         // User Management
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let currentPlan = null;
+        let activePlans = JSON.parse(localStorage.getItem('activePlans')) || [];
 
         // Tab Switching
         function showTab(tabId, event) {
@@ -469,6 +521,12 @@
             if (user) {
                 document.querySelector('.auth-container').style.display = 'none';
                 document.getElementById('plansPage').style.display = 'block';
+                
+                // Show active plans if any
+                const userActivePlans = activePlans.filter(plan => plan.username === username);
+                if (userActivePlans.length > 0) {
+                    showActivePlanStatus(userActivePlans[0]);
+                }
             } else {
                 alert('Invalid credentials!');
             }
@@ -484,11 +542,14 @@
 
         function closePayment() {
             document.getElementById('paymentModal').style.display = 'none';
+            document.getElementById('transactionId').value = '';
+            document.getElementById('amountSent').value = '';
         }
 
         function submitPayment() {
             const transactionId = document.getElementById('transactionId').value;
             const amountSent = document.getElementById('amountSent').value;
+            const username = document.getElementById('loginForm')[0].value.trim();
 
             if (!transactionId || !amountSent) {
                 alert('Please fill all fields');
@@ -500,9 +561,25 @@
                 return;
             }
 
-            alert('Payment submitted! Your plan will be activated within 10 minutes.');
-            closePayment();
-        }
-    </script>
-</body>
-</html>
+            // Create activation and maturity dates
+            const activationDate = new Date();
+            const maturityDate = new Date();
+            maturityDate.setDate(activationDate.getDate() + 10);
+            
+            const formattedActivationDate = activationDate.toLocaleDateString('en-GB');
+            const formattedMaturityDate = maturityDate.toLocaleDateString('en-GB');
+
+            // Save the active plan
+            const activePlan = {
+                username,
+                planName: currentPlan.planName,
+                amount: currentPlan.amount,
+                transactionId,
+                activationDate: formattedActivationDate,
+                maturityDate: formattedMaturityDate
+            };
+            
+            activePlans.push(activePlan);
+            localStorage.setItem('activePlans', JSON.stringify(activePlans));
+
+            /
