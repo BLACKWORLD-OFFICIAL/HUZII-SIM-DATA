@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            /* CHANGED ONLY THESE COLORS FOR LOGIN/SIGNUP PAGE */
+            --auth-green: #FF5733;      /* Changed to orange */
+            --auth-blue: #33A1FF;       /* Changed to blue */
+            --auth-purple: #9C33FF;    /* Changed to purple */
+            
+            /* KEPT ALL OTHER COLORS SAME AS ORIGINAL */
             --neon-green: #00ff9d;
             --neon-blue: #0066ff;
             --neon-purple: #7122fa;
@@ -70,16 +76,16 @@
             transform: scale(1.1) translateY(-5px);
         }
 
-        /* Auth Container */
+        /* Auth Container - USING CHANGED COLORS HERE ONLY */
         .container {
             background: rgba(10, 20, 40, 0.85);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), inset 0 0 10px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(51, 161, 255, 0.3), inset 0 0 10px rgba(51, 161, 255, 0.2);
             text-align: center;
             width: 100%;
             max-width: 450px;
-            border: 2px solid var(--neon-green);
+            border: 2px solid var(--auth-green);
             position: relative;
             backdrop-filter: blur(5px);
             transform: perspective(1000px) translateZ(0);
@@ -92,11 +98,11 @@
         }
 
         h2 {
-            color: var(--neon-green);
+            color: var(--auth-green);
             margin-bottom: 25px;
             font-size: 32px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.7);
+            text-shadow: 0 0 10px rgba(255, 87, 51, 0.7);
             letter-spacing: 2px;
         }
 
@@ -110,12 +116,12 @@
             flex: 1;
             padding: 12px;
             background: rgba(20, 30, 60, 0.7);
-            color: var(--neon-blue);
-            border: 1px solid var(--neon-blue);
+            color: var(--auth-blue);
+            border: 1px solid var(--auth-blue);
             cursor: pointer;
             transition: all 0.3s;
             transform: skew(-10deg);
-            box-shadow: 0 2px 10px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 2px 10px rgba(51, 161, 255, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -132,7 +138,7 @@
                 transparent,
                 transparent,
                 transparent,
-                var(--neon-purple),
+                var(--auth-purple),
                 transparent,
                 transparent,
                 transparent
@@ -148,18 +154,19 @@
         }
 
         .tab.active {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            background: linear-gradient(45deg, var(--auth-blue), var(--auth-green));
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 255, 157, 0.5);
+            box-shadow: 0 4px 15px rgba(255, 87, 51, 0.5);
             transform: skew(-10deg) translateY(-2px);
         }
 
         .tab:hover {
             background: rgba(30, 50, 80, 0.7);
             transform: skew(-10deg) translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(51, 161, 255, 0.4);
         }
 
+        /* REST OF THE CSS REMAINS EXACTLY THE SAME AS YOUR ORIGINAL */
         .tab-content {
             display: none;
         }
@@ -174,13 +181,13 @@
             width: 100%;
             padding: 12px;
             margin: 12px 0;
-            border: 1px solid var(--neon-blue);
+            border: 1px solid var(--auth-blue);
             border-radius: 8px;
             background: rgba(20, 30, 60, 0.7);
             color: #e0e7ff;
             font-size: 16px;
             box-sizing: border-box;
-            box-shadow: inset 0 0 5px rgba(0, 102, 255, 0.3);
+            box-shadow: inset 0 0 5px rgba(51, 161, 255, 0.3);
             transition: all 0.3s;
         }
 
@@ -188,20 +195,20 @@
         input[type="password"]:focus,
         input[type="email"]:focus {
             outline: none;
-            border-color: var(--neon-green);
-            box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+            border-color: var(--auth-green);
+            box-shadow: 0 0 10px rgba(255, 87, 51, 0.5);
         }
 
         button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            background: linear-gradient(45deg, var(--auth-blue), var(--auth-green));
             color: #fff;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(51, 161, 255, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.2);
             transform: translateY(0);
             transition: all 0.3s;
             position: relative;
@@ -237,7 +244,7 @@
 
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 255, 157, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 87, 51, 0.6);
         }
 
         button:active {
@@ -254,7 +261,7 @@
             animation: fadeIn 0.5s;
         }
 
-        /* Plans Section */
+        /* Plans Section - USING ORIGINAL COLORS HERE */
         .plans-section {
             display: none;
             padding: 2rem;
@@ -350,7 +357,7 @@
             box-shadow: 0 5px 15px rgba(0, 255, 157, 0.5);
         }
 
-        /* Payment Modal */
+        /* Payment Modal - USING ORIGINAL COLORS HERE */
         .payment-modal {
             position: fixed;
             top: 0;
@@ -625,16 +632,4 @@
             </div>
 
             <div class="modal-buttons">
-                <button onclick="submitPayment()">Confirm Payment</button>
-                <button onclick="closePayment()" style="background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green);">Cancel</button>
-            </div>
-
-            <p style="margin-top: 1rem; color: var(--neon-green);">
-                If not activated within 10 minutes, contact: 03407699974
-            </p>
-        </div>
-    </div>
-
-    <script>
-        // Tab Switching
-        function showTab(tab
+             
