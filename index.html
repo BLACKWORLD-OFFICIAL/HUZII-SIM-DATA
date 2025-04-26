@@ -1,244 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baloch Earning Platform | Trusted Since 3 Years</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --baloch-green: #00ff9d;
-      --baloch-blue: #0066ff;
-      --dark-bg: #0a0a1a;
-      --neon-purple: #7122fa;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BALOCH EARNING PLATFORM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-green: #00ff9d;
+            --neon-blue: #0066ff;
+            --dark-bg: #0a0a1a;
+            --neon-purple: #7122fa;
+        }
 
-    body {
-      font-family: 'Tektur', sans-serif;
-      background: var(--dark-bg);
-      color: white;
-      margin: 0;
-      min-height: 100vh;
-    }
+        body {
+            font-family: 'Tektur', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: var(--dark-bg);
+            color: white;
+        }
 
-    /* Auth Container */
-    .auth-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: radial-gradient(circle at center, #0a0a1a, #000);
-    }
+        /* Auth Container */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #0a0a1a, #000);
+        }
 
-    .container {
-      background: rgba(10, 20, 40, 0.9);
-      padding: 2rem;
-      border-radius: 15px;
-      border: 2px solid var(--baloch-green);
-      box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
-      width: 100%;
-      max-width: 400px;
-    }
+        .container {
+            background: rgba(10, 20, 40, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
 
-    .tabs {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
 
-    .tab {
-      flex: 1;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.3);
-      border: none;
-      border-radius: 8px;
-      color: var(--baloch-green);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            border-radius: 8px;
+            color: var(--neon-green);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-    .tab.active {
-      background: linear-gradient(45deg, var(--baloch-green), var(--baloch-blue));
-      color: white;
-    }
+        .tab.active {
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            color: white;
+        }
 
-    input {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--baloch-green);
-      color: white;
-      border-radius: 8px;
-      font-family: 'Tektur';
-    }
+        input {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green);
+            color: white;
+            border-radius: 8px;
+            font-family: 'Tektur';
+        }
 
-    button[type="submit"] {
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(45deg, var(--baloch-green), var(--baloch-blue));
-      border: none;
-      border-radius: 8px;
-      color: black;
-      font-weight: bold;
-      margin-top: 1rem;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            border: none;
+            border-radius: 8px;
+            color: black;
+            font-weight: bold;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-    /* Plans Page */
-    .plans-page {
-      display: none;
-      padding: 2rem;
-    }
+        /* Plans Page */
+        .plans-page {
+            display: none;
+            padding: 2rem;
+        }
 
-    .plan-card {
-      background: rgba(10, 20, 40, 0.9);
-      border: 2px solid var(--baloch-green);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin: 1rem 0;
-      position: relative;
-      overflow: hidden;
-    }
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
 
-    .plan-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, var(--baloch-green), transparent);
-      animation: glow 4s linear infinite;
-    }
+        .plan-card {
+            background: rgba(10, 20, 40, 0.9);
+            border: 2px solid var(--neon-green);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-    @keyframes glow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--neon-green), transparent);
+            animation: glow 4s linear infinite;
+        }
 
-    /* Payment Modal */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+        @keyframes glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    .modal-content {
-      background: var(--dark-bg);
-      padding: 2rem;
-      border-radius: 15px;
-      border: 2px solid var(--baloch-green);
-      width: 90%;
-      max-width: 500px;
-    }
-  </style>
+        .withdrawal-note {
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        /* Payment Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--neon-green);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--neon-green);
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <!-- Auth Section -->
-  <div class="auth-container">
-    <div class="container">
-      <div class="tabs">
-        <button class="tab active" onclick="showTab('login')">Login</button>
-        <button class="tab" onclick="showTab('signup')">Sign Up</button>
-      </div>
+    <!-- Auth Section -->
+    <div class="auth-container">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('login')">Login</button>
+                <button class="tab" onclick="showTab('signup')">Sign Up</button>
+            </div>
 
-      <!-- Login Form -->
-      <form id="loginForm" class="active">
-        <input type="text" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-      </form>
+            <!-- Login Form -->
+            <form id="loginForm" class="active">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
 
-      <!-- Signup Form -->
-      <form id="signupForm" style="display: none;">
-        <input type="text" placeholder="Username" required>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <input type="password" placeholder="Confirm Password" required>
-        <button type="submit">Create Account</button>
-      </form>
+            <!-- Signup Form -->
+            <form id="signupForm" style="display: none;">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
     </div>
-  </div>
 
-  <!-- Plans Page -->
-  <div class="plans-page">
-    <div class="plan-card">
-      <h2>Silver Plan</h2>
-      <p>Investment: 2500 PKR</p>
-      <p>Return: 5000 PKR</p>
-      <button onclick="showPayment()">Activate Plan</button>
+    <!-- Plans Page -->
+    <div class="plans-page">
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h2>Silver Plan</h2>
+                <p>Investment: 2500 PKR</p>
+                <p>Return: 5000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Silver', 2500)">Activate Plan</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Gold Plan</h2>
+                <p>Investment: 5000 PKR</p>
+                <p>Return: 10000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Gold', 5000)">Activate Plan</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Platinum Plan</h2>
+                <p>Investment: 10000 PKR</p>
+                <p>Return: 20000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Platinum', 10000)">Activate Plan</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Diamond Plan</h2>
+                <p>Investment: 20000 PKR</p>
+                <p>Return: 40000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Diamond', 20000)">Activate Plan</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Trusted Since 3 Years</h3>
+            <div class="social-links">
+                <a href="https://wa.me/923407699974"><i class="fab fa-whatsapp"></i> +92 340 7699974</a>
+                <a href="https://t.me/TECHBYHUZII"><i class="fab fa-telegram"></i> TechByHuzi</a>
+            </div>
+            <p>© 2023 BALOCH EARNING PLATFORM. All rights reserved.</p>
+        </div>
     </div>
-    
-    <!-- Add other plans similarly -->
 
-    <!-- Footer -->
-    <div class="footer">
-      <h3>Trusted Since 3 Years</h3>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-whatsapp"></i> +92 340 7699974</a>
-        <a href="#"><i class="fab fa-telegram"></i> TechByHuzi</a>
-      </div>
-      <p>Withdrawals via Easypaisa/JazzCash only</p>
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <h2>Payment Instructions</h2>
+            <p>Send payment to: <strong>03407699974</strong> (Easypaisa)</p>
+            <p>Account Name: <strong>Shahnaz Bibi</strong></p>
+            <p>Plan: <span id="selectedPlan"></span></p>
+            <p>Amount: <span id="planAmount"></span> PKR</p>
+            
+            <input type="text" placeholder="Transaction ID" id="transactionId">
+            <input type="number" placeholder="Amount Sent" id="amountSent">
+            
+            <div style="margin-top: 1.5rem;">
+                <button onclick="submitPayment()">Confirm Payment</button>
+                <button onclick="closeModal()" style="margin-left: 1rem;">Cancel</button>
+            </div>
+            
+            <p style="margin-top: 1rem; color: var(--neon-green);">
+                If not activated within 10 minutes, contact: 03407699974
+            </p>
+        </div>
     </div>
-  </div>
 
-  <!-- Payment Modal -->
-  <div class="modal" id="paymentModal">
-    <div class="modal-content">
-      <h2>Payment Instructions</h2>
-      <p>Send payment to: 03407699974 (Easypaisa)</p>
-      <p>Name: Shahnaz Bibi</p>
-      <input type="text" placeholder="Transaction ID">
-      <input type="number" placeholder="Amount">
-      <button onclick="submitPayment()">Submit</button>
-    </div>
-  </div>
+    <script>
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentPlan = null;
 
-  <script>
-    let users = [];
+        function showTab(tab) {
+            document.querySelectorAll('form').forEach(f => f.style.display = 'none');
+            document.getElementById(tab + 'Form').style.display = 'block';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
 
-    function showTab(tab) {
-      document.querySelectorAll('form').forEach(f => f.style.display = 'none');
-      document.getElementById(tab + 'Form').style.display = 'block';
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
-    }
+        // Signup System
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userData = {
+                username: this[0].value,
+                email: this[1].value,
+                password: this[2].value
+            };
+            
+            if (users.some(u => u.username === userData.username)) {
+                alert('Username already exists!');
+                return;
+            }
+            
+            users.push(userData);
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Account created successfully!');
+            showTab('login');
+            this.reset();
+        });
 
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      users.push({
-        username: this[0].value,
-        email: this[1].value,
-        password: this[2].value
-      });
-      alert('Account created successfully!');
-      showTab('login');
-    });
+        // Login System
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = this[0].value;
+            const password = this[1].value;
+            
+            const user = users.find(u => u.username === username && u.password === password);
+            if(user) {
+                document.querySelector('.auth-container').style.display = 'none';
+                document.querySelector('.plans-page').style.display = 'block';
+            } else {
+                alert('Invalid credentials!');
+            }
+        });
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.querySelector('.auth-container').style.display = 'none';
-      document.querySelector('.plans-page').style.display = 'block';
-    });
+        // Payment System
+        function showPayment(planName, amount) {
+            currentPlan = { planName, amount };
+            document.getElementById('selectedPlan').textContent = planName;
+            document.getElementById('planAmount').textContent = amount;
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
 
-    function showPayment() {
-      document.getElementById('paymentModal').style.display = 'flex';
-    }
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
 
-    function submitPayment() {
-      alert('Payment submitted! We will contact you shortly.');
-      document.getElementById('paymentModal').style.display = 'none';
-    }
-  </script>
+        function submitPayment() {
+            const transactionId = document.getElementById('transactionId').value;
+            const amountSent = document.getElementById('amountSent').value;
+            
+            if(!transactionId || !amountSent) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            if(parseInt(amountSent) !== currentPlan.amount) {
+                alert('Amount must be exactly ' + currentPlan.amount);
+                return;
+            }
+            
+            alert('Payment verified! Your plan will activate within 10 minutes.');
+            closeModal();
+        }
+    </script>
 </body>
-</html>
+                  </html>
