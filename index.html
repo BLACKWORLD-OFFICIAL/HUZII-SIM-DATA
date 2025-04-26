@@ -3,161 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BALOCH EARNING PLATFORM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Investment Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Russo+One&family=Iceberg&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
         :root {
-            --neon-green: #00ff9d;
-            --neon-blue: #0066ff;
-            --neon-purple: #7122fa;
-            --dark-bg: #0a0a1a;
-            --text-white: #ffffff;
+            --neon-green: #00FF9D;
+            --neon-blue: #00D2FF;
+            --neon-pink: #FF007F;
+            --neon-purple: #9B00FF;
+            --neon-yellow: #FFFD00;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: radial-gradient(circle at center, #0a0a1a, #000);
-            color: #e0e7ff;
             margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
+            padding: 0;
+            background: linear-gradient(45deg, #1c1c1c, #444444);
+            color: #fff;
         }
 
-        /* Money Background Animation */
-        .money-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" font-family="Arial" font-size="10" fill="rgba(0,255,157,0.1)">$</text></svg>');
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        /* Floating Social Icons */
         .social-float {
             position: fixed;
-            right: 20px;
-            bottom: 20px;
+            top: 50%;
+            right: 0;
+            z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
+            gap: 10px;
         }
 
         .social-float a {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            background: var(--neon-blue);
+            padding: 10px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: black;
-            font-size: 1.5rem;
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.7);
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
         }
 
         .social-float a:hover {
-            transform: scale(1.1) translateY(-5px);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 1);
         }
 
-        /* Auth Container */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
         .container {
             background: rgba(10, 20, 40, 0.85);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), inset 0 0 10px rgba(0, 102, 255, 0.2);
-            text-align: center;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 450px;
-            border: 2px solid var(--neon-green);
-            position: relative;
-            backdrop-filter: blur(5px);
-            transform: perspective(1000px) translateZ(0);
-            transition: transform 0.3s;
-            margin: 20px;
-        }
-
-        .container:hover {
-            transform: perspective(1000px) translateZ(10px);
-        }
-
-        h2 {
-            color: var(--neon-green);
-            margin-bottom: 25px;
-            font-size: 32px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.7);
-            letter-spacing: 2px;
+            max-width: 400px;
         }
 
         .tabs {
             display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
         .tab {
-            flex: 1;
-            padding: 12px;
-            background: rgba(20, 30, 60, 0.7);
-            color: var(--neon-blue);
-            border: 1px solid var(--neon-blue);
             cursor: pointer;
-            transition: all 0.3s;
-            transform: skew(-10deg);
-            box-shadow: 0 2px 10px rgba(0, 102, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                var(--neon-purple),
-                transparent,
-                transparent,
-                transparent
-            );
-            animation: rotate 6s linear infinite;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tab:hover::before {
-            opacity: 0.5;
+            font-weight: bold;
+            padding: 10px;
+            transition: background 0.3s ease;
         }
 
         .tab.active {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 255, 157, 0.5);
-            transform: skew(-10deg) translateY(-2px);
-        }
-
-        .tab:hover {
-            background: rgba(30, 50, 80, 0.7);
-            transform: skew(-10deg) translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+            background: var(--neon-green);
         }
 
         .tab-content {
@@ -168,468 +89,217 @@
             display: block;
         }
 
-        input[type="text"],
-        input[type="password"],
-        input[type="email"] {
+        input {
             width: 100%;
             padding: 12px;
-            margin: 12px 0;
-            border: 1px solid var(--neon-blue);
-            border-radius: 8px;
-            background: rgba(20, 30, 60, 0.7);
-            color: #e0e7ff;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background: transparent;
+            color: #fff;
             font-size: 16px;
-            box-sizing: border-box;
-            box-shadow: inset 0 0 5px rgba(0, 102, 255, 0.3);
-            transition: all 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus,
-        input[type="email"]:focus {
-            outline: none;
-            border-color: var(--neon-green);
-            box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
         }
 
         button {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
-            color: #fff;
+            padding: 15px;
+            font-size: 18px;
+            background: var(--neon-green);
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            color: black;
+            font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.2);
-            transform: translateY(0);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                white,
-                transparent,
-                transparent,
-                transparent
-            );
-            animation: rotate 6s linear infinite;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        button:hover::before {
-            opacity: 0.3;
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.5);
         }
 
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 255, 157, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.7);
         }
 
-        button:active {
-            transform: translateY(1px);
-        }
-
-        .error {
-            color: #ff6666;
-            margin: 12px 0;
-            background: rgba(255, 102, 102, 0.1);
-            padding: 8px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(255, 102, 102, 0.3);
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Plans Section */
         .plans-section {
-            display: none;
-            padding: 2rem;
-            font-family: 'Tektur', sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 3rem;
+            text-align: center;
         }
 
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .plan-card {
-            background: rgba(10, 20, 40, 0.7);
-            border: 1px solid var(--neon-green);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
             border-radius: 10px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                var(--neon-purple),
-                transparent,
-                transparent,
-                transparent
-            );
-            animation: rotate 6s linear infinite;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .plan-card:hover::before {
-            opacity: 0.5;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
         .plan-name {
-            color: var(--neon-green);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+            font-size: 24px;
+            font-family: 'Russo One', sans-serif;
+            color: var(--neon-yellow);
+            margin-bottom: 10px;
         }
 
         .plan-detail {
-            margin: 0.5rem 0;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 5px;
         }
 
-        .withdrawal-note {
-            color: var(--neon-blue);
-            font-size: 0.9rem;
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background: rgba(0, 102, 255, 0.1);
-            border-radius: 5px;
-            border: 1px dashed var(--neon-blue);
+        .transaction-form {
+            display: none;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(10, 20, 40, 0.85);
+            border-radius: 10px;
         }
 
-        .activate-btn {
+        .transaction-form input {
+            margin-bottom: 1rem;
+        }
+
+        .submit-button {
+            padding: 1rem;
             width: 100%;
-            padding: 0.8rem;
-            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
-            border: none;
-            border-radius: 5px;
+            background: var(--neon-green);
             color: black;
             font-weight: bold;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .activate-btn:hover {
-            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 255, 157, 0.5);
         }
 
-        /* Payment Modal */
-        .payment-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .payment-content {
-            background: rgba(10, 20, 40, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid var(--neon-green);
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
-        }
-
-        .payment-content::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                var(--neon-purple),
-                transparent,
-                transparent,
-                transparent
-            );
-            animation: rotate 6s linear infinite;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .payment-details p {
-            margin: 1rem 0;
-        }
-
-        .highlight {
-            color: var(--neon-green);
-            font-weight: bold;
-        }
-
-        .input-container {
-            position: relative;
-            margin: 1rem 0;
-        }
-
-        .input-container input {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-green);
-            color: white;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .input-container input:focus {
-            outline: none;
-            box-shadow: 0 0 15px var(--neon-green);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 5px var(--neon-green); }
-            50% { box-shadow: 0 0 20px var(--neon-green); }
-            100% { box-shadow: 0 0 5px var(--neon-green); }
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .modal-buttons button {
-            flex: 1;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--neon-green);
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" font-family="Arial" font-size="10" fill="rgba(0,255,157,0.05)">$</text></svg>');
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        .trust-badge {
-            color: var(--neon-green);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
-        }
-
-        @media (max-width: 768px) {
-            .plans-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-float {
-                right: 10px;
-                bottom: 10px;
-            }
-            
-            .social-float a {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.6);
         }
     </style>
 </head>
 <body>
-    <!-- Money Background -->
+    <!-- Money Animation Background -->
     <div class="money-bg"></div>
 
-    <!-- Floating Social Icons -->
+    <!-- Social Icons Floating -->
     <div class="social-float">
-        <a href="https://wa.me/923407699974" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://t.me/TECHBYHUZII" target="_blank">
-            <i class="fab fa-telegram"></i>
-        </a>
-        <a href="tel:+923407699974">
-            <i class="fas fa-phone"></i>
-        </a>
+        <a href="https://t.me/TECHBYHUZII" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://wa.me/+923407699974" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb2TegQ8aKvLcZs92Y3r" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- Auth Section -->
+    <!-- Authentication Container -->
     <div class="auth-container">
         <div class="container">
-            <h2>BALOCH EARNING PLATFORM</h2>
             <div class="tabs">
-                <button class="tab active" onclick="showTab('login')">Login</button>
-                <button class="tab" onclick="showTab('signup')">Sign Up</button>
+                <div class="tab active" id="loginTab">Login</div>
+                <div class="tab" id="signupTab">Sign Up</div>
             </div>
 
             <!-- Login Form -->
-            <div id="login" class="tab-content active">
-                <form action="login.php" method="POST">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit" name="login">Login</button>
-                </form>
+            <div class="tab-content active" id="loginForm">
+                <input type="text" placeholder="Username" id="loginUsername">
+                <input type="password" placeholder="Password" id="loginPassword">
+                <button onclick="login()">Login</button>
             </div>
 
-            <!-- Signup Form -->
-            <div id="signup" class="tab-content">
-                <form action="login.php" method="POST">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                    <button type="submit" name="signup">Sign Up</button>
-                </form>
+            <!-- Sign Up Form -->
+            <div class="tab-content" id="signupForm">
+                <input type="text" placeholder="Username" id="signupUsername">
+                <input type="password" placeholder="Password" id="signupPassword">
+                <input type="email" placeholder="Email" id="signupEmail">
+                <button onclick="signup()">Sign Up</button>
             </div>
         </div>
     </div>
 
     <!-- Plans Section -->
-    <section class="plans-section" id="plansPage">
+    <div class="plans-section">
+        <h1>Choose Your Plan</h1>
         <div class="plans-grid">
-            <!-- Silver Plan -->
             <div class="plan-card">
-                <h3 class="plan-name">SILVER PLAN</h3>
-                <p><strong>Investment:</strong> 2500 PKR</p>
-                <p><strong>Return:</strong> 5000 PKR</p>
-                <p><strong>Duration:</strong> 10 Days</p>
-                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
-                <button class="activate-btn" onclick="showPayment('Silver', 2500)">ACTIVATE PLAN</button>
+                <div class="plan-name">Silver Plan</div>
+                <div class="plan-detail">Investment: $100</div>
+                <div class="plan-detail">Returns: $200</div>
+                <div class="plan-detail">Duration: 10 days</div>
+                <button onclick="activatePlan('Silver')">Activate Plan</button>
             </div>
-
-            <!-- Gold Plan -->
             <div class="plan-card">
-                <h3 class="plan-name">GOLD PLAN</h3>
-                <p><strong>Investment:</strong> 5000 PKR</p>
-                <p><strong>Return:</strong> 10000 PKR</p>
-                <p><strong>Duration:</strong> 10 Days</p>
-                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
-                <button class="activate-btn" onclick="showPayment('Gold', 5000)">ACTIVATE PLAN</button>
+                <div class="plan-name">Gold Plan</div>
+                <div class="plan-detail">Investment: $500</div>
+                <div class="plan-detail">Returns: $1000</div>
+                <div class="plan-detail">Duration: 10 days</div>
+                <button onclick="activatePlan('Gold')">Activate Plan</button>
             </div>
-
-            <!-- Platinum Plan -->
             <div class="plan-card">
-                <h3 class="plan-name">PLATINUM PLAN</h3>
-                <p><strong>Investment:</strong> 10000 PKR</p>
-                <p><strong>Return:</strong> 20000 PKR</p>
-                <p><strong>Duration:</strong> 10 Days</p>
-                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
-                <button class="activate-btn" onclick="showPayment('Platinum', 10000)">ACTIVATE PLAN</button>
+                <div class="plan-name">Platinum Plan</div>
+                <div class="plan-detail">Investment: $1000</div>
+                <div class="plan-detail">Returns: $2000</div>
+                <div class="plan-detail">Duration: 10 days</div>
+                <button onclick="activatePlan('Platinum')">Activate Plan</button>
             </div>
-
-            <!-- Diamond Plan -->
             <div class="plan-card">
-                <h3 class="plan-name">DIAMOND PLAN</h3>
-                <p><strong>Investment:</strong> 20000 PKR</p>
-                <p><strong>Return:</strong> 40000 PKR</p>
-                <p><strong>Duration:</strong> 10 Days</p>
-                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
-                <button class="activate-btn" onclick="showPayment('Diamond', 20000)">ACTIVATE PLAN</button>
+                <div class="plan-name">Diamond Plan</div>
+                <div class="plan-detail">Investment: $5000</div>
+                <div class="plan-detail">Returns: $10000</div>
+                <div class="plan-detail">Duration: 10 days</div>
+                <button onclick="activatePlan('Diamond')">Activate Plan</button>
             </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <h3 class="trust-badge">TRUSTED SINCE 3 YEARS</h3>
-            <p>© 2023 BALOCH EARNING PLATFORM</p>
-        </footer>
-    </section>
-
-    <!-- Payment Modal -->
-    <div class="payment-modal" id="paymentModal">
-        <div class="payment-content">
-            <h2>PAYMENT INSTRUCTIONS</h2>
-            <div class="payment-details">
-                <p>Send payment to: <span class="highlight">03407699974</span> (Easypaisa)</p>
-                <p>Account Name: <span class="highlight">Shahnaz Bibi</span></p>
-                <p>Plan: <span id="selectedPlan">Silver Plan</span></p>
-                <p>Amount: <span id="planAmount">2500</span> PKR</p>
-            </div>
-
-            <div class="input-container">
-                <input type="text" id="transactionId" placeholder="Transaction ID">
-            </div>
-
-            <div class="input-container">
-                <input type="number" id="amountSent" placeholder="Amount Sent">
-            </div>
-
-            <div class="modal-buttons">
-                <button onclick="submitPayment()">Confirm Payment</button>
-                <button onclick="closePayment()" style="background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green);">Cancel</button>
-            </div>
-
-            <p style="margin-top: 1rem; color: var(--neon-green);">
-                If not activated within 10 minutes, contact: 03407699974
-            </p>
         </div>
     </div>
 
+    <!-- Transaction Form -->
+    <div class="transaction-form" id="transactionForm">
+        <h3>Submit Transaction ID</h3>
+        <input type="text" placeholder="Enter Transaction ID" id="transactionId">
+        <button class="submit-button" onclick="submitTransaction()">Submit</button>
+    </div>
+
     <script>
-        // Tab Switching
-        function showTab(tabId) {
-            document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content'
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            console.log(`Logging in with Username: ${username} and Password: ${password}`);
+            // Add login logic here
+        }
+
+        function signup() {
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+            const email = document.getElementById('signupEmail').value;
+            console.log(`Signing up with Username: ${username}, Password: ${password}, Email: ${email}`);
+            // Add signup logic here
+        }
+
+        function activatePlan(plan) {
+            console.log(`Activating ${plan} Plan`);
+            // Add plan activation logic here
+            document.querySelector('.plans-section').style.display = 'none';
+            document.getElementById('transactionForm').style.display = 'block';
+        }
+
+        function submitTransaction() {
+            const transactionId = document.getElementById('transactionId').value;
+            console.log(`Transaction ID Submitted: ${transactionId}`);
+            // Add transaction submission logic here
+        }
+
+        document.getElementById('loginTab').addEventListener('click', function() {
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('signupForm').classList.remove('active');
+            document.getElementById('loginTab').classList.add('active');
+            document.getElementById('signupTab').classList.remove('active');
+        });
+
+        document.getElementById('signupTab').addEventListener('click', function() {
+            document.getElementById('signupForm').classList.add('active');
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('signupTab').classList.add('active');
+            document.getElementById('loginTab').classList.remove('active');
+        });
+    </script>
+</body>
+</html>
