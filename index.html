@@ -6,7 +6,7 @@
     <title>BALOCH ONLINE EARNING</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Login Page CSS */
+        /* ========== MAIN STYLES ========== */
         body {
             font-family: 'Roboto', sans-serif;
             background: radial-gradient(circle at center, #0a0a1a, #000);
@@ -23,7 +23,8 @@
             background: rgba(10, 20, 40, 0.85);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), inset 0 0 10px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3), 
+                       inset 0 0 10px rgba(0, 102, 255, 0.2);
             text-align: center;
             width: 100%;
             max-width: 450px;
@@ -33,19 +34,68 @@
             margin: 20px;
         }
 
-        /* Plans Page CSS */
-        .plans-container {
-            display: grid;
-            gap: 20px;
-            padding: 20px;
+        /* ========== AUTH FORMS ========== */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            background: rgba(20, 30, 60, 0.7);
+            color: #00ccff;
+            border: 1px solid #0066ff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: linear-gradient(45deg, #0066ff, #00ccff);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.5);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #0066ff;
+            border-radius: 8px;
+            background: rgba(20, 30, 60, 0.7);
+            color: #e0e7ff;
+            font-size: 16px;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 5px rgba(0, 102, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #0066ff, #00ccff);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        /* ========== PLANS PAGE ========== */
+        #plansContainer {
+            display: none;
         }
 
         .plan-box {
             background: rgba(20, 30, 60, 0.7);
             padding: 20px;
+            margin: 15px 0;
             border-radius: 10px;
             border: 1px solid #00ccff;
-            box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
         }
 
         .payment-modal {
@@ -64,17 +114,17 @@
             background: rgba(10, 20, 40, 0.9);
             padding: 30px;
             border-radius: 15px;
-            border: 2px solid #00ccff;
             width: 90%;
             max-width: 400px;
+            border: 2px solid #00ccff;
         }
-
-        /* Rest of your existing CSS styles here */
     </style>
 </head>
 <body>
-    <!-- Login/Signup Container -->
+
+    <!-- Login/Signup Section -->
     <div class="container" id="authContainer">
+        <h2>BALOCH EARNING</h2>
         <div class="tabs">
             <button class="tab active" onclick="showTab('login')">Login</button>
             <button class="tab" onclick="showTab('signup')">Sign Up</button>
@@ -101,39 +151,36 @@
         </div>
     </div>
 
-    <!-- Plans Page (Hidden Initially) -->
-    <div class="container" id="plansContainer" style="display: none;">
+    <!-- Plans Page -->
+    <div class="container" id="plansContainer">
         <h2>Investment Plans</h2>
-        <div class="plans-container">
-            <div class="plan-box">
-                <h3>Silver Plan</h3>
-                <p>Investment: ₹2500</p>
-                <p>Return: ₹5000 (10 Days)</p>
-                <button onclick="showPaymentModal(2500)">Activate Plan</button>
-            </div>
-            <!-- Add other plans similarly -->
+        <div class="plan-box">
+            <h3>Silver Plan</h3>
+            <p>Investment: ₹2500</p>
+            <p>Return: ₹5000 (10 Days)</p>
+            <button onclick="showPayment()">Activate Plan</button>
         </div>
 
         <!-- Payment Modal -->
         <div class="payment-modal" id="paymentModal">
             <div class="modal-content">
                 <h3>Payment Instructions</h3>
-                <p>Send ₹<span id="planAmount">2500</span> to:</p>
+                <p>Send payment to:</p>
                 <p style="color: #00ccff;">03407699974 (Easypaisa/JazzCash)</p>
                 <input type="text" placeholder="Transaction ID" id="transactionId">
                 <button onclick="processPayment()">Confirm Payment</button>
                 <p style="color: #ff6666; margin-top: 15px;">
-                    If payment not verified within 10 minutes, WhatsApp: +923407699974
+                    Not verified? WhatsApp: +923407699974
                 </p>
             </div>
         </div>
     </div>
 
     <script>
+        // User Database
         let users = JSON.parse(localStorage.getItem('users')) || [];
-        let currentUser = null;
 
-        // Login/Signup Functions
+        // Auth Functions
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = this[0].value;
@@ -141,11 +188,10 @@
             
             const user = users.find(u => u.username === username && u.password === password);
             if(user) {
-                currentUser = user;
                 document.getElementById('authContainer').style.display = 'none';
                 document.getElementById('plansContainer').style.display = 'block';
             } else {
-                showError('Invalid credentials!');
+                alert('Invalid credentials!');
             }
         });
 
@@ -156,54 +202,46 @@
             const password = this[2].value;
             const confirmPassword = this[3].value;
 
-            if(password !== confirmPassword) {
-                showError('Passwords do not match!');
-                return;
-            }
-
             if(users.some(u => u.username === username)) {
-                showError('Username already exists!');
+                alert('Username already exists!');
                 return;
             }
 
             if(users.some(u => u.email === email)) {
-                showError('Email already registered!');
+                alert('Gmail already registered!');
+                return;
+            }
+
+            if(password !== confirmPassword) {
+                alert('Passwords do not match!');
                 return;
             }
 
             users.push({ username, email, password });
             localStorage.setItem('users', JSON.stringify(users));
-            alert('Account created successfully!');
+            alert('Account created! Please login');
             showTab('login');
         });
 
-        // Plans Page Functions
-        function showPaymentModal(amount) {
-            document.getElementById('planAmount').textContent = amount;
+        // Plan Functions
+        function showPayment() {
             document.getElementById('paymentModal').style.display = 'flex';
         }
 
         function processPayment() {
             const transactionId = document.getElementById('transactionId').value;
             if(!transactionId) {
-                alert('Please enter Transaction ID');
+                alert('Enter Transaction ID');
                 return;
             }
             document.getElementById('paymentModal').style.display = 'none';
-            alert('Payment received! Your plan will activate within 10 minutes.');
+            alert('Payment received! Activation within 10 minutes');
         }
 
-        function showError(message) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error';
-            errorDiv.textContent = message;
-            document.querySelector('.container').prepend(errorDiv);
-            setTimeout(() => errorDiv.remove(), 3000);
-        }
-
+        // Tab System
         function showTab(tabId) {
-            document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
