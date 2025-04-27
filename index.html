@@ -3,183 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baloch Earning Platform</title>
+    <title>BALOCH EARNING PLATFORM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2b5876;
-            --secondary: #4e4376;
-            --accent: #00ff9d;
-            --dark: #0a192f;
-            --light: #f8f9fa;
+            --neon-green: #00ff9d;
+            --neon-blue: #0066ff;
+            --dark-bg: #0a0a1a;
+            --neon-purple: #7122fa;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+
         body {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-family: 'Tektur', sans-serif;
+            margin: 0;
             min-height: 100vh;
-            color: var(--light);
+            background: var(--dark-bg);
+            color: white;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Auth Section */
+
+        /* Auth Container */
         .auth-container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            background: radial-gradient(circle at center, #0a0a1a, #000);
         }
-        
-        .auth-box {
-            background: rgba(10, 25, 47, 0.8);
-            border-radius: 10px;
-            padding: 30px;
+
+        .container {
+            background: rgba(10, 20, 40, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 255, 157, 0.2);
         }
-        
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--accent);
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
-        }
-        
+
         .tabs {
             display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-        
+
         .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            text-align: center;
             flex: 1;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .tab.active {
-            border-bottom: 3px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(to right, var(--accent), #00cc88);
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
             border: none;
-            border-radius: 5px;
-            color: var(--dark);
-            font-weight: bold;
-            font-size: 16px;
+            border-radius: 8px;
+            color: var(--neon-green);
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 10px;
         }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
+
+        .tab.active {
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            color: white;
         }
-        
-        /* Social Icons */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green);
+            color: white;
+            border-radius: 8px;
+            font-family: 'Tektur';
         }
-        
-        .social-icon {
-            color: var(--accent);
-            font-size: 24px;
-            transition: all 0.3s;
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            border: none;
+            border-radius: 8px;
+            color: black;
+            font-weight: bold;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
-        
-        .social-icon:hover {
-            transform: scale(1.2);
-        }
-        
-        /* Plans Section */
-        .plans-section {
+
+        /* Plans Page */
+        .plans-page {
             display: none;
-            padding: 40px 0;
+            padding: 2rem;
         }
-        
-        .plans-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 32px;
-            color: var(--accent);
-        }
-        
+
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
-        
+
         .plan-card {
-            background: rgba(10, 25, 47, 0.8);
-            border-radius: 10px;
-            padding: 25px;
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            transition: all 0.4s;
+            background: rgba(10, 20, 40, 0.9);
+            border: 2px solid var(--neon-green);
+            border-radius: 15px;
+            padding: 1.5rem;
             position: relative;
             overflow: hidden;
         }
-        
+
         .plan-card::before {
             content: '';
             position: absolute;
@@ -187,63 +115,21 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                rgba(0, 255, 157, 0.1)
-            );
-            transform: rotate(30deg);
-            transition: all 0.7s;
+            background: linear-gradient(45deg, transparent, var(--neon-green), transparent);
+            animation: glow 4s linear infinite;
         }
-        
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent);
+
+        @keyframes glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        
-        .plan-card:hover::before {
-            animation: shine 1.5s;
-        }
-        
-        @keyframes shine {
-            0% {
-                transform: rotate(30deg) translate(-10%, -10%);
-            }
-            100% {
-                transform: rotate(30deg) translate(10%, 10%);
-            }
-        }
-        
-        .plan-name {
-            color: var(--accent);
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        
-        .plan-feature {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .plan-feature i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
+
         .withdrawal-note {
-            background: rgba(0, 255, 157, 0.1);
-            padding: 10px;
-            border-radius: 5px;
-            margin: 20px 0;
-            font-size: 14px;
-            border-left: 3px solid var(--accent);
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            margin: 1rem 0;
         }
-        
+
         /* Payment Modal */
         .modal {
             position: fixed;
@@ -257,362 +143,210 @@
             align-items: center;
             z-index: 1000;
         }
-        
+
         .modal-content {
-            background: rgba(10, 25, 47, 0.9);
-            border-radius: 10px;
-            padding: 30px;
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
             width: 90%;
             max-width: 500px;
-            border: 1px solid var(--accent);
         }
-        
-        .modal-title {
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        
-        .modal-text {
-            margin-bottom: 15px;
-        }
-        
-        .highlight {
-            color: var(--accent);
-            font-weight: bold;
-        }
-        
-        .modal-footer {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        /* Active Plan Status */
-        .status-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(10, 25, 47, 0.95);
-            border-radius: 10px;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
-            z-index: 1001;
-            display: none;
-        }
-        
-        .status-title {
-            color: var(--accent);
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 26px;
-        }
-        
-        .status-detail {
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
-        }
-        
-        .status-detail:last-child {
-            border-bottom: none;
-        }
-        
-        .status-label {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .status-value {
-            font-weight: bold;
-        }
-        
+
         /* Footer */
-        footer {
+        .footer {
             text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--neon-green);
         }
-        
-        .footer-text {
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-        
-        .footer-social {
+
+        .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 2rem;
+            margin: 1.5rem 0;
         }
-        
-        .footer-social a {
-            color: var(--accent);
+
+        .social-links a {
+            color: var(--neon-green);
             text-decoration: none;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .copyright {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
 <body>
     <!-- Auth Section -->
     <div class="auth-container">
-        <div class="auth-box">
-            <div class="logo">Baloch Earning Platform</div>
-            
+        <div class="container">
             <div class="tabs">
-                <div class="tab active" onclick="switchTab('login')">Login</div>
-                <div class="tab" onclick="switchTab('signup')">Sign Up</div>
+                <button class="tab active" onclick="showTab('login')">Login</button>
+                <button class="tab" onclick="showTab('signup')">Sign Up</button>
             </div>
-            
+
             <!-- Login Form -->
-            <form id="loginForm" class="tab-content active">
-                <div class="form-group">
-                    <label for="loginUsername">Username</label>
-                    <input type="text" id="loginUsername" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" class="form-control" required>
-                </div>
-                
-                <button type="button" class="btn" onclick="login()">Login</button>
+            <form id="loginForm" class="active">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
             </form>
-            
+
             <!-- Signup Form -->
-            <form id="signupForm" class="tab-content">
-                <div class="form-group">
-                    <label for="signupUsername">Username</label>
-                    <input type="text" id="signupUsername" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" class="form-control" required>
-                </div>
-                
-                <button type="button" class="btn" onclick="signup()">Create Account</button>
+            <form id="signupForm" style="display: none;">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Create Account</button>
             </form>
-            
-            <div class="social-icons">
-                <a href="https://wa.me/923407699974" class="social-icon" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://t.me/TECHBYHUZII" class="social-icon" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
-            </div>
         </div>
     </div>
-    
-    <!-- Plans Section -->
-    <section class="plans-section" id="plansSection">
-        <div class="container">
-            <h2 class="plans-title">Investment Plans</h2>
-            
-            <div class="plans-grid">
-                <!-- Silver Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Silver Plan</h3>
-                    <div class="plan-feature">
-                        <i class="fas fa-coins"></i>
-                        <span>Investment: 2500 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span>Return: 5000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Duration: 10 Days</span>
-                    </div>
-                    <div class="withdrawal-note">
-                        Withdrawals via Easypaisa/JazzCash
-                    </div>
-                    <button class="btn" onclick="showPaymentModal('Silver', 2500)">Activate Plan</button>
-                </div>
-                
-                <!-- Gold Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Gold Plan</h3>
-                    <div class="plan-feature">
-                        <i class="fas fa-coins"></i>
-                        <span>Investment: 5000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span>Return: 10000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Duration: 10 Days</span>
-                    </div>
-                    <div class="withdrawal-note">
-                        Withdrawals via Easypaisa/JazzCash
-                    </div>
-                    <button class="btn" onclick="showPaymentModal('Gold', 5000)">Activate Plan</button>
-                </div>
-                
-                <!-- Platinum Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Platinum Plan</h3>
-                    <div class="plan-feature">
-                        <i class="fas fa-coins"></i>
-                        <span>Investment: 10000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span>Return: 20000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Duration: 10 Days</span>
-                    </div>
-                    <div class="withdrawal-note">
-                        Withdrawals via Easypaisa/JazzCash
-                    </div>
-                    <button class="btn" onclick="showPaymentModal('Platinum', 10000)">Activate Plan</button>
-                </div>
-                
-                <!-- Diamond Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Diamond Plan</h3>
-                    <div class="plan-feature">
-                        <i class="fas fa-coins"></i>
-                        <span>Investment: 20000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span>Return: 40000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Duration: 10 Days</span>
-                    </div>
-                    <div class="withdrawal-note">
-                        Withdrawals via Easypaisa/JazzCash
-                    </div>
-                    <button class="btn" onclick="showPaymentModal('Diamond', 20000)">Activate Plan</button>
-                </div>
+
+    <!-- Plans Page -->
+    <div class="plans-page">
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h2>Silver Plan</h2>
+                <p>Investment: 2500 PKR</p>
+                <p>Return: 5000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Silver', 2500)">Activate Plan</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Gold Plan</h2>
+                <p>Investment: 5000 PKR</p>
+                <p>Return: 10000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Gold', 5000)">Activate Plan</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Platinum Plan</h2>
+                <p>Investment: 10000 PKR</p>
+                <p>Return: 20000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Platinum', 10000)">Activate Plan</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Diamond Plan</h2>
+                <p>Investment: 20000 PKR</p>
+                <p>Return: 40000 PKR</p>
+                <p class="withdrawal-note">Withdrawal via Easypaisa/JazzCash only</p>
+                <button onclick="showPayment('Diamond', 20000)">Activate Plan</button>
             </div>
         </div>
-        
-        <footer>
-            <div class="container">
-                <div class="footer-text">TRUSTED SINCE 3 YEARS</div>
-                
-                <div class="footer-social">
-                    <a href="https://wa.me/923407699974" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>+92 340 7699974</span>
-                    </a>
-                    <a href="https://t.me/TECHBYHUZII" target="_blank">
-                        <i class="fab fa-telegram"></i>
-                        <span>TECHBYHUZII</span>
-                    </a>
-                </div>
-                
-                <div class="copyright">© 2023 Baloch Earning Platform</div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Trusted Since 3 Years</h3>
+            <div class="social-links">
+                <a href="https://wa.me/923407699974"><i class="fab fa-whatsapp"></i> +92 340 7699974</a>
+                <a href="https://t.me/TECHBYHUZII"><i class="fab fa-telegram"></i> TechByHuzi</a>
             </div>
-        </footer>
-    </section>
-    
+            <p>© 2023 BALOCH EARNING PLATFORM. All rights reserved.</p>
+        </div>
+    </div>
+
     <!-- Payment Modal -->
     <div class="modal" id="paymentModal">
         <div class="modal-content">
-            <h3 class="modal-title">Payment Instructions</h3>
+            <h2>Payment Instructions</h2>
+            <p>Send payment to: <strong>03407699974</strong> (Easypaisa)</p>
+            <p>Account Name: <strong>Shahnaz Bibi</strong></p>
+            <p>Plan: <span id="selectedPlan"></span></p>
+            <p>Amount: <span id="planAmount"></span> PKR</p>
             
-            <div class="modal-text">
-                Send payment to: <span class="highlight">03407699974</span> (Easypaisa)
+            <input type="text" placeholder="Transaction ID" id="transactionId">
+            <input type="number" placeholder="Amount Sent" id="amountSent">
+            
+            <div style="margin-top: 1.5rem;">
+                <button onclick="submitPayment()">Confirm Payment</button>
+                <button onclick="closeModal()" style="margin-left: 1rem;">Cancel</button>
             </div>
             
-            <div class="modal-text">
-                Account Name: <span class="highlight">Shahnaz Bibi</span>
-            </div>
-            
-            <div class="modal-text">
-                Plan: <span id="modalPlanName">Silver Plan</span>
-            </div>
-            
-            <div class="modal-text">
-                Amount: <span id="modalPlanAmount">2500</span> PKR
-            </div>
-            
-            <div class="form-group" style="margin-top: 20px;">
-                <label for="transactionId">Transaction ID</label>
-                <input type="text" id="transactionId" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="amountSent">Amount Sent</label>
-                <input type="number" id="amountSent" class="form-control" required>
-            </div>
-            
-            <div class="modal-footer">
-                <button class="btn" onclick="submitPayment()">Confirm Payment</button>
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-            </div>
-            
-            <div class="modal-text" style="margin-top: 20px; font-size: 14px; color: var(--accent);">
+            <p style="margin-top: 1rem; color: var(--neon-green);">
                 If not activated within 10 minutes, contact: 03407699974
-            </div>
+            </p>
         </div>
     </div>
-    
-    <!-- Active Plan Status Modal -->
-    <div class="status-modal" id="statusModal">
-        <h3 class="status-title">Plan Activated Successfully!</h3>
-        
-        <div class="status-detail">
-            <span class="status-label">Plan:</span>
-            <span class="status-value" id="statusPlanName">Silver Plan</span>
-        </div>
-        
-        <div class="status-detail">
-            <span class="status-label">Amount:</span>
-            <span class="status-value" id="statusPlanAmount">2500 PKR</span>
-        </div>
-        
-        <div class="status-detail">
-            <span class="status-label">Transaction ID:</span>
-            <span class="status-value" id="statusTransactionId">ABC123XYZ</span>
-        </div>
-        
-        <div class="status-detail">
-            <span class="status-label">Activation Date:</span>
-            <span class="status-value" id="statusActivationDate">27/04/2025</span>
-        </div>
-        
-        <div class="status-detail">
-            <span class="status-label">Maturity Date:</span>
-            <span class="st
+
+    <script>
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentPlan = null;
+
+        function showTab(tab) {
+            document.querySelectorAll('form').forEach(f => f.style.display = 'none');
+            document.getElementById(tab + 'Form').style.display = 'block';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Signup System
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userData = {
+                username: this[0].value,
+                email: this[1].value,
+                password: this[2].value
+            };
+            
+            if (users.some(u => u.username === userData.username)) {
+                alert('Username already exists!');
+                return;
+            }
+            
+            users.push(userData);
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Account created successfully!');
+            showTab('login');
+            this.reset();
+        });
+
+        // Login System
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = this[0].value;
+            const password = this[1].value;
+            
+            const user = users.find(u => u.username === username && u.password === password);
+            if(user) {
+                document.querySelector('.auth-container').style.display = 'none';
+                document.querySelector('.plans-page').style.display = 'block';
+            } else {
+                alert('Invalid credentials!');
+            }
+        });
+
+        // Payment System
+        function showPayment(planName, amount) {
+            currentPlan = { planName, amount };
+            document.getElementById('selectedPlan').textContent = planName;
+            document.getElementById('planAmount').textContent = amount;
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function submitPayment() {
+            const transactionId = document.getElementById('transactionId').value;
+            const amountSent = document.getElementById('amountSent').value;
+            
+            if(!transactionId || !amountSent) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            if(parseInt(amountSent) !== currentPlan.amount) {
+                alert('Amount must be exactly ' + currentPlan.amount);
+                return;
+            }
+            
+            alert('Payment verified! Your plan will activate within 10 minutes.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
