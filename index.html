@@ -3,246 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baloch Earning Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>BALOCH EARNING PLATFORM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #1a2a3a;
-            --secondary: #2c3e50;
-            --accent: #00e676;
-            --dark: #0a192f;
-            --light: #f5f7fa;
-            --success: #2ecc71;
-            --warning: #f39c12;
+            --neon-green: #00ff9d;
+            --neon-blue: #0066ff;
+            --neon-purple: #7122fa;
+            --dark-bg: #0a0a1a;
+            --text-white: #ffffff;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
+
         body {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-white);
+            margin: 0;
             min-height: 100vh;
-            color: var(--light);
+            position: relative;
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+
+        /* Money Background Animation */
+        .money-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" font-family="Arial" font-size="10" fill="rgba(0,255,157,0.1)">$</text></svg>');
+            z-index: -1;
+            opacity: 0.3;
         }
-        
-        /* Auth Section */
+
+        /* Floating Social Icons */
+        .social-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .social-float a {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .social-float a:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        /* Auth Container */
         .auth-container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            background: radial-gradient(circle at center, #0a0a1a, #000);
         }
-        
-        .auth-box {
-            background: rgba(10, 25, 47, 0.95);
-            border-radius: 12px;
-            padding: 40px;
-            width: 100%;
+
+        .container {
+            background: rgba(10, 20, 40, 0.85);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+            width: 90%;
             max-width: 450px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 230, 118, 0.3);
-            animation: fadeIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                var(--neon-purple),
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotate 6s linear infinite;
+            z-index: -1;
         }
-        
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-            font-family: 'Tektur', cursive;
-            font-size: 32px;
-            font-weight: bold;
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
+
         .tabs {
             display: flex;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-        
+
         .tab {
-            padding: 12px 25px;
-            cursor: pointer;
-            text-align: center;
             flex: 1;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            border-radius: 8px;
+            color: var(--neon-green);
+            cursor: pointer;
             transition: all 0.3s;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 600;
             position: relative;
+            overflow: hidden;
         }
-        
-        .tab.active {
-            color: var(--accent);
-        }
-        
-        .tab-indicator {
+
+        .tab::before {
+            content: '';
             position: absolute;
-            bottom: -1px;
-            left: 0;
-            height: 3px;
-            background: var(--accent);
-            transition: all 0.3s;
-            width: 50%;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                var(--neon-blue),
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotate 6s linear infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        
+
+        .tab:hover::before {
+            opacity: 0.5;
+        }
+
+        .tab.active {
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+        }
+
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease-out;
         }
-        
+
         .tab-content.active {
             display: block;
         }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .form-control {
+
+        input {
             width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green);
             color: white;
-            font-size: 16px;
+            border-radius: 8px;
             transition: all 0.3s;
         }
-        
-        .form-control:focus {
+
+        input:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
-            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 10px var(--neon-green);
+            border-color: var(--neon-blue);
         }
-        
-        .btn {
+
+        button {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(to right, var(--accent), #00c968);
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
             border: none;
             border-radius: 8px;
-            color: #111;
-            font-weight: 600;
-            font-size: 16px;
+            color: black;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 15px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
         }
-        
-        .btn:hover {
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                white,
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotate 6s linear infinite;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        button:hover::before {
+            opacity: 0.3;
+        }
+
+        button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(0, 230, 118, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.5);
         }
-        
-        .btn:active {
-            transform: translateY(1px);
-        }
-        
-        /* Social Icons */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 35px;
-        }
-        
-        .social-icon {
-            color: var(--accent);
-            font-size: 28px;
-            transition: all 0.3s;
-            background: rgba(0, 230, 118, 0.1);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(0, 230, 118, 0.3);
-        }
-        
-        .social-icon:hover {
-            transform: scale(1.1);
-            background: rgba(0, 230, 118, 0.2);
-            box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
-        }
-        
+
         /* Plans Section */
         .plans-section {
             display: none;
-            padding: 50px 0;
-            animation: fadeIn 0.6s ease-out;
+            padding: 2rem;
+            font-family: 'Tektur', sans-serif;
         }
-        
-        .plans-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-family: 'Tektur', cursive;
-            font-size: 36px;
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .plans-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--accent), transparent);
-            border-radius: 3px;
-        }
-        
+
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
+
         .plan-card {
-            background: rgba(10, 25, 47, 0.9);
-            border-radius: 12px;
-            padding: 30px;
-            border: 1px solid rgba(0, 230, 118, 0.2);
-            transition: all 0.4s;
+            background: rgba(10, 20, 40, 0.7);
+            border: 1px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
-        
+
         .plan-card::before {
             content: '';
             position: absolute;
@@ -255,389 +274,367 @@
                 transparent,
                 transparent,
                 transparent,
-                rgba(0, 230, 118, 0.08)
+                var(--neon-purple),
+                transparent,
+                transparent,
+                transparent
             );
-            transform: rotate(30deg);
-            transition: all 0.7s;
+            animation: rotate 6s linear infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
-        }
-        
+
         .plan-card:hover::before {
-            animation: shine 1.5s;
+            opacity: 0.5;
         }
-        
-        @keyframes shine {
-            0% {
-                transform: rotate(30deg) translate(-10%, -10%);
-            }
-            100% {
-                transform: rotate(30deg) translate(10%, 10%);
-            }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
         }
-        
+
         .plan-name {
-            color: var(--accent);
-            font-size: 24px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            font-family: 'Tektur', cursive;
-            position: relative;
-            display: inline-block;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
         }
-        
-        .plan-name::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 3px;
+
+        .plan-detail {
+            margin: 0.5rem 0;
         }
-        
-        .plan-feature {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-        }
-        
-        .plan-feature i {
-            margin-right: 12px;
-            color: var(--accent);
-            font-size: 18px;
-            min-width: 20px;
-        }
-        
+
         .withdrawal-note {
-            background: rgba(0, 230, 118, 0.1);
-            padding: 12px;
-            border-radius: 8px;
-            margin: 25px 0;
-            font-size: 15px;
-            border-left: 3px solid var(--accent);
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 5px;
+            border: 1px dashed var(--neon-blue);
         }
-        
+
+        .activate-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            border: none;
+            border-radius: 5px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .activate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.5);
+        }
+
         /* Payment Modal */
-        .modal {
+        .payment-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.8);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            animation: fadeIn 0.3s ease-out;
         }
-        
-        .modal-content {
-            background: rgba(10, 25, 47, 0.95);
-            border-radius: 12px;
-            padding: 35px;
-            width: 95%;
+
+        .payment-content {
+            background: rgba(10, 20, 40, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-green);
+            width: 90%;
             max-width: 500px;
-            border: 1px solid var(--accent);
-            box-shadow: 0 15px 40px rgba(0, 230, 118, 0.2);
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
         }
-        
-        .close-modal {
+
+        .payment-content::before {
+            content: '';
             position: absolute;
-            top: 15px;
-            right: 15px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                var(--neon-purple),
+                transparent,
+                transparent,
+                transparent
+            );
+            animation: rotate 6s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
         }
-        
-        .close-modal:hover {
-            color: var(--accent);
-            transform: rotate(90deg);
+
+        .payment-details p {
+            margin: 1rem 0;
         }
-        
-        .modal-title {
-            color: var(--accent);
-            margin-bottom: 25px;
-            font-size: 26px;
-            font-family: 'Tektur', cursive;
-        }
-        
-        .modal-text {
-            margin-bottom: 18px;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
+
         .highlight {
-            color: var(--accent);
+            color: var(--neon-green);
             font-weight: bold;
         }
-        
-        .modal-footer {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
+
+        .input-container {
+            position: relative;
+            margin: 1rem 0;
         }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            box-shadow: none;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(0, 230, 118, 0.1);
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
-        }
-        
-        /* Active Plan Status */
-        .status-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(10, 25, 47, 0.98);
-            border-radius: 12px;
-            padding: 40px;
-            width: 95%;
-            max-width: 500px;
-            border: 1px solid var(--accent);
-            box-shadow: 0 20px 50px rgba(0, 230, 118, 0.3);
-            z-index: 1001;
-            display: none;
-            animation: fadeIn 0.4s ease-out;
-        }
-        
-        .status-title {
-            color: var(--accent);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-family: 'Tektur', cursive;
-        }
-        
-        .status-detail {
-            margin-bottom: 18px;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 12px;
-        }
-        
-        .status-detail:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        
-        .status-label {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 16px;
-        }
-        
-        .status-value {
-            font-weight: 600;
-            color: var(--accent);
-            font-size: 16px;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 70px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
-        .footer-text {
-            margin-bottom: 25px;
-            font-size: 20px;
-            color: var(--accent);
-            font-family: 'Tektur', cursive;
-        }
-        
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-social a {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 17px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+
+        .input-container input {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-green);
+            color: white;
+            border-radius: 5px;
             transition: all 0.3s;
-            padding: 8px 15px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 230, 118, 0.3);
-            background: rgba(0, 230, 118, 0.05);
         }
-        
-        .footer-social a:hover {
-            background: rgba(0, 230, 118, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 230, 118, 0.2);
+
+        .input-container input:focus {
+            outline: none;
+            box-shadow: 0 0 15px var(--neon-green);
+            animation: pulse 2s infinite;
         }
-        
-        .footer-social i {
-            font-size: 20px;
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--neon-green); }
+            50% { box-shadow: 0 0 20px var(--neon-green); }
+            100% { box-shadow: 0 0 5px var(--neon-green); }
         }
-        
-        .copyright {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.5);
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
-        
-        /* Responsive */
+
+        .modal-buttons button {
+            flex: 1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--neon-green);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" font-family="Arial" font-size="10" fill="rgba(0,255,157,0.05)">$</text></svg>');
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .trust-badge {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
         @media (max-width: 768px) {
-            .auth-box {
-                padding: 30px;
-            }
-            
             .plans-grid {
                 grid-template-columns: 1fr;
             }
             
-            .modal-content, .status-modal {
-                padding: 25px;
+            .social-float {
+                right: 10px;
+                bottom: 10px;
+            }
+            
+            .social-float a {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Money Background -->
+    <div class="money-bg"></div>
+
+    <!-- Floating Social Icons -->
+    <div class="social-float">
+        <a href="https://wa.me/923407699974" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://t.me/TECHBYHUZII" target="_blank">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <a href="tel:+923407699974">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
     <!-- Auth Section -->
     <div class="auth-container">
-        <div class="auth-box">
-            <div class="logo">Baloch Earning</div>
-            
+        <div class="container">
             <div class="tabs">
-                <div class="tab active" onclick="switchTab('login')">Login</div>
-                <div class="tab" onclick="switchTab('signup')">Sign Up</div>
-                <div class="tab-indicator" id="tabIndicator"></div>
+                <button class="tab active" onclick="showTab('login', event)">Login</button>
+                <button class="tab" onclick="showTab('signup', event)">Sign Up</button>
             </div>
-            
+
             <!-- Login Form -->
             <form id="loginForm" class="tab-content active">
-                <div class="form-group">
-                    <label for="loginUsername">Username</label>
-                    <input type="text" id="loginUsername" class="form-control" placeholder="Enter your username" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
-                </div>
-                
-                <button type="button" class="btn" onclick="login()">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
             </form>
-            
+
             <!-- Signup Form -->
             <form id="signupForm" class="tab-content">
-                <div class="form-group">
-                    <label for="signupUsername">Username</label>
-                    <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" class="form-control" placeholder="Your email address" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Repeat your password" required>
-                </div>
-                
-                <button type="button" class="btn" onclick="signup()">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Create Account</button>
             </form>
-            
-            <div class="social-icons">
-                <a href="https://wa.me/923407699974" class="social-icon" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://t.me/TECHBYHUZII" class="social-icon" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
-            </div>
         </div>
     </div>
-    
+
     <!-- Plans Section -->
-    <section class="plans-section" id="plansSection">
-        <div class="container">
-            <h2 class="plans-title">Investment Plans</h2>
+    <section class="plans-section" id="plansPage">
+        <div class="plans-grid">
+            <!-- Silver Plan -->
+            <div class="plan-card">
+                <h3 class="plan-name">SILVER PLAN</h3>
+                <p><strong>Investment:</strong> 2500 PKR</p>
+                <p><strong>Return:</strong> 5000 PKR</p>
+                <p><strong>Duration:</strong> 10 Days</p>
+                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
+                <button class="activate-btn" onclick="showPayment('Silver', 2500)">ACTIVATE PLAN</button>
+            </div>
+
+            <!-- Gold Plan -->
+            <div class="plan-card">
+                <h3 class="plan-name">GOLD PLAN</h3>
+                <p><strong>Investment:</strong> 5000 PKR</p>
+                <p><strong>Return:</strong> 10000 PKR</p>
+                <p><strong>Duration:</strong> 10 Days</p>
+                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
+                <button class="activate-btn" onclick="showPayment('Gold', 5000)">ACTIVATE PLAN</button>
+            </div>
+
+            <!-- Platinum Plan -->
+            <div class="plan-card">
+                <h3 class="plan-name">PLATINUM PLAN</h3>
+                <p><strong>Investment:</strong> 10000 PKR</p>
+                <p><strong>Return:</strong> 20000 PKR</p>
+                <p><strong>Duration:</strong> 10 Days</p>
+                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
+                <button class="activate-btn" onclick="showPayment('Platinum', 10000)">ACTIVATE PLAN</button>
+            </div>
+
+            <!-- Diamond Plan -->
+            <div class="plan-card">
+                <h3 class="plan-name">DIAMOND PLAN</h3>
+                <p><strong>Investment:</strong> 20000 PKR</p>
+                <p><strong>Return:</strong> 40000 PKR</p>
+                <p><strong>Duration:</strong> 10 Days</p>
+                <p class="withdrawal-note">Withdrawals via Easypaisa/JazzCash</p>
+                <button class="activate-btn" onclick="showPayment('Diamond', 20000)">ACTIVATE PLAN</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <h3 class="trust-badge">TRUSTED SINCE 3 YEARS</h3>
+            <p>© 2023 BALOCH EARNING PLATFORM</p>
+        </footer>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-content">
+            <h2>PAYMENT INSTRUCTIONS</h2>
+            <div class="payment-details">
+                <p>Send payment to: <span class="highlight">03407699974</span> (Easypaisa)</p>
+                <p>Account Name: <span class="highlight">Shahnaz Bibi</span></p>
+                <p>Plan: <span id="selectedPlan">Silver Plan</span></p>
+                <p>Amount: <span id="planAmount">2500</span> PKR</p>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="transactionId" placeholder="Transaction ID">
+            </div>
+
+            <div class="input-container">
+                <input type="number" id="amountSent" placeholder="Amount Sent">
+            </div>
+
+            <div class="modal-buttons">
+                <button onclick="submitPayment()">Confirm Payment</button>
+                <button onclick="closePayment()" style="background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green);">Cancel</button>
+            </div>
+
+            <p style="margin-top: 1rem; color: var(--neon-green);">
+                If not activated within 10 minutes, contact: 03407699974
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // User Management
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentPlan = null;
+
+        // Tab Switching
+        function showTab(tabId, event) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             
-            <div class="plans-grid">
-                <!-- Silver Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Silver Plan</h3>
-                    <div class="plan-feature">
-                        <i class="fas fa-coins"></i>
-                        <span><strong>Investment:</strong> 2500 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span><strong>Return:</strong> 5000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span><strong>Duration:</strong> 10 Days</span>
-                    </div>
-                    <div class="withdrawal-note">
-                        <i class="fas fa-info-circle"></i> Withdrawals via Easypaisa/JazzCash
-                    </div>
-                    <button class="btn" onclick="showPaymentModal('Silver', 2500)">
-                        <i class="fas fa-bolt"></i> Activate Plan
-                    </button>
-                </div>
-                
-                <!-- Gold Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Gold Plan</h3>
-                    <div class="plan-feature">
-                        <i class="fas fa-coins"></i>
-                        <span><strong>Investment:</strong> 5000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span><strong>Return:</strong> 10000 PKR</span>
-                    </div>
-                    <div class="plan-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span><strong>Duration:</strong> 10 Days</span>
-                    </div>
-                    <div class="withdrawal-note">
-                        <i class="fas fa-info-circle"></i> Withdrawals via Easypaisa/JazzCash
-                    </div>
-                    <button class="btn" onclick="showPaymentModal('Gold', 5000)">
-                        <i class="fas fa-bolt"></i> Activate Plan
-                    </button>
-                </div>
-                
-                <!-- Platinum Plan -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Plat
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Signup
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = this[0].value.trim();
+            const email = this[1].value.trim();
+            const password = this[2].value;
+            const confirmPassword = this[3].value;
+
+            if (users.some(user => user.username === username)) {
+                alert('Username already exists!');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            users.push({ username, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Account created successfully!');
+            
+            // Switch to login tab
+            document.querySelector('.tab.active').classList.remove('active');
+            document.querySelector('.tab-content.active').classList.remove('active');
+            document.querySelector('[onclick*="login"]').classList.add('active');
+            document.getElementByI
