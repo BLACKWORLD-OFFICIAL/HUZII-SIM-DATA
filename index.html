@@ -3,90 +3,726 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Issue Notification</title>
+    <title>BLACK WORLD OFFICIAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: #0a0a0a;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+            user-select: none;
+        }
+        
+        body {
+            background-color: #000;
+            color: #0ff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Welcome Popup */
+        .welcome-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            color: white;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in-out;
         }
         
-        .neon-box {
-            position: relative;
-            width: 80%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 10px;
-            background-color: #111;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        .welcome-content {
             text-align: center;
-            animation: glow 2s infinite alternate;
+            padding: 30px;
+            border: 3px solid #0ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+            animation: neonGlow 2s infinite alternate;
+            max-width: 80%;
+        }
+        
+        .welcome-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        .welcome-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .close-btn {
+            background-color: transparent;
+            color: #0ff;
             border: 2px solid #0ff;
-        }
-        
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
-                            0 0 20px rgba(0, 255, 255, 0.3),
-                            0 0 30px rgba(0, 255, 255, 0.1);
-            }
-            to {
-                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
-                            0 0 30px rgba(0, 255, 255, 0.5),
-                            0 0 40px rgba(0, 255, 255, 0.2);
-            }
-        }
-        
-        h1 {
-            color: #0ff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-        }
-        
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .contact {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #0ff;
-        }
-        
-        .phone {
-            display: inline-block;
-            margin-top: 15px;
             padding: 10px 20px;
-            background-color: rgba(0, 255, 255, 0.1);
+            font-size: 1rem;
+            cursor: pointer;
             border-radius: 5px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px #0ff;
+        }
+        
+        .close-btn:hover {
+            background-color: #0ff;
+            color: #000;
+            box-shadow: 0 0 20px #0ff;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            display: none;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 2px solid #0ff;
+            box-shadow: 0 10px 15px -10px #0ff;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #0ff;
+            animation: neonGlow 2s infinite alternate;
+        }
+        
+        /* Service Boxes */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .service-box {
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px #0ff;
+            background-color: rgba(0, 255, 255, 0.2);
+        }
+        
+        .service-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #0ff;
+        }
+        
+        .service-box i {
+            font-size: 3rem;
+            margin-bottom: 15px;
             color: #0ff;
-            text-decoration: none;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+            box-shadow: 0 0 30px #0ff;
+            position: relative;
+            animation: neonGlow 2s infinite alternate;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #0ff;
+            cursor: pointer;
             transition: all 0.3s;
         }
         
-        .phone:hover {
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: #f00;
+        }
+        
+        .modal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        .items-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .item-box {
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 1px solid #0ff;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .item-box:hover {
             background-color: rgba(0, 255, 255, 0.2);
-            transform: scale(1.05);
+            box-shadow: 0 0 15px #0ff;
+        }
+        
+        .item-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #0ff;
+        }
+        
+        .price-info {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid #0ff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .price-info p {
+            margin-bottom: 5px;
+        }
+        
+        .price {
+            color: #0f0;
+            font-weight: bold;
+        }
+        
+        .info {
+            color: #ff0;
+        }
+        
+        /* Social Media Modal */
+        .social-media-content {
+            text-align: center;
+        }
+        
+        .social-media-content p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #0ff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #f0f;
+            text-shadow: 0 0 10px #f0f;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 30px;
+            text-align: center;
+            border-top: 2px solid #0ff;
+            margin-top: 40px;
+        }
+        
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        
+        /* Animations */
+        @keyframes neonGlow {
+            from {
+                box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+                text-shadow: 0 0 10px #0ff;
+            }
+            to {
+                box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff;
+                text-shadow: 0 0 20px #0ff, 0 0 30px #0ff;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-content h1 {
+                font-size: 2rem;
+            }
+            
+            .service-box h2 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="neon-box">
-        <h1>SERVER ISSUE</h1>
-        <p>Website technical issues ki wajah se 2 din band hai. Please wait...</p>
-        <p>Kisi bhi issue ke liye hamari team se contact karein:</p>
-        
-        <div class="contact">
-            <p>OUR TEAM</p>
-            <a href="tel:923058190234" class="phone">923058190234</a>
+    <!-- Welcome Popup -->
+    <div class="welcome-popup" id="welcomePopup">
+        <div class="welcome-content">
+            <h1>WELCOME TO BLACK WORLD OFFICIAL</h1>
+            <p>Enter the dark world of hacking services and tools</p>
+            <button class="close-btn" id="closeWelcome">ENTER</button>
         </div>
     </div>
+    
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="header">
+            <h1>BLACK WORLD SERVICES</h1>
+        </div>
+        
+        <div class="services">
+            <div class="service-box" onclick="openModal('nadraModal')">
+                <h2>NADRA DATA</h2>
+                <i>🔍</i>
+                <p>Access confidential NADRA database information</p>
+            </div>
+            
+            <div class="service-box" onclick="openModal('hackingModal')">
+                <h2>HACKING DATA</h2>
+                <i>💻</i>
+                <p>Premium hacking services for various platforms</p>
+            </div>
+            
+            <div class="service-box" onclick="openModal('toolsModal')">
+                <h2>FREE HACKING TOOLS</h2>
+                <i>🛠️</i>
+                <p>Get free hacking tools and resources</p>
+            </div>
+            
+            <div class="service-box" onclick="openModal('socialModal')">
+                <h2>SOCIAL MEDIA SERVICES</h2>
+                <i>📱</i>
+                <p>Social media accounts and services</p>
+            </div>
+        </div>
+        
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>ABOUT US</h2>
+            <p>We are a team of professional hackers providing various services including NADRA data access, hacking services, and social media solutions. Our services are reliable and confidential.</p>
+            <p>Contact us for premium hacking services and tools.</p>
+        </div>
+    </div>
+    
+    <!-- NADRA Data Modal -->
+    <div class="modal" id="nadraModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('nadraModal')">&times;</span>
+            <h2 class="modal-title">NADRA DATA SERVICES</h2>
+            <div class="items-container">
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Sim data base</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $2</p>
+                        <p class="info">Information: Full SIM database access</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Cdr telenor</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: Complete call detail records</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Cdr ufone</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: Complete call detail records</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Cdr zong</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: Complete call detail records</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Cdr moblink</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: Complete call detail records</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Cdr jazz</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: Complete call detail records</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Cnic copy</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $4</p>
+                        <p class="info">Information: CNIC copy with details</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Issue data</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $5</p>
+                        <p class="info">Information: Complete issue data</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Family tree</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $6</p>
+                        <p class="info">Information: Complete family tree</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Family tree with pic</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $8</p>
+                        <p class="info">Information: Family tree with pictures</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Traveling history</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $7</p>
+                        <p class="info">Information: Complete traveling history</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Password detail</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $10</p>
+                        <p class="info">Information: Password details recovery</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Imie tracking</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $5</p>
+                        <p class="info">Information: IMEI tracking service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Live location</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $15</p>
+                        <p class="info">Information: Real-time location tracking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hacking Data Modal -->
+    <div class="modal" id="hackingModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('hackingModal')">&times;</span>
+            <h2 class="modal-title">HACKING DATA SERVICES</h2>
+            <div class="items-container">
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp temporary ban</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $2</p>
+                        <p class="info">Information: Temporary ban solution</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp permanent ban</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: Permanent ban solution</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp permanent unban</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $5</p>
+                        <p class="info">Information: Permanent unban service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>92 game hack</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $4</p>
+                        <p class="info">Information: Game hacking service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Mobile hack</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $10</p>
+                        <p class="info">Information: Complete mobile hacking</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Gallery hack</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $8</p>
+                        <p class="info">Information: Gallery access service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Mobile restore</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $7</p>
+                        <p class="info">Information: Mobile restore service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp crash</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $3</p>
+                        <p class="info">Information: WhatsApp crash service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Hacking course</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $20</p>
+                        <p class="info">Information: Complete hacking course</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp crash file</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $5</p>
+                        <p class="info">Information: WhatsApp crash files</p>
+                    </div>
+                             <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp crash file</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $5</p>
+                        <p class="info">Information: WhatsApp crash files</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Simdata base method</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $15</p>
+                        <p class="info">Information: SIM database method</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Simdata base own website</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $30</p>
+                        <p class="info">Information: Own SIM database website</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Whatsapp otp lock</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $8</p>
+                        <p class="info">Information: WhatsApp OTP lock service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Fake number trick</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $5</p>
+                        <p class="info">Information: Fake number service</p>
+                    </div>
+                </div>
+                
+                <div class="item-box" onclick="togglePriceInfo(this)">
+                    <h3>Call from unknown number</h3>
+                    <div class="price-info">
+                        <p class="price">Price: $7</p>
+                        <p class="info">Information: Unknown caller ID service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Free Tools Modal -->
+    <div class="modal" id="toolsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('toolsModal')">&times;</span>
+            <h2 class="modal-title">FREE HACKING TOOLS</h2>
+            <div class="social-media-content">
+                <p>Get access to our free hacking tools and resources through our channels:</p>
+                <div class="social-links">
+                    <p>WhatsApp Channel: <a href="https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q" target="_blank">BLACK WORLD OFFICIAL</a></p>
+                    <p>Telegram: <a href="https://t.me/TECHBYHUZII" target="_blank">@TECHBYHUZII</a></p>
+                    <p>Contact Number: <a href="tel:923058190234">+92 305 8190234</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Social Media Modal -->
+    <div class="modal" id="socialModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('socialModal')">&times;</span>
+            <h2 class="modal-title">SOCIAL MEDIA SERVICES</h2>
+            <div class="social-media-content">
+                <p>We provide various social media services including:</p>
+                <p>✔ TikTok, YouTube, Instagram, Facebook accounts for sale</p>
+                <p>✔ Buy/Sell social media accounts</p>
+                <p>✔ Likes, Followers, Views services available</p>
+                <p>✔ Account recovery services</p>
+                <p>✔ Verification services</p>
+                <p>Contact us for premium social media services</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Welcome Popup
+        document.getElementById('closeWelcome').addEventListener('click', function() {
+            document.getElementById('welcomePopup').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        });
+        
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            // Hide all price info when closing modal
+            const allPriceInfos = document.querySelectorAll('.price-info');
+            allPriceInfos.forEach(info => {
+                info.style.display = 'none';
+            });
+        }
+        
+        function togglePriceInfo(element) {
+            const priceInfo = element.querySelector('.price-info');
+            if (priceInfo.style.display === 'block') {
+                priceInfo.style.display = 'none';
+            } else {
+                // Close all other price infos first
+                const allPriceInfos = document.querySelectorAll('.price-info');
+                allPriceInfos.forEach(info => {
+                    if (info !== priceInfo) {
+                        info.style.display = 'none';
+                    }
+                });
+                priceInfo.style.display = 'block';
+            }
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                // Hide all price info when closing modal
+                const allPriceInfos = document.querySelectorAll('.price-info');
+                allPriceInfos.forEach(info => {
+                    info.style.display = 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
