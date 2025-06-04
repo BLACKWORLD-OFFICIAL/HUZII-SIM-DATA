@@ -116,12 +116,6 @@
             width: 90%;
             max-width: 1200px;
             margin: 30px auto;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .main-content.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -164,6 +158,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .service-card::before {
@@ -220,29 +215,52 @@
         }
 
         .sub-service {
-            background-color: rgba(30, 30, 30, 0.8);
-            border: 1px solid rgba(255, 0, 255, 0.2);
+            background-color: rgba(30, 30, 30, 0.7);
+            border: 1px solid var(--neon-blue);
             border-radius: 8px;
             padding: 20px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .sub-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(57, 255, 20, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .sub-service:hover {
             border-color: var(--neon-pink);
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .sub-service:hover::before {
+            opacity: 1;
         }
 
         .sub-service h4 {
-            color: var(--neon-blue);
+            color: var(--neon-green);
             margin-top: 0;
             margin-bottom: 15px;
             font-size: 1.2em;
+            text-shadow: 0 0 5px var(--neon-green);
         }
 
         .service-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
+            gap: 10px;
         }
 
         .price-tag, .info-btn {
@@ -252,6 +270,8 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
         }
 
         .price-tag {
@@ -276,14 +296,41 @@
             box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
         }
 
+        .info-btn.active {
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+
+        /* Tool Links */
+        .tool-link {
+            display: block;
+            padding: 10px;
+            background-color: rgba(57, 255, 20, 0.1);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-link:hover {
+            background-color: rgba(57, 255, 20, 0.3);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
         /* About, Contact, Disclaimer Sections */
         .content-section {
             background-color: var(--card-bg);
             border-radius: 10px;
             padding: 40px;
-            margin-bottom: 40px;
+            margin: 40px auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(0, 255, 255, 0.1);
+            max-width: 1200px;
+            width: 90%;
             display: none;
         }
 
@@ -378,8 +425,8 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Modal */
@@ -519,7 +566,6 @@
             <div class="nav-links">
                 <a href="#" class="active" onclick="showSection('home')">Home</a>
                 <a href="#" onclick="showSection('about')">About</a>
-                <a href="#" onclick="showSection('services')">Services</a>
                 <a href="#" onclick="showSection('contact')">Contact</a>
                 <a href="#" onclick="showSection('disclaimer')">Disclaimer</a>
             </div>
@@ -527,7 +573,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="main-content visible" id="homeSection">
+    <main class="main-content" id="homeSection">
         <h1 class="section-title">Our Digital Security Services</h1>
         
         <div class="services-grid">
@@ -537,7 +583,7 @@
                     <i class="fas fa-database"></i>
                 </div>
                 <h3>NADRA Data Services</h3>
-                <p>Comprehensive NADRA database services including CNIC verification, family tree, and more with complete privacy and security.</p>
+                <p>Comprehensive NADRA database services with complete privacy and security.</p>
             </div>
             
             <!-- Hacking Data Service -->
@@ -546,7 +592,7 @@
                     <i class="fas fa-user-secret"></i>
                 </div>
                 <h3>Security Solutions</h3>
-                <p>Advanced security services including device protection, account recovery, and ethical hacking solutions.</p>
+                <p>Advanced security services including device protection and ethical hacking solutions.</p>
             </div>
             
             <!-- Free Tools Service -->
@@ -555,7 +601,7 @@
                     <i class="fas fa-tools"></i>
                 </div>
                 <h3>Security Tools</h3>
-                <p>Collection of free security tools and resources to help protect your digital presence.</p>
+                <p>Collection of free security tools and resources to protect your digital presence.</p>
             </div>
             
             <!-- Social Media Service -->
@@ -564,13 +610,17 @@
                     <i class="fas fa-share-alt"></i>
                 </div>
                 <h3>Social Media Services</h3>
-                <p>Enhance your social media presence with our professional growth and engagement services.</p>
+                <p>Enhance your social media presence with our professional services.</p>
             </div>
         </div>
         
-        <!-- Sub Services Containers -->
+        <!-- NADRA Data Sub Services -->
         <div class="sub-services" id="nadraServices"></div>
+        
+        <!-- Hacking Data Sub Services -->
         <div class="sub-services" id="hackingServices"></div>
+        
+        <!-- Free Tools Sub Services -->
         <div class="sub-services" id="toolsServices"></div>
     </main>
 
@@ -582,41 +632,6 @@
         <p>Our team consists of cybersecurity experts and digital professionals dedicated to delivering reliable and ethical services. We combine technical expertise with strict privacy standards to ensure your data remains secure.</p>
         
         <p>At BLACK WORLD, we believe in empowering our clients with knowledge and tools to navigate the digital landscape safely. Our solutions are designed for individuals and businesses looking to enhance their digital security and online presence.</p>
-        
-        <h3>Our Mission</h3>
-        <p>To provide innovative, ethical digital solutions that prioritize security, privacy, and results. We aim to bridge the gap between complex digital challenges and practical solutions.</p>
-    </section>
-
-    <!-- Services Section -->
-    <section class="content-section" id="servicesSection">
-        <h2 class="section-title">Our Services</h2>
-        
-        <h3>NADRA Data Services</h3>
-        <p>Our NADRA verification services help individuals and businesses authenticate identity documents securely. We provide:</p>
-        <ul>
-            <li>CNIC verification</li>
-            <li>Family tree documentation</li>
-            <li>Secure data retrieval</li>
-            <li>Privacy-focused solutions</li>
-        </ul>
-        
-        <h3>Security Solutions</h3>
-        <p>Protect your digital assets with our comprehensive security services:</p>
-        <ul>
-            <li>Device security assessments</li>
-            <li>Account recovery services</li>
-            <li>Ethical hacking consultations</li>
-            <li>Security awareness training</li>
-        </ul>
-        
-        <h3>Social Media Services</h3>
-        <p>Enhance your online presence with our professional social media solutions:</p>
-        <ul>
-            <li>Account growth strategies</li>
-            <li>Engagement optimization</li>
-            <li>Content security</li>
-            <li>Platform-specific solutions</li>
-        </ul>
     </section>
 
     <!-- Contact Section -->
@@ -630,27 +645,15 @@
         </div>
         
         <p>For inquiries or support, please reach out through any of the above channels. Our team is available 24/7 to assist you with your needs.</p>
-        
-        <h3>Business Hours</h3>
-        <p>Monday - Sunday: 24/7 Support</p>
     </section>
 
-        <!-- Disclaimer Section -->
+    <!-- Disclaimer Section -->
     <section class="content-section" id="disclaimerSection">
         <h2 class="section-title">Legal Disclaimer</h2>
         
         <p>The information and services provided by BLACK WORLD OFFICIAL are intended for legal and ethical purposes only. We strictly prohibit the use of our services for any illegal activities.</p>
         
-        <p><strong>Important Notice:</strong> All services are provided with the understanding that clients will use them in compliance with all applicable laws and regulations. We conduct thorough verification of all requests to ensure legal compliance.</p>
-        
-        <h3>Service Restrictions</h3>
-        <p>Our services may not be used for:</p>
-        <ul>
-            <li>Unauthorized access to systems or data</li>
-            <li>Identity theft or fraud</li>
-            <li>Harassment or stalking</li>
-            <li>Any activity violating privacy laws</li>
-        </ul>
+        <p><strong>Important Notice:</strong> All services are provided with the understanding that clients will use them in compliance with all applicable laws and regulations.</p>
         
         <p>By using our services, you confirm that you have legal authority to request the information and that your use complies with all relevant laws.</p>
     </section>
@@ -675,16 +678,16 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <h3 class="modal-title">Social Media Services</h3>
-            <p>We provide professional social media services to help grow your online presence:</p>
+            <p>We provide professional social media services including:</p>
             
             <ul>
+                <li>TikTok, YouTube, Instagram, Facebook accounts (buy/sell)</li>
+                <li>Likes, followers, and views services</li>
                 <li>Account growth and engagement</li>
                 <li>Content strategy development</li>
-                <li>Platform-specific optimization</li>
-                <li>Security and recovery services</li>
             </ul>
             
-            <p>Contact us via WhatsApp or Telegram to discuss your specific needs and pricing.</p>
+            <p>Contact us via WhatsApp or Telegram for more information and pricing.</p>
         </div>
     </div>
 
@@ -693,31 +696,48 @@
             // Service data
             const servicesData = {
                 nadra: [
-                    { name: "SIM Database", price: "$2", info: "Access to comprehensive SIM card registration data" },
-                    { name: "CDR Records", price: "$3-7", info: "Call Detail Records for various carriers" },
-                    { name: "CNIC Verification", price: "$8", info: "Official CNIC document verification" },
-                    { name: "Family Tree", price: "$10-11", info: "Detailed family relationship documentation" },
-                    { name: "Travel History", price: "$12", info: "International travel records verification" },
-                    { name: "Location Services", price: "$15", info: "Secure location verification services" }
+                    { name: "Sim data base", price: "2", info: "Price: 2" },
+                    { name: "Cdr telenor", price: "3", info: "Price: 3" },
+                    { name: "Cdr ufone", price: "4", info: "Price: 4" },
+                    { name: "Cdr zong", price: "5", info: "Price: 5" },
+                    { name: "Cdr moblink", price: "6", info: "Price: 6" },
+                    { name: "Cdr jazz", price: "7", info: "Price: 7" },
+                    { name: "Cnic copy", price: "8", info: "Price: 8" },
+                    { name: "Issue data", price: "9", info: "Price: 9" },
+                    { name: "Family tree", price: "10", info: "Price: 10" },
+                    { name: "Family tree with pic", price: "11", info: "Price: 11" },
+                    { name: "Traveling history", price: "12", info: "Price: 12" },
+                    { name: "Password detail", price: "13", info: "Price: 13" },
+                    { name: "Imie tracking", price: "14", info: "Price: 14" },
+                    { name: "live location", price: "15", info: "Price: 15" }
                 ],
                 hacking: [
-                    { name: "Account Recovery", price: "$4", info: "Assistance with locked or banned accounts" },
-                    { name: "Device Security", price: "$6-8", info: "Mobile device protection and restoration" },
-                    { name: "Security Training", price: "$10", info: "Comprehensive security awareness courses" },
-                    { name: "System Protection", price: "$12-13", info: "Custom security solutions for your needs" },
-                    { name: "Security Audits", price: "$15-16", info: "Comprehensive digital security assessments" }
+                    { name: "Whatsapp temporary ban", price: "2", info: "Price: 2" },
+                    { name: "WhatsApp permanent ban", price: "3", info: "Price: 3" },
+                    { name: "Whatsapp permanent unban", price: "4", info: "Price: 4" },
+                    { name: "92 game hack", price: "5", info: "Price: 5" },
+                    { name: "Mobile hack", price: "6", info: "Price: 6" },
+                    { name: "Gallery hack", price: "7", info: "Price: 7" },
+                    { name: "Mobile restore", price: "8", info: "Price: 8" },
+                    { name: "Whatsapp crash", price: "9", info: "Price: 9" },
+                    { name: "Hacking course", price: "10", info: "Price: 10" },
+                    { name: "Whatsapp crash file", price: "11", info: "Price: 11" },
+                    { name: "Simdata base method", price: "12", info: "Price: 12" },
+                    { name: "Simdata base own website", price: "13", info: "Price: 13" },
+                    { name: "Whatsapp otp lock", price: "14", info: "Price: 14" },
+                    { name: "Fake number trick", price: "15", info: "Price: 15" },
+                    { name: "Call from unknown number", price: "16", info: "Price: 16" }
                 ],
                 tools: [
-                    { name: "Security Resources", link: "https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q", info: "Access our security resource channel" },
-                    { name: "Telegram Community", link: "https://t.me/TECHBYHUZII", info: "Join our security community on Telegram" },
-                    { name: "Direct Support", text: "+923058190234", info: "Contact our support team directly" }
+                    { name: "WhatsApp Channel", link: "https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q", info: "Join our WhatsApp channel for updates" },
+                    { name: "Telegram", link: "https://t.me/TECHBYHUZII", info: "Join our Telegram community" },
+                    { name: "WhatsApp Number", text: "+923058190234", info: "Contact us directly on WhatsApp" }
                 ]
             };
 
             // DOM elements
-            const mainContent = document.getElementById('homeSection');
+            const homeSection = document.getElementById('homeSection');
             const aboutSection = document.getElementById('aboutSection');
-            const servicesSection = document.getElementById('servicesSection');
             const contactSection = document.getElementById('contactSection');
             const disclaimerSection = document.getElementById('disclaimerSection');
             const socialModal = document.getElementById('socialModal');
@@ -772,12 +792,32 @@
                     serviceEl.className = 'sub-service';
                     serviceEl.innerHTML = `
                         <h4>${service.name}</h4>
-                        <p>${service.info}</p>
                         <div class="service-actions">
-                            <div class="price-tag">${service.price}</div>
-                            <div class="info-btn">Details</div>
+                            <div class="price-tag">Price: ${service.price}</div>
+                            <div class="info-btn">Information</div>
                         </div>
                     `;
+                    
+                    // Add click event to info button
+                    const infoBtn = serviceEl.querySelector('.info-btn');
+                    infoBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        if (this.classList.contains('active')) {
+                            this.classList.remove('active');
+                            this.textContent = 'Information';
+                        } else {
+                            // Remove active from all other buttons
+                            container.querySelectorAll('.info-btn').forEach(btn => {
+                                if (btn !== this) {
+                                    btn.classList.remove('active');
+                                    btn.textContent = 'Information';
+                                }
+                            });
+                            this.classList.add('active');
+                            this.textContent = service.info;
+                        }
+                    });
+                    
                     container.appendChild(serviceEl);
                 });
                 
@@ -796,17 +836,13 @@
                         toolEl.innerHTML = `
                             <h4>${tool.name}</h4>
                             <p>${tool.info}</p>
-                            <div class="service-actions">
-                                <a href="${tool.link}" target="_blank" class="price-tag">Access</a>
-                            </div>
+                            <a href="${tool.link}" target="_blank" class="tool-link">Go to Link</a>
                         `;
                     } else {
                         toolEl.innerHTML = `
                             <h4>${tool.name}</h4>
                             <p>${tool.info}</p>
-                            <div class="service-actions">
-                                <div class="price-tag">${tool.text}</div>
-                            </div>
+                            <div class="tool-link" style="cursor: default;">${tool.text}</div>
                         `;
                     }
                     
@@ -819,17 +855,21 @@
             // Show section function
             window.showSection = function(section) {
                 // Hide all sections first
-                document.querySelectorAll('.content-section, .main-content').forEach(el => {
+                homeSection.style.display = 'none';
+                aboutSection.style.display = 'none';
+                contactSection.style.display = 'none';
+                disclaimerSection.style.display = 'none';
+                
+                // Hide all sub-services
+                document.querySelectorAll('.sub-services').forEach(el => {
                     el.style.display = 'none';
                 });
                 
                 // Show selected section
                 if (section === 'home') {
-                    document.getElementById('homeSection').style.display = 'block';
+                    homeSection.style.display = 'block';
                 } else if (section === 'about') {
                     aboutSection.style.display = 'block';
-                } else if (section === 'services') {
-                    servicesSection.style.display = 'block';
                 } else if (section === 'contact') {
                     contactSection.style.display = 'block';
                 } else if (section === 'disclaimer') {
@@ -838,6 +878,17 @@
                 
                 // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if ((section === 'home' && link.textContent === 'Home') ||
+                        (section === 'about' && link.textContent === 'About') ||
+                        (section === 'contact' && link.textContent === 'Contact') ||
+                        (section === 'disclaimer' && link.textContent === 'Disclaimer')) {
+                        link.classList.add('active');
+                    }
+                });
             };
 
             // Modal functions
