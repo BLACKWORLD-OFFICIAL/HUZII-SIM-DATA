@@ -3,407 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACK WORLD OFFICIAL</title>
+    <title>BLACK WORLD</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-green: #39FF14;
-            --neon-blue: #00FFFF;
-            --neon-pink: #FF00FF;
-            --neon-red: #FF073A;
-            --dark-bg: #0a0a0a;
-            --text-color: #e0e0e0;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
             font-family: 'Orbitron', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
-
-        /* Navbar */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--neon-blue);
+        
+        body {
+            background-color: #000;
+            color: #0ff;
+            overflow-x: hidden;
         }
-
-        .navbar a {
-            color: var(--neon-blue);
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            transition: all 0.3s;
-        }
-
-        .navbar a:hover, .navbar a.active {
-            color: var(--neon-green);
-            text-shadow: 0 0 10px var(--neon-green);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 20px;
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
+            padding: 20px;
         }
-
-        .section-title {
-            color: var(--neon-green);
+        
+        header {
             text-align: center;
-            margin: 30px 0;
-            font-size: 2em;
-            text-shadow: 0 0 10px var(--neon-green);
+            padding: 20px 0;
+            border-bottom: 1px solid #0ff;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
         }
-
-        /* Service Cards */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0ff, 0 0 40px #0ff;
+            }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
             gap: 20px;
-            margin-top: 30px;
+            margin-bottom: 30px;
         }
-
-        .service-card {
-            background-color: rgba(20, 20, 20, 0.7);
-            border: 1px solid var(--neon-blue);
+        
+        nav a {
+            color: #0ff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border: 1px solid #0ff;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #0ff;
+            color: #000;
+            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+        }
+        
+        .main-boxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .box {
+            border: 2px solid #0ff;
             border-radius: 10px;
             padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--neon-blue);
-            border-color: var(--neon-green);
-        }
-
-        .service-card h3 {
-            color: var(--neon-green);
-            margin-bottom: 10px;
-        }
-
-        /* Sub Services */
-        .sub-services {
-            display: none;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .sub-service {
-            background-color: rgba(30, 30, 30, 0.7);
-            border: 1px solid var(--neon-pink);
-            border-radius: 8px;
-            padding: 15px;
-            transition: all 0.3s;
-        }
-
-        .sub-service:hover {
-            border-color: var(--neon-green);
-            box-shadow: 0 0 15px var(--neon-pink);
-        }
-
-        .sub-service h4 {
-            color: var(--neon-blue);
-            margin-bottom: 10px;
-        }
-
-        .service-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .price-tag, .info-btn {
-            flex: 1;
-            padding: 8px;
             text-align: center;
-            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: pulse 2s infinite;
         }
-
-        .price-tag {
-            background-color: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 5px #0ff;
+            }
+            50% {
+                box-shadow: 0 0 20px #0ff;
+            }
+            100% {
+                box-shadow: 0 0 5px #0ff;
+            }
         }
-
-        .info-btn {
-            background-color: rgba(57, 255, 20, 0.1);
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
+        
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #0ff;
         }
-
-        .price-tag:hover, .info-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 10px currentColor;
+        
+        .box h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
-
-        .info-btn.active {
-            background-color: var(--neon-green);
-            color: black;
-            font-weight: bold;
+        
+        .welcome-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: welcomeFade 3s forwards;
         }
-
-        /* Content Sections */
-        .content-section {
-            background-color: rgba(20, 20, 20, 0.7);
-            border: 1px solid var(--neon-blue);
-            border-radius: 10px;
-            padding: 30px;
-            margin: 30px 0;
-            display: none;
+        
+        @keyframes welcomeFade {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
         }
-
-        .content-section h2 {
-            color: var(--neon-green);
+        
+        .welcome-content {
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .welcome-content h2 {
+            font-size: 3rem;
             margin-bottom: 20px;
         }
-
-        /* Footer */
-        .footer {
-            background-color: rgba(0, 0, 0, 0.8);
+        
+        .service-content {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .service-item {
+            border: 1px solid #0ff;
+            border-radius: 5px;
             padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 10px #0ff;
+        }
+        
+        .price-info {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 1001;
+            width: 80%;
+            max-width: 500px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .price-info h3 {
+            margin-bottom: 15px;
+            color: #0ff;
+        }
+        
+        .price-info p {
+            margin-bottom: 10px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #0ff;
+            font-size: 1.5rem;
+        }
+        
+        .social-media-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 30px;
+            z-index: 1001;
+            width: 80%;
+            max-width: 600px;
             text-align: center;
-            border-top: 1px solid var(--neon-blue);
+            animation: fadeIn 0.5s;
+        }
+        
+        .social-media-popup h2 {
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #0ff;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#" class="active" onclick="showSection('home')">Home</a>
-        <a href="#" onclick="showSection('about')">About</a>
-        <a href="#" onclick="showSection('contact')">Contact</a>
-        <a href="#" onclick="showSection('disclaimer')">Disclaimer</a>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content" id="homeSection">
-        <h1 class="section-title">Our Digital Security Services</h1>
+    <!-- Welcome Popup -->
+    <div class="welcome-popup">
+        <div class="welcome-content">
+            <h2>WELCOME TO BLACK WORLD OFFICIAL</h2>
+            <p>Your ultimate destination for digital security services</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>BLACK WORLD</h1>
+            <p>Digital Security Services</p>
+        </header>
         
-        <div class="services-grid">
-            <div class="service-card" data-category="nadra">
-                <h3>NADRA Data Services</h3>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        
+        <div class="main-boxes">
+            <div class="box" onclick="showService('nadra')">
+                <h2>NADRA DATA</h2>
                 <p>Comprehensive NADRA database services with complete privacy and security.</p>
             </div>
             
-            <div class="service-card" data-category="hacking">
-                <h3>Security Solutions</h3>
-                <p>Advanced security services including device protection and ethical hacking solutions.</p>
+            <div class="box" onclick="showService('hacking')">
+                <h2>HACKING DATA</h2>
+                <p>Professional hacking services for various platforms and devices.</p>
             </div>
             
-            <div class="service-card" data-category="tools">
-                <h3>Security Tools</h3>
-                <p>Collection of free security tools and resources to protect your digital presence.</p>
+            <div class="box" onclick="showService('tools')">
+                <h2>FREE HACKING TOOLS</h2>
+                <p>Access our collection of free hacking tools and resources.</p>
             </div>
             
-            <div class="service-card" data-category="social">
-                <h3>Social Media Services</h3>
-                <p>Enhance your social media presence with our professional services.</p>
+            <div class="box" onclick="showService('social')">
+                <h2>SOCIAL MEDIA SERVICES</h2>
+                <p>Social media account services including sales, purchases, and engagement.</p>
             </div>
         </div>
         
-        <!-- NADRA Data Sub Services -->
-        <div class="sub-services" id="nadraServices"></div>
+        <!-- NADRA Data Content -->
+        <div id="nadra-content" class="service-content">
+            <h2 style="text-align: center; margin-bottom: 20px; animation: glow 2s ease-in-out infinite alternate;">NADRA DATA SERVICES</h2>
+            <div class="service-grid">
+                <div class="service-item" onclick="showPriceInfo('Sim data base', '2')">Sim data base</div>
+                <div class="service-item" onclick="showPriceInfo('Cdr telenor', '3')">Cdr telenor</div>
+                <div class="service-item" onclick="showPriceInfo('Cdr ufone', '4')">Cdr ufone</div>
+                <div class="service-item" onclick="showPriceInfo('Cdr zong', '5')">Cdr zong</div>
+                <div class="service-item" onclick="showPriceInfo('Cdr moblink', '6')">Cdr moblink</div>
+                <div class="service-item" onclick="showPriceInfo('Cdr jazz', '7')">Cdr jazz</div>
+                <div class="service-item" onclick="showPriceInfo('Cnic copy', '8')">Cnic copy</div>
+                <div class="service-item" onclick="showPriceInfo('Issue data', '9')">Issue data</div>
+                <div class="service-item" onclick="showPriceInfo('Family tree', '10')">Family tree</div>
+                <div class="service-item" onclick="showPriceInfo('Family tree with pic', '11')">Family tree with pic</div>
+                <div class="service-item" onclick="showPriceInfo('Traveling history', '12')">Traveling history</div>
+                <div class="service-item" onclick="showPriceInfo('Password detail', '13')">Password detail</div>
+                <div class="service-item" onclick="showPriceInfo('Imie tracking', '14')">Imie tracking</div>
+                <div class="service-item" onclick="showPriceInfo('live location', '15')">live location</div>
+            </div>
+        </div>
         
-        <!-- Hacking Data Sub Services -->
-        <div class="sub-services" id="hackingServices"></div>
+        <!-- Hacking Data Content -->
+        <div id="hacking-content" class="service-content">
+            <h2 style="text-align: center; margin-bottom: 20px; animation: glow 2s ease-in-out infinite alternate;">HACKING DATA SERVICES</h2>
+            <div class="service-grid">
+                <div class="service-item" onclick="showPriceInfo('Whatsapp temporary ban', '2')">Whatsapp temporary ban</div>
+                <div class="service-item" onclick="showPriceInfo('WhatsApp permanent ban', '3')">WhatsApp permanent ban</div>
+                <div class="service-item" onclick="showPriceInfo('whatsapp permanent unban', '4')">whatsapp permanent unban</div>
+                <div class="service-item" onclick="showPriceInfo('92 game hack', '5')">92 game hack</div>
+                <div class="service-item" onclick="showPriceInfo('Mobile hack', '6')">Mobile hack</div>
+                <div class="service-item" onclick="showPriceInfo('gallery hack', '7')">gallery hack</div>
+                <div class="service-item" onclick="showPriceInfo('mobile restore', '8')">mobile restore</div>
+                <div class="service-item" onclick="showPriceInfo('whatsapp crash', '9')">whatsapp crash</div>
+                <div class="service-item" onclick="showPriceInfo('Hacking course', '10')">Hacking course</div>
+                <div class="service-item" onclick="showPriceInfo('whatsapp crash file', '11')">whatsapp crash file</div>
+                <div class="service-item" onclick="showPriceInfo('simdata base method', '12')">simdata base method</div>
+                <div class="service-item" onclick="showPriceInfo('simdata base own website', '13')">simdata base own website</div>
+                <div class="service-item" onclick="showPriceInfo('whatsapp otp lock', '14')">whatsapp otp lock</div>
+                <div class="service-item" onclick="showPriceInfo('fake number trick', '15')">fake number trick</div>
+                <div class="service-item" onclick="showPriceInfo('call from unknown number', '16')">call from unknown number</div>
+            </div>
+        </div>
         
-        <!-- Tools Sub Services -->
-        <div class="sub-services" id="toolsServices"></div>
-    </main>
-
-    <!-- About Section -->
-    <section class="content-section" id="aboutSection">
-        <h2>About BLACK WORLD</h2>
-        <p>Welcome to BLACK WORLD OFFICIAL, your trusted partner in digital security solutions. We provide comprehensive services to meet all your digital security needs.</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="content-section" id="contactSection">
-        <h2>Contact Us</h2>
-        <p>WhatsApp: +92 305 8190234</p>
-        <p>Telegram: @TECHBYHUZII</p>
-    </section>
-
-    <!-- Disclaimer Section -->
-    <section class="content-section" id="disclaimerSection">
-        <h2>Legal Disclaimer</h2>
-        <p>All services are for educational purposes only. We do not condone illegal activities.</p>
-    </section>
-
-    <footer class="footer">
-        <p>&copy; 2025 BLACK WORLD OFFICIAL</p>
-    </footer>
-
+        <!-- Free Tools Content -->
+        <div id="tools-content" class="service-content">
+            <h2 style="text-align: center; margin-bottom: 20px; animation: glow 2s ease-in-out infinite alternate;">FREE HACKING TOOLS</h2>
+            <div style="text-align: center; line-height: 2;">
+                <p>WhatsApp Channel: <a href="https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q" style="color: #0ff;">https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q</a></p>
+                <p>Telegram: TECHBYHUZII</p>
+                <p>Contact Number: 923058190234</p>
+            </div>
+        </div>
+        
+        <!-- Price Info Popup -->
+        <div id="price-info" class="price-info">
+            <span class="close-btn" onclick="closePriceInfo()">&times;</span>
+            <h3 id="service-name"></h3>
+            <p>Price: <span id="service-price" style="color: #0ff;"></span></p>
+            <p>Information: <span id="service-info" style="color: #0ff;"></span></p>
+        </div>
+        
+        <!-- Social Media Popup -->
+        <div id="social-media-popup" class="social-media-popup">
+            <h2>SOCIAL MEDIA SERVICES</h2>
+            <p>We provide TikTok, YouTube, Instagram, Facebook and other social media account services:</p>
+            <ul style="list-style-type: none; margin-top: 20px;">
+                <li>✔ Account Sales & Purchases</li>
+                <li>✔ Likes, Followers, Views Services</li>
+                <li>✔ Account Recovery Services</li>
+                <li>✔ Verification Services</li>
+                <li>✔ Engagement Boosting</li>
+            </ul>
+            <p style="margin-top: 20px;">Contact us for more details and pricing.</p>
+        </div>
+        
+        <footer>
+            <p>Disclaimer: This website is for educational purposes only.</p>
+        </footer>
+    </div>
+    
     <script>
+        // Show welcome popup on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Service data
-            const servicesData = {
-                nadra: [
-                    { name: "Sim data base", price: "2", info: "Price: 2" },
-                    { name: "Cdr telenor", price: "3", info: "Price: 3" },
-                    { name: "Cdr ufone", price: "4", info: "Price: 4" },
-                    { name: "Cdr zong", price: "5", info: "Price: 5" },
-                    { name: "Cdr moblink", price: "6", info: "Price: 6" },
-                    { name: "Cdr jazz", price: "7", info: "Price: 7" },
-                    { name: "Cnic copy", price: "8", info: "Price: 8" },
-                    { name: "Issue data", price: "9", info: "Price: 9" },
-                    { name: "Family tree", price: "10", info: "Price: 10" },
-                    { name: "Family tree with pic", price: "11", info: "Price: 11" },
-                    { name: "Traveling history", price: "12", info: "Price: 12" },
-                    { name: "Password detail", price: "13", info: "Price: 13" },
-                    { name: "Imie tracking", price: "14", info: "Price: 14" },
-                    { name: "live location", price: "15", info: "Price: 15" }
-                ],
-                hacking: [
-                    { name: "Whatsapp temporary ban", price: "2", info: "Price: 2" },
-                    { name: "WhatsApp permanent ban", price: "3", info: "Price: 3" },
-                    { name: "Whatsapp permanent unban", price: "4", info: "Price: 4" },
-                    { name: "92 game hack", price: "5", info: "Price: 5" },
-                    { name: "Mobile hack", price: "6", info: "Price: 6" },
-                    { name: "Gallery hack", price: "7", info: "Price: 7" },
-                    { name: "Mobile restore", price: "8", info: "Price: 8" },
-                    { name: "Whatsapp crash", price: "9", info: "Price: 9" },
-                    { name: "Hacking course", price: "10", info: "Price: 10" },
-                    { name: "Whatsapp crash file", price: "11", info: "Price: 11" },
-                    { name: "Simdata base method", price: "12", info: "Price: 12" },
-                    { name: "Simdata base own website", price: "13", info: "Price: 13" },
-                    { name: "Whatsapp otp lock", price: "14", info: "Price: 14" },
-                    { name: "Fake number trick", price: "15", info: "Price: 15" },
-                    { name: "Call from unknown number", price: "16", info: "Price: 16" }
-                ],
-                tools: [
-                    { name: "WhatsApp Channel", text: "https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q" },
-                    { name: "Telegram", text: "@TECHBYHUZII" },
-                    { name: "WhatsApp Number", text: "+923058190234" }
-                ]
-            };
-
-            // DOM elements
-            const serviceCards = document.querySelectorAll('.service-card');
-            const navLinks = document.querySelectorAll('.navbar a');
-            
-            // Initialize - Show home section
-            showSection('home');
-
-            // Service card click handlers
-            serviceCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const category = this.dataset.category;
-                    
-                    // Hide all sub-services first
-                    document.querySelectorAll('.sub-services').forEach(el => {
-                        el.style.display = 'none';
-                    });
-                    
-                    if (category === 'nadra') {
-                        renderSubServices('nadraServices', servicesData.nadra);
-                    } else if (category === 'hacking') {
-                        renderSubServices('hackingServices', servicesData.hacking);
-                    } else if (category === 'tools') {
-                        renderTools('toolsServices', servicesData.tools);
-                    } else if (category === 'social') {
-                        alert("Social Media Services:\n\nTikTok, YouTube, Instagram, Facebook accounts\nLikes, followers, views available");
-                    }
-                });
-            });
-
-            // Navigation link click handlers
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Render sub-services
-            function renderSubServices(containerId, services) {
-                const container = document.getElementById(containerId);
-                container.innerHTML = '';
-                
-                services.forEach(service => {
-                    const serviceEl = document.createElement('div');
-                    serviceEl.className = 'sub-service';
-                    serviceEl.innerHTML = `
-                        <h4>${service.name}</h4>
-                        <div class="service-actions">
-                            <div class="price-tag">Price: ${service.price}</div>
-                            <div class="info-btn">Info</div>
-                        </div>
-                    `;
-                    
-                    // Add click event to info button
-                    const infoBtn = serviceEl.querySelector('.info-btn');
-                    infoBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        this.classList.toggle('active');
-                        this.textContent = this.classList.contains('active') ? service.info : 'Info';
-                    });
-                    
-                    container.appendChild(serviceEl);
-                });
-                
-                container.style.display = 'grid';
-            }
-
-            // Render tools
-            function renderTools(containerId, tools) {
-                const container = document.getElementById(containerId);
-                container.innerHTML = '';
-                
-                tools.forEach(tool => {
-                    const toolEl = document.createElement('div');
-                    toolEl.className = 'sub-service';
-                    toolEl.innerHTML = `
-                        <h4>${tool.name}</h4>
-                        <p>${tool.text}</p>
-                    `;
-                    container.appendChild(toolEl);
-                });
-                
-                container.style.display = 'grid';
-            }
-
-            // Show section function
-            window.showSection = function(section) {
-                // Hide all sections first
-                document.querySelectorAll('.main-content, .content-section').forEach(el => {
-                    el.style.display = 'none';
-                });
-                
-                // Show selected section
-                if (section === 'home') {
-                    document.getElementById('homeSection').style.display = 'block';
-                } else {
-                    document.getElementById(section + 'Section').style.display = 'block';
-                }
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
+            setTimeout(function() {
+                document.querySelector('.welcome-popup').style.display = 'none';
+            }, 3000);
         });
+        
+        // Show service content
+        function showService(service) {
+            // Hide all service contents first
+            document.querySelectorAll('.service-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Show the selected service content
+            if (service === 'social') {
+                document.getElementById('social-media-popup').style.display = 'block';
+            } else {
+                document.getElementById(service + '-content').style.display = 'block';
+            }
+        }
+        
+        // Show price info popup
+        function showPriceInfo(name, price) {
+            document.getElementById('service-name').textContent = name;
+            document.getElementById('service-price').textContent = price;
+            document.getElementById('service-info').textContent = 'Information ' + price;
+            document.getElementById('price-info').style.display = 'block';
+        }
+        
+        // Close price info popup
+        function closePriceInfo() {
+            document.getElementById('price-info').style.display = 'none';
+        }
+        
+        // Close social media popup
+        function closeSocialPopup() {
+            document.getElementById('social-media-popup').style.display = 'none';
+        }
+        
+        // Close popups when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('price-info')) {
+                closePriceInfo();
+            }
+            if (event.target == document.getElementById('social-media-popup')) {
+                closeSocialPopup();
+            }
+        }
     </script>
 </body>
 </html>
