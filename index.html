@@ -79,57 +79,34 @@
         }
 
         .box {
-            /* Increased transparency */
-            background-color: rgba(20, 20, 20, 0.5); /* Changed from 0.7 to 0.5 */
+            background-color: rgba(20, 20, 20, 0.5);
             border: 1px solid #333;
             border-radius: 8px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.3s ease; /* Adjusted transition for new animation */
             backdrop-filter: blur(5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            position: relative; /* For animation */
-            overflow: hidden; /* For pseudo-element animation */
         }
 
+        /* Enhanced animation for main boxes */
         .box:hover {
-            transform: translateY(-5px);
+            transform: scale(1.03); /* Slightly grow on hover */
             border-color: #555;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-        }
-
-        /* Animation for boxes */
-        .box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: skewX(-30deg);
-            transition: all 0.7s ease;
-        }
-
-        .box:hover::before {
-            left: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.2); /* Added glow effect */
         }
 
         .box h2 {
             margin-bottom: 20px;
             color: #fff;
             font-size: 1.6rem;
-            position: relative; /* To keep text above pseudo-element */
-            z-index: 1;
         }
 
         .box p {
             color: #999;
             font-size: 1rem;
             line-height: 1.6;
-            position: relative; /* To keep text above pseudo-element */
-            z-index: 1;
         }
 
         .service-popup {
@@ -138,8 +115,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            /* Increased transparency */
-            background-color: rgba(10, 10, 10, 0.9); /* Changed from 0.95 to 0.9 */
+            background-color: rgba(10, 10, 10, 0.9);
             border: 1px solid #333;
             border-radius: 10px;
             padding: 40px;
@@ -168,20 +144,22 @@
         }
 
         .service-item {
-            /* Increased transparency */
-            background-color: rgba(30, 30, 30, 0.5); /* Changed from 0.7 to 0.5 */
+            background-color: rgba(30, 30, 30, 0.5);
             border: 1px solid #444;
             border-radius: 6px;
             padding: 20px;
-            transition: all 0.3s;
+            transition: all 0.3s ease; /* Transition for the new animation */
             cursor: pointer;
             color: #ddd;
             backdrop-filter: blur(5px);
         }
 
+        /* Animation for service items (data boxes) */
         .service-item:hover {
+            transform: translateX(5px); /* Slide slightly to the right */
             background-color: rgba(50, 50, 50, 0.7);
             border-color: #666;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1); /* Subtle glow */
         }
 
         .close-btn {
@@ -231,12 +209,12 @@
         }
 
         .whatsapp-btn {
-            bottom: 90px; /* Adjust as needed */
+            bottom: 90px;
             background-color: #25D366;
         }
 
         .telegram-btn {
-            bottom: 20px; /* Adjust as needed */
+            bottom: 20px;
             background-color: #0088CC;
         }
 
