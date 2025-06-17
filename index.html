@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACK WORLD | Digital Security Services</title>
+    <title>BLACK WORLD | Premium Security Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,9 +14,12 @@
         }
         
         body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
+            background-color: #000;
+            color: #ccc;
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+                              url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
         }
         
         .container {
@@ -29,138 +32,106 @@
             text-align: center;
             padding: 40px 0;
             margin-bottom: 40px;
-            border-bottom: 1px solid #222;
         }
         
         h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 15px;
             color: #fff;
-            letter-spacing: 1px;
-            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
         
         .tagline {
-            color: #777;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            color: #666;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
         }
         
         nav {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 50px;
         }
         
         nav a {
-            color: #aaa;
+            color: #999;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 500;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 5px 15px;
+            border-radius: 4px;
         }
         
         nav a:hover {
             color: #fff;
+            background-color: rgba(255,255,255,0.1);
         }
         
         .main-boxes {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 50px;
         }
         
         .box {
-            background-color: #111;
-            border: 1px solid #222;
+            background-color: rgba(20, 20, 20, 0.7);
+            border: 1px solid #333;
             border-radius: 8px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         
         .box:hover {
             transform: translateY(-5px);
-            border-color: #444;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border-color: #555;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         }
         
         .box h2 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            margin-bottom: 20px;
             color: #fff;
-            font-weight: 500;
+            font-size: 1.6rem;
         }
         
         .box p {
             color: #999;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
         
-        .welcome-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: welcomeFade 3s forwards;
-        }
-        
-        @keyframes welcomeFade {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; visibility: hidden; }
-        }
-        
-        .welcome-content {
-            text-align: center;
-            padding: 40px;
-            border: 1px solid #333;
-            background-color: #111;
-            border-radius: 8px;
-            max-width: 600px;
-        }
-        
-        .welcome-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        
-        .welcome-content p {
-            color: #aaa;
-            font-size: 1.1rem;
-        }
-        
-        .service-content {
+        .service-popup {
             display: none;
-            margin-top: 40px;
-            animation: fadeIn 0.5s;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(10, 10, 10, 0.95);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 40px;
+            z-index: 1001;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .service-title {
+        .service-popup h2 {
             text-align: center;
             margin-bottom: 30px;
             color: #fff;
             font-size: 2rem;
-            font-weight: 500;
-            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
         }
         
         .service-grid {
@@ -170,53 +141,19 @@
         }
         
         .service-item {
-            background-color: #111;
-            border: 1px solid #222;
+            background-color: rgba(30, 30, 30, 0.7);
+            border: 1px solid #444;
             border-radius: 6px;
             padding: 20px;
             transition: all 0.3s;
             cursor: pointer;
             color: #ddd;
+            backdrop-filter: blur(5px);
         }
         
         .service-item:hover {
-            background-color: #1a1a1a;
-            border-color: #444;
-        }
-        
-        .price-info {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 30px;
-            z-index: 1001;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            animation: fadeIn 0.3s;
-        }
-        
-        .price-info h3 {
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 1.5rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-        
-        .price-info p {
-            margin-bottom: 15px;
-            color: #aaa;
-        }
-        
-        .price-info .highlight {
-            color: #fff;
-            font-weight: 500;
+            background-color: rgba(50, 50, 50, 0.7);
+            border-color: #666;
         }
         
         .close-btn {
@@ -225,7 +162,7 @@
             right: 15px;
             cursor: pointer;
             color: #777;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             transition: color 0.3s;
         }
         
@@ -233,262 +170,214 @@
             color: #fff;
         }
         
-        .social-media-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 40px;
-            z-index: 1001;
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            animation: fadeIn 0.3s;
-        }
-        
-        .social-media-popup h2 {
-            margin-bottom: 25px;
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: 500;
-        }
-        
-        .social-media-popup ul {
-            list-style-type: none;
-            margin: 25px 0;
-            text-align: left;
-            padding-left: 20px;
-        }
-        
-        .social-media-popup li {
-            margin-bottom: 10px;
-            color: #aaa;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .social-media-popup li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #555;
-        }
-        
         footer {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 80px;
             padding: 30px 0;
             border-top: 1px solid #222;
-            color: #777;
+            color: #666;
             font-size: 0.9rem;
         }
         
         @media (max-width: 768px) {
-            .main-boxes {
-                grid-template-columns: 1fr;
-            }
-            
-            .service-grid {
+            .main-boxes, .service-grid {
                 grid-template-columns: 1fr;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
-            .welcome-content h2 {
-                font-size: 1.8rem;
+            .service-popup {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Welcome Popup -->
-    <div class="welcome-popup">
-        <div class="welcome-content">
-            <h2>WELCOME TO BLACK WORLD</h2>
-            <p>Professional digital security services</p>
-        </div>
-    </div>
-    
     <div class="container">
         <header>
             <h1>BLACK WORLD</h1>
-            <p class="tagline">Digital Security Services</p>
+            <p class="tagline">Premium Security Solutions</p>
         </header>
         
         <nav>
             <a href="#">Home</a>
+            <a href="#">Services</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
         </nav>
         
         <div class="main-boxes">
-            <div class="box" onclick="showService('nadra')">
+            <div class="box" onclick="openServicePopup('nadra')">
                 <h2>NADRA DATA</h2>
-                <p>Comprehensive NADRA database services with complete privacy and security.</p>
+                <p>Complete NADRA database services with 100% privacy guarantee and secure access.</p>
             </div>
             
-            <div class="box" onclick="showService('hacking')">
+            <div class="box" onclick="openServicePopup('hacking')">
                 <h2>HACKING DATA</h2>
-                <p>Professional hacking services for various platforms and devices.</p>
+                <p>Professional hacking services for all platforms with guaranteed results.</p>
             </div>
             
-            <div class="box" onclick="showService('tools')">
-                <h2>FREE HACKING TOOLS</h2>
-                <p>Access our collection of free hacking tools and resources.</p>
+            <div class="box" onclick="openServicePopup('tools')">
+                <h2>FREE TOOLS</h2>
+                <p>Collection of premium hacking tools and resources available for free.</p>
             </div>
             
-            <div class="box" onclick="showService('social')">
-                <h2>SOCIAL MEDIA SERVICES</h2>
-                <p>Social media account services including sales, purchases, and engagement.</p>
+            <div class="box" onclick="openServicePopup('social')">
+                <h2>SOCIAL MEDIA</h2>
+                <p>Complete social media services including accounts, followers and verification.</p>
             </div>
         </div>
         
-        <!-- NADRA Data Content -->
-        <div id="nadra-content" class="service-content">
-            <h2 class="service-title">NADRA DATA SERVICES</h2>
+        <!-- NADRA Data Popup -->
+        <div id="nadra-popup" class="service-popup">
+            <span class="close-btn" onclick="closePopup('nadra-popup')">&times;</span>
+            <h2>NADRA DATA SERVICES</h2>
             <div class="service-grid">
-                <div class="service-item" onclick="showPriceInfo('Sim data base', '2')">Sim data base</div>
-                <div class="service-item" onclick="showPriceInfo('Cdr telenor', '3')">Cdr telenor</div>
-                <div class="service-item" onclick="showPriceInfo('Cdr ufone', '4')">Cdr ufone</div>
-                <div class="service-item" onclick="showPriceInfo('Cdr zong', '5')">Cdr zong</div>
-                <div class="service-item" onclick="showPriceInfo('Cdr moblink', '6')">Cdr moblink</div>
-                <div class="service-item" onclick="showPriceInfo('Cdr jazz', '7')">Cdr jazz</div>
-                <div class="service-item" onclick="showPriceInfo('Cnic copy', '8')">Cnic copy</div>
-                <div class="service-item" onclick="showPriceInfo('Issue data', '9')">Issue data</div>
-                <div class="service-item" onclick="showPriceInfo('Family tree', '10')">Family tree</div>
-                <div class="service-item" onclick="showPriceInfo('Family tree with pic', '11')">Family tree with pic</div>
-                <div class="service-item" onclick="showPriceInfo('Traveling history', '12')">Traveling history</div>
-                <div class="service-item" onclick="showPriceInfo('Password detail', '13')">Password detail</div>
-                <div class="service-item" onclick="showPriceInfo('Imie tracking', '14')">Imie tracking</div>
-                <div class="service-item" onclick="showPriceInfo('live location', '15')">live location</div>
+                <div class="service-item" onclick="showItemInfo('Sim data base', '2')">Sim data base</div>
+                <div class="service-item" onclick="showItemInfo('Cdr telenor', '3')">Cdr telenor</div>
+                <div class="service-item" onclick="showItemInfo('Cdr ufone', '4')">Cdr ufone</div>
+                <div class="service-item" onclick="showItemInfo('Cdr zong', '5')">Cdr zong</div>
+                <div class="service-item" onclick="showItemInfo('Cdr moblink', '6')">Cdr moblink</div>
+                <div class="service-item" onclick="showItemInfo('Cdr jazz', '7')">Cdr jazz</div>
+                <div class="service-item" onclick="showItemInfo('Cnic copy', '8')">Cnic copy</div>
+                <div class="service-item" onclick="showItemInfo('Issue data', '9')">Issue data</div>
+                <div class="service-item" onclick="showItemInfo('Family tree', '10')">Family tree</div>
+                <div class="service-item" onclick="showItemInfo('Family tree with pic', '11')">Family tree with pic</div>
+                <div class="service-item" onclick="showItemInfo('Traveling history', '12')">Traveling history</div>
+                <div class="service-item" onclick="showItemInfo('Password detail', '13')">Password detail</div>
+                <div class="service-item" onclick="showItemInfo('Imie tracking', '14')">Imie tracking</div>
+                <div class="service-item" onclick="showItemInfo('live location', '15')">live location</div>
             </div>
         </div>
         
-        <!-- Hacking Data Content -->
-        <div id="hacking-content" class="service-content">
-            <h2 class="service-title">HACKING DATA SERVICES</h2>
+        <!-- Hacking Data Popup -->
+        <div id="hacking-popup" class="service-popup">
+            <span class="close-btn" onclick="closePopup('hacking-popup')">&times;</span>
+            <h2>HACKING SERVICES</h2>
             <div class="service-grid">
-                <div class="service-item" onclick="showPriceInfo('Whatsapp temporary ban', '2')">Whatsapp temporary ban</div>
-                <div class="service-item" onclick="showPriceInfo('WhatsApp permanent ban', '3')">WhatsApp permanent ban</div>
-                <div class="service-item" onclick="showPriceInfo('whatsapp permanent unban', '4')">whatsapp permanent unban</div>
-                <div class="service-item" onclick="showPriceInfo('92 game hack', '5')">92 game hack</div>
-                <div class="service-item" onclick="showPriceInfo('Mobile hack', '6')">Mobile hack</div>
-                <div class="service-item" onclick="showPriceInfo('gallery hack', '7')">gallery hack</div>
-                <div class="service-item" onclick="showPriceInfo('mobile restore', '8')">mobile restore</div>
-                <div class="service-item" onclick="showPriceInfo('whatsapp crash', '9')">whatsapp crash</div>
-                <div class="service-item" onclick="showPriceInfo('Hacking course', '10')">Hacking course</div>
-                <div class="service-item" onclick="showPriceInfo('whatsapp crash file', '11')">whatsapp crash file</div>
-                <div class="service-item" onclick="showPriceInfo('simdata base method', '12')">simdata base method</div>
-                <div class="service-item" onclick="showPriceInfo('simdata base own website', '13')">simdata base own website</div>
-                <div class="service-item" onclick="showPriceInfo('whatsapp otp lock', '14')">whatsapp otp lock</div>
-                <div class="service-item" onclick="showPriceInfo('fake number trick', '15')">fake number trick</div>
-                <div class="service-item" onclick="showPriceInfo('call from unknown number', '16')">call from unknown number</div>
+                <div class="service-item" onclick="showItemInfo('Whatsapp temporary ban', '2')">Whatsapp temporary ban</div>
+                <div class="service-item" onclick="showItemInfo('WhatsApp permanent ban', '3')">WhatsApp permanent ban</div>
+                <div class="service-item" onclick="showItemInfo('whatsapp permanent unban', '4')">whatsapp permanent unban</div>
+                <div class="service-item" onclick="showItemInfo('92 game hack', '5')">92 game hack</div>
+                <div class="service-item" onclick="showItemInfo('Mobile hack', '6')">Mobile hack</div>
+                <div class="service-item" onclick="showItemInfo('gallery hack', '7')">gallery hack</div>
+                <div class="service-item" onclick="showItemInfo('mobile restore', '8')">mobile restore</div>
+                <div class="service-item" onclick="showItemInfo('whatsapp crash', '9')">whatsapp crash</div>
+                <div class="service-item" onclick="showItemInfo('Hacking course', '10')">Hacking course</div>
+                <div class="service-item" onclick="showItemInfo('whatsapp crash file', '11')">whatsapp crash file</div>
+                <div class="service-item" onclick="showItemInfo('simdata base method', '12')">simdata base method</div>
+                <div class="service-item" onclick="showItemInfo('simdata base own website', '13')">simdata base own website</div>
+                <div class="service-item" onclick="showItemInfo('whatsapp otp lock', '14')">whatsapp otp lock</div>
+                <div class="service-item" onclick="showItemInfo('fake number trick', '15')">fake number trick</div>
+                <div class="service-item" onclick="showItemInfo('call from unknown number', '16')">call from unknown number</div>
             </div>
         </div>
         
-        <!-- Free Tools Content -->
-        <div id="tools-content" class="service-content">
-            <h2 class="service-title">FREE HACKING TOOLS</h2>
-            <div style="background-color: #111; border: 1px solid #222; border-radius: 8px; padding: 30px; max-width: 600px; margin: 0 auto;">
-                <p style="margin-bottom: 15px; color: #aaa;">WhatsApp Channel:</p>
-                <p style="margin-bottom: 25px; word-break: break-all;">
-                    <a href="https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q" style="color: #4a90e2; text-decoration: none;">https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q</a>
-                </p>
+        <!-- Free Tools Popup -->
+        <div id="tools-popup" class="service-popup">
+            <span class="close-btn" onclick="closePopup('tools-popup')">&times;</span>
+            <h2>FREE HACKING TOOLS</h2>
+            <div style="text-align: center; padding: 20px;">
+                <p style="margin-bottom: 30px; color: #999;">Access our premium collection of hacking tools and resources</p>
                 
-                <p style="margin-bottom: 15px; color: #aaa;">Telegram:</p>
-                <p style="margin-bottom: 25px; color: #ddd;">TECHBYHUZII</p>
-                
-                <p style="margin-bottom: 15px; color: #aaa;">Contact Number:</p>
-                <p style="color: #ddd;">923058190234</p>
+                <div style="background-color: rgba(30,30,30,0.7); border: 1px solid #444; border-radius: 8px; padding: 25px; max-width: 500px; margin: 0 auto;">
+                    <p style="margin-bottom: 15px; color: #999;">WhatsApp Channel:</p>
+                    <p style="margin-bottom: 30px; word-break: break-all; color: #4a90e2;">
+                        https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q
+                    </p>
+                    
+                    <p style="margin-bottom: 15px; color: #999;">Telegram:</p>
+                    <p style="margin-bottom: 30px; color: #ddd;">TECHBYHUZII</p>
+                    
+                    <p style="margin-bottom: 15px; color: #999;">Contact Number:</p>
+                    <p style="color: #ddd;">923058190234</p>
+                </div>
             </div>
-        </div>
-        
-        <!-- Price Info Popup -->
-        <div id="price-info" class="price-info">
-            <span class="close-btn" onclick="closePriceInfo()">&times;</span>
-            <h3 id="service-name"></h3>
-            <p>Price: <span class="highlight" id="service-price"></span></p>
-            <p>Information: <span class="highlight" id="service-info"></span></p>
         </div>
         
         <!-- Social Media Popup -->
-        <div id="social-media-popup" class="social-media-popup">
-            <span class="close-btn" onclick="closeSocialPopup()">&times;</span>
+        <div id="social-popup" class="service-popup">
+            <span class="close-btn" onclick="closePopup('social-popup')">&times;</span>
             <h2>SOCIAL MEDIA SERVICES</h2>
-            <p style="color: #aaa;">We provide comprehensive social media services including:</p>
-            <ul>
-                <li>Account sales and purchases (TikTok, YouTube, Instagram, Facebook)</li>
-                <li>Likes, followers, and views services</li>
-                <li>Account recovery and verification services</li>
-                <li>Engagement boosting and marketing</li>
-                <li>Custom solutions for your social media needs</li>
-            </ul>
-            <p style="margin-top: 25px; color: #aaa;">Contact us for pricing and more information.</p>
+            <div style="padding: 20px;">
+                <p style="margin-bottom: 20px; color: #999; text-align: center;">
+                    Comprehensive social media solutions for all platforms
+                </p>
+                
+                <div style="background-color: rgba(30,30,30,0.7); border: 1px solid #444; border-radius: 8px; padding: 25px;">
+                    <ul style="list-style-type: none;">
+                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
+                            <span style="position: absolute; left: 0; color: #666;">→</span>
+                            Account sales and purchases (TikTok, YouTube, Instagram, Facebook)
+                        </li>
+                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
+                            <span style="position: absolute; left: 0; color: #666;">→</span>
+                            Likes, followers, and views services
+                        </li>
+                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
+                            <span style="position: absolute; left: 0; color: #666;">→</span>
+                            Account recovery and verification services
+                        </li>
+                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
+                            <span style="position: absolute; left: 0; color: #666;">→</span>
+                            Engagement boosting and marketing
+                        </li>
+                        <li style="padding-left: 25px; position: relative; color: #ddd;">
+                            <span style="position: absolute; left: 0; color: #666;">→</span>
+                            Custom solutions for your social media needs
+                        </li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 30px; color: #666; text-align: center;">
+                    Contact us for pricing and more information
+                </p>
+            </div>
+        </div>
+        
+        <!-- Item Info Popup -->
+        <div id="item-info-popup" class="service-popup" style="max-width: 500px;">
+            <span class="close-btn" onclick="closePopup('item-info-popup')">&times;</span>
+            <h2 id="item-name"></h2>
+            <div style="padding: 20px;">
+                <p style="margin-bottom: 15px;"><span style="color: #999;">Price:</span> <span id="item-price" style="color: #fff; font-weight: 500;"></span></p>
+                <p><span style="color: #999;">Information:</span> <span id="item-info" style="color: #fff; font-weight: 500;"></span></p>
+            </div>
         </div>
         
         <footer>
-            <p>Disclaimer: This website is for educational purposes only.</p>
-            <p style="margin-top: 10px;">&copy; 2023 BLACK WORLD. All rights reserved.</p>
+            <p>© 2023 BLACK WORLD. All rights reserved.</p>
+            <p style="margin-top: 10px;">For educational purposes only</p>
         </footer>
     </div>
     
     <script>
-        // Show welcome popup on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.querySelector('.welcome-popup').style.display = 'none';
-            }, 3000);
-        });
-        
-        // Show service content
-        function showService(service) {
-            // Hide all service contents first
-            document.querySelectorAll('.service-content').forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // Show the selected service content
-            if (service === 'social') {
-                document.getElementById('social-media-popup').style.display = 'block';
-            } else {
-                document.getElementById(service + '-content').style.display = 'block';
-            }
+        // Open service popup
+        function openServicePopup(service) {
+            document.getElementById(service + '-popup').style.display = 'block';
         }
         
-        // Show price info popup
-        function showPriceInfo(name, price) {
-            document.getElementById('service-name').textContent = name;
-            document.getElementById('service-price').textContent = price;
-            document.getElementById('service-info').textContent = 'Information ' + price;
-            document.getElementById('price-info').style.display = 'block';
+        // Close popup
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
         }
         
-        // Close price info popup
-        function closePriceInfo() {
-            document.getElementById('price-info').style.display = 'none';
-        }
-        
-        // Close social media popup
-        function closeSocialPopup() {
-            document.getElementById('social-media-popup').style.display = 'none';
+        // Show item info
+        function showItemInfo(name, price) {
+            document.getElementById('item-name').textContent = name;
+            document.getElementById('item-price').textContent = price;
+            document.getElementById('item-info').textContent = 'Information ' + price;
+            document.getElementById('item-info-popup').style.display = 'block';
         }
         
         // Close popups when clicking outside
         window.onclick = function(event) {
-            if (event.target == document.getElementById('price-info')) {
-                closePriceInfo();
-            }
-            if (event.target == document.getElementById('social-media-popup')) {
-                closeSocialPopup();
+            if (event.target.className === 'service-popup') {
+                event.target.style.display = 'none';
             }
         }
     </script>
 </body>
-                </html>
+</html>
