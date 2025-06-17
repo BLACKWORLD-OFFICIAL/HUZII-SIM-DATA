@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLACK WORLD | Premium Security Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,48 +13,49 @@
             box-sizing: border-box;
             font-family: 'Orbitron', sans-serif;
         }
-        
+
         body {
             background-color: #000;
             color: #ccc;
-            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
                               url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-attachment: fixed;
+            position: relative; /* Needed for fixed positioned contact buttons */
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         header {
             text-align: center;
             padding: 40px 0;
             margin-bottom: 40px;
         }
-        
+
         h1 {
             font-size: 3rem;
             margin-bottom: 15px;
             color: #fff;
             text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
-        
+
         .tagline {
             color: #666;
             font-size: 1.2rem;
             letter-spacing: 2px;
         }
-        
+
         nav {
             display: flex;
             justify-content: center;
             gap: 30px;
             margin-bottom: 50px;
         }
-        
+
         nav a {
             color: #999;
             text-decoration: none;
@@ -63,21 +65,22 @@
             padding: 5px 15px;
             border-radius: 4px;
         }
-        
+
         nav a:hover {
             color: #fff;
             background-color: rgba(255,255,255,0.1);
         }
-        
+
         .main-boxes {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             margin-bottom: 50px;
         }
-        
+
         .box {
-            background-color: rgba(20, 20, 20, 0.7);
+            /* Increased transparency */
+            background-color: rgba(20, 20, 20, 0.5); /* Changed from 0.7 to 0.5 */
             border: 1px solid #333;
             border-radius: 8px;
             padding: 30px;
@@ -86,33 +89,57 @@
             transition: all 0.5s ease;
             backdrop-filter: blur(5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: relative; /* For animation */
+            overflow: hidden; /* For pseudo-element animation */
         }
-        
+
         .box:hover {
             transform: translateY(-5px);
             border-color: #555;
             box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         }
-        
+
+        /* Animation for boxes */
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: skewX(-30deg);
+            transition: all 0.7s ease;
+        }
+
+        .box:hover::before {
+            left: 100%;
+        }
+
         .box h2 {
             margin-bottom: 20px;
             color: #fff;
             font-size: 1.6rem;
+            position: relative; /* To keep text above pseudo-element */
+            z-index: 1;
         }
-        
+
         .box p {
             color: #999;
             font-size: 1rem;
             line-height: 1.6;
+            position: relative; /* To keep text above pseudo-element */
+            z-index: 1;
         }
-        
+
         .service-popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(10, 10, 10, 0.95);
+            /* Increased transparency */
+            background-color: rgba(10, 10, 10, 0.9); /* Changed from 0.95 to 0.9 */
             border: 1px solid #333;
             border-radius: 10px;
             padding: 40px;
@@ -124,7 +151,7 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.8);
             backdrop-filter: blur(10px);
         }
-        
+
         .service-popup h2 {
             text-align: center;
             margin-bottom: 30px;
@@ -133,15 +160,16 @@
             border-bottom: 1px solid #333;
             padding-bottom: 15px;
         }
-        
+
         .service-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
-        
+
         .service-item {
-            background-color: rgba(30, 30, 30, 0.7);
+            /* Increased transparency */
+            background-color: rgba(30, 30, 30, 0.5); /* Changed from 0.7 to 0.5 */
             border: 1px solid #444;
             border-radius: 6px;
             padding: 20px;
@@ -150,12 +178,12 @@
             color: #ddd;
             backdrop-filter: blur(5px);
         }
-        
+
         .service-item:hover {
             background-color: rgba(50, 50, 50, 0.7);
             border-color: #666;
         }
-        
+
         .close-btn {
             position: absolute;
             top: 15px;
@@ -165,11 +193,11 @@
             font-size: 1.8rem;
             transition: color 0.3s;
         }
-        
+
         .close-btn:hover {
             color: #fff;
         }
-        
+
         footer {
             text-align: center;
             margin-top: 80px;
@@ -178,18 +206,64 @@
             color: #666;
             font-size: 0.9rem;
         }
-        
+
+        /* Fixed Contact Buttons */
+        .contact-btn {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+        }
+
+        .whatsapp-btn {
+            bottom: 90px; /* Adjust as needed */
+            background-color: #25D366;
+        }
+
+        .telegram-btn {
+            bottom: 20px; /* Adjust as needed */
+            background-color: #0088CC;
+        }
+
         @media (max-width: 768px) {
             .main-boxes, .service-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             h1 {
                 font-size: 2.2rem;
             }
-            
+
             .service-popup {
                 padding: 30px 20px;
+            }
+
+            .contact-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.6rem;
+                right: 15px;
+            }
+            .whatsapp-btn {
+                bottom: 75px;
+            }
+            .telegram-btn {
+                bottom: 15px;
             }
         }
     </style>
@@ -200,37 +274,36 @@
             <h1>BLACK WORLD</h1>
             <p class="tagline">Premium Security Solutions</p>
         </header>
-        
+
         <nav>
             <a href="#">Home</a>
             <a href="#">Services</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
         </nav>
-        
+
         <div class="main-boxes">
             <div class="box" onclick="openServicePopup('nadra')">
                 <h2>NADRA DATA</h2>
                 <p>Complete NADRA database services with 100% privacy guarantee and secure access.</p>
             </div>
-            
+
             <div class="box" onclick="openServicePopup('hacking')">
                 <h2>HACKING DATA</h2>
                 <p>Professional hacking services for all platforms with guaranteed results.</p>
             </div>
-            
+
             <div class="box" onclick="openServicePopup('tools')">
                 <h2>FREE TOOLS</h2>
                 <p>Collection of premium hacking tools and resources available for free.</p>
             </div>
-            
+
             <div class="box" onclick="openServicePopup('social')">
                 <h2>SOCIAL MEDIA</h2>
                 <p>Complete social media services including accounts, followers and verification.</p>
             </div>
         </div>
-        
-        <!-- NADRA Data Popup -->
+
         <div id="nadra-popup" class="service-popup">
             <span class="close-btn" onclick="closePopup('nadra-popup')">&times;</span>
             <h2>NADRA DATA SERVICES</h2>
@@ -251,8 +324,7 @@
                 <div class="service-item" onclick="showItemInfo('live location', '15')">live location</div>
             </div>
         </div>
-        
-        <!-- Hacking Data Popup -->
+
         <div id="hacking-popup" class="service-popup">
             <span class="close-btn" onclick="closePopup('hacking-popup')">&times;</span>
             <h2>HACKING SERVICES</h2>
@@ -274,30 +346,28 @@
                 <div class="service-item" onclick="showItemInfo('call from unknown number', '16')">call from unknown number</div>
             </div>
         </div>
-        
-        <!-- Free Tools Popup -->
+
         <div id="tools-popup" class="service-popup">
             <span class="close-btn" onclick="closePopup('tools-popup')">&times;</span>
             <h2>FREE HACKING TOOLS</h2>
             <div style="text-align: center; padding: 20px;">
                 <p style="margin-bottom: 30px; color: #999;">Access our premium collection of hacking tools and resources</p>
-                
+
                 <div style="background-color: rgba(30,30,30,0.7); border: 1px solid #444; border-radius: 8px; padding: 25px; max-width: 500px; margin: 0 auto;">
                     <p style="margin-bottom: 15px; color: #999;">WhatsApp Channel:</p>
                     <p style="margin-bottom: 30px; word-break: break-all; color: #4a90e2;">
                         https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q
                     </p>
-                    
+
                     <p style="margin-bottom: 15px; color: #999;">Telegram:</p>
                     <p style="margin-bottom: 30px; color: #ddd;">TECHBYHUZII</p>
-                    
+
                     <p style="margin-bottom: 15px; color: #999;">Contact Number:</p>
                     <p style="color: #ddd;">923058190234</p>
                 </div>
             </div>
         </div>
-        
-        <!-- Social Media Popup -->
+
         <div id="social-popup" class="service-popup">
             <span class="close-btn" onclick="closePopup('social-popup')">&times;</span>
             <h2>SOCIAL MEDIA SERVICES</h2>
@@ -305,7 +375,7 @@
                 <p style="margin-bottom: 20px; color: #999; text-align: center;">
                     Comprehensive social media solutions for all platforms
                 </p>
-                
+
                 <div style="background-color: rgba(30,30,30,0.7); border: 1px solid #444; border-radius: 8px; padding: 25px;">
                     <ul style="list-style-type: none;">
                         <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
@@ -330,14 +400,13 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <p style="margin-top: 30px; color: #666; text-align: center;">
                     Contact us for pricing and more information
                 </p>
             </div>
         </div>
-        
-        <!-- Item Info Popup -->
+
         <div id="item-info-popup" class="service-popup" style="max-width: 500px;">
             <span class="close-btn" onclick="closePopup('item-info-popup')">&times;</span>
             <h2 id="item-name"></h2>
@@ -346,35 +415,43 @@
                 <p><span style="color: #999;">Information:</span> <span id="item-info" style="color: #fff; font-weight: 500;"></span></p>
             </div>
         </div>
-        
+
         <footer>
             <p>© 2023 BLACK WORLD. All rights reserved.</p>
             <p style="margin-top: 10px;">For educational purposes only</p>
         </footer>
     </div>
-    
+
+    <a href="https://wa.me/923058190234" target="_blank" class="contact-btn whatsapp-btn" title="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://t.me/TECHBYHUZII" target="_blank" class="contact-btn telegram-btn" title="Contact on Telegram">
+        <i class="fab fa-telegram-plane"></i>
+    </a>
+
     <script>
         // Open service popup
         function openServicePopup(service) {
             document.getElementById(service + '-popup').style.display = 'block';
         }
-        
+
         // Close popup
         function closePopup(popupId) {
             document.getElementById(popupId).style.display = 'none';
         }
-        
+
         // Show item info
         function showItemInfo(name, price) {
             document.getElementById('item-name').textContent = name;
             document.getElementById('item-price').textContent = price;
-            document.getElementById('item-info').textContent = 'Information ' + price;
+            // You can customize the information based on the item if needed
+            document.getElementById('item-info').textContent = 'Detailed information for ' + name + ' goes here.';
             document.getElementById('item-info-popup').style.display = 'block';
         }
-        
+
         // Close popups when clicking outside
         window.onclick = function(event) {
-            if (event.target.className === 'service-popup') {
+            if (event.target.classList.contains('service-popup')) {
                 event.target.style.display = 'none';
             }
         }
