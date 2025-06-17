@@ -3,436 +3,1895 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLACK WORLD | Premium Security Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>BLACK WORLD | Elite Cyber Security Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* ===== Global Reset & Base Styles ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Orbitron', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-
+        
+        :root {
+            --primary-color: #0a0a0a;
+            --secondary-color: #1a1a1a;
+            --accent-color: #4a90e2;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --border-color: #333;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --transition-speed: 0.3s;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --section-padding: 80px 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
         body {
-            background-color: #000;
-            color: #ccc;
-            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
-                              url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            position: relative; /* Needed for fixed positioned contact buttons */
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(30, 30, 30, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(40, 40, 40, 0.6) 0%, transparent 50%);
         }
-
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-speed);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        button, 
+        input, 
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+            border: none;
+            outline: none;
+            background: none;
+        }
+        
+        button {
+            cursor: pointer;
+        }
+        
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-
-        header {
+        
+        .section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
             text-align: center;
-            padding: 40px 0;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-        }
-
-        .tagline {
-            color: #666;
-            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--text-primary);
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        nav a {
-            color: #999;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 5px 15px;
-            border-radius: 4px;
-        }
-
-        nav a:hover {
-            color: #fff;
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .main-boxes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .box {
-            background-color: rgba(20, 20, 20, 0.5);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease; /* Adjusted transition for new animation */
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        /* Enhanced animation for main boxes */
-        .box:hover {
-            transform: scale(1.03); /* Slightly grow on hover */
-            border-color: #555;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.2); /* Added glow effect */
-        }
-
-        .box h2 {
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 1.6rem;
-        }
-
-        .box p {
-            color: #999;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .service-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(10, 10, 10, 0.9);
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 40px;
-            z-index: 1001;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
         }
-
-        .service-popup h2 {
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed);
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 20px rgba(74, 144, 226, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .text-center {
             text-align: center;
-            margin-bottom: 30px;
-            color: #fff;
-            font-size: 2rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
         }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        
+        .text-accent {
+            color: var(--accent-color);
+        }
+        
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .mb-4 { margin-bottom: 4rem; }
+        .mb-5 { margin-bottom: 5rem; }
+        
+        /* ===== Header Styles ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all var(--transition-speed);
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+        }
+        
+        .header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: color var(--transition-speed);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed);
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.7) 100%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        
+        .hero-btns {
+            display: flex;
             gap: 20px;
         }
-
-        .service-item {
-            background-color: rgba(30, 30, 30, 0.5);
-            border: 1px solid #444;
-            border-radius: 6px;
-            padding: 20px;
-            transition: all 0.3s ease; /* Transition for the new animation */
-            cursor: pointer;
-            color: #ddd;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Animation for service items (data boxes) */
-        .service-item:hover {
-            transform: translateX(5px); /* Slide slightly to the right */
-            background-color: rgba(50, 50, 50, 0.7);
-            border-color: #666;
-            box-shadow: 0 0 15px rgba(255,255,255,0.1); /* Subtle glow */
-        }
-
-        .close-btn {
+        
+        .hero-image {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 700px;
+            z-index: -2;
+            opacity: 0.8;
+        }
+        
+        /* ===== About Section ===== */
+        .about {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(74, 144, 226, 0.3), rgba(10, 10, 10, 0.7));
+        }
+        
+        .about-content {
+            padding-left: 30px;
+        }
+        
+        .about-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text {
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .about-features {
+            margin-top: 2rem;
+        }
+        
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-feature-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .about-feature-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-feature-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* ===== Services Section ===== */
+        .services {
+            position: relative;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: all var(--transition-speed);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, transparent 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--accent-color);
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: 500;
+            transition: all var(--transition-speed);
+        }
+        
+        .service-link i {
+            margin-left: 5px;
+            transition: transform var(--transition-speed);
+        }
+        
+        .service-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* ===== NADRA Services Section ===== */
+        .nadra-services {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .nadra-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nadra-tab {
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius);
             cursor: pointer;
-            color: #777;
-            font-size: 1.8rem;
-            transition: color 0.3s;
+            transition: all var(--transition-speed);
+            border: 1px solid var(--border-color);
+            font-weight: 500;
         }
-
-        .close-btn:hover {
-            color: #fff;
+        
+        .nadra-tab.active,
+        .nadra-tab:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
         }
-
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            padding: 30px 0;
-            border-top: 1px solid #222;
-            color: #666;
+        
+        .nadra-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .nadra-content.active {
+            display: block;
+        }
+        
+        .nadra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .nadra-item {
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nadra-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background-color: var(--accent-color);
+            transition: height var(--transition-speed);
+        }
+        
+        .nadra-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nadra-item:hover::before {
+            height: 100%;
+        }
+        
+        .nadra-item-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .nadra-item-price {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        .nadra-item-description {
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
+        
+        /* ===== Hacking Services Section ===== */
+        .hacking-services {
+            position: relative;
+        }
+        
+        .hacking-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hacking-accordion-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .hacking-accordion-header {
+            padding: 20px;
+            background-color: var(--secondary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-speed);
+        }
+        
+        .hacking-accordion-header:hover {
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+        
+        .hacking-accordion-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .hacking-accordion-icon {
+            transition: transform var(--transition-speed);
+        }
+        
+        .hacking-accordion-item.active .hacking-accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .hacking-accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed), padding var(--transition-speed);
+            background-color: var(--primary-color);
+        }
+        
+        .hacking-accordion-item.active .hacking-accordion-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .hacking-service {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .hacking-service:last-child {
+            border-bottom: none;
+        }
+        
+        .hacking-service-name {
+            flex: 1;
+        }
+        
+        .hacking-service-price {
+            color: var(--accent-color);
+            font-weight: 700;
+            min-width: 80px;
+            text-align: right;
+        }
+        
+        /* ===== Tools Section ===== */
+        .tools {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .tool-card {
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: all var(--transition-speed);
+            border: 1px solid var(--border-color);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--accent-color);
+        }
+        
+        .tool-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tool-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* ===== Contact Section ===== */
+        .contact {
+            position: relative;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-info-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-top: 5px;
+        }
 
-        /* Fixed Contact Buttons */
-        .contact-btn {
+        .contact-info-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info-content p,
+        .contact-info-content a {
+            color: var(--text-secondary);
+            transition: color var(--transition-speed);
+        }
+        
+        .contact-info-content a:hover {
+            color: var(--accent-color);
+        }
+        
+        .contact-form {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* ===== Footer ===== */
+        .footer {
+            background-color: #080808;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-about p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            transition: color var(--transition-speed);
+            display: inline-block;
+        }
+        
+        .footer-link:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-newsletter p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            color: var(--text-primary);
+        }
+        
+        .newsletter-btn {
+            padding: 0 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            transition: all var(--transition-speed);
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #3a7bc8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== Back to Top Button ===== */
+        .back-to-top {
             position: fixed;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
+            background-color: var(--accent-color);
+            color: white;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-speed);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #3a7bc8;
+            transform: translateY(-5px);
+        }
+        
+        /* ===== Modal ===== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-speed);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform var(--transition-speed);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color var(--transition-speed);
+        }
+        
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+        
+        .modal-title {
             font-size: 1.8rem;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            margin-bottom: 20px;
+            color: var(--text-primary);
         }
-
-        .contact-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.6);
-        }
-
-        .whatsapp-btn {
-            bottom: 90px;
-            background-color: #25D366;
-        }
-
-        .telegram-btn {
-            bottom: 20px;
-            background-color: #0088CC;
-        }
-
-        @media (max-width: 768px) {
-            .main-boxes, .service-grid {
+        
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .about-container,
+            .contact-container {
                 grid-template-columns: 1fr;
             }
-
-            h1 {
-                font-size: 2.2rem;
+            
+            .about-content {
+                padding-left: 0;
+                margin-top: 30px;
             }
-
-            .service-popup {
-                padding: 30px 20px;
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .contact-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.6rem;
-                right: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
             }
-            .whatsapp-btn {
-                bottom: 75px;
+            
+            .mobile-menu-btn {
+                display: block;
             }
-            .telegram-btn {
-                bottom: 15px;
+            
+            .nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: left var(--transition-speed);
+                z-index: 999;
+            }
+            
+            .nav.active {
+                left: 0;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .hero {
+                text-align: center;
+                min-height: 600px;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+        
+        /* ===== Animation Keyframes ===== */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>BLACK WORLD</h1>
-            <p class="tagline">Premium Security Solutions</p>
-        </header>
-
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-
-        <div class="main-boxes">
-            <div class="box" onclick="openServicePopup('nadra')">
-                <h2>NADRA DATA</h2>
-                <p>Complete NADRA database services with 100% privacy guarantee and secure access.</p>
-            </div>
-
-            <div class="box" onclick="openServicePopup('hacking')">
-                <h2>HACKING DATA</h2>
-                <p>Professional hacking services for all platforms with guaranteed results.</p>
-            </div>
-
-            <div class="box" onclick="openServicePopup('tools')">
-                <h2>FREE TOOLS</h2>
-                <p>Collection of premium hacking tools and resources available for free.</p>
-            </div>
-
-            <div class="box" onclick="openServicePopup('social')">
-                <h2>SOCIAL MEDIA</h2>
-                <p>Complete social media services including accounts, followers and verification.</p>
-            </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">BLACK<span>WORLD</span></a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#nadra" class="nav-link">NADRA Data</a></li>
+                    <li><a href="#hacking" class="nav-link">Hacking</a></li>
+                    <li><a href="#tools" class="nav-link">Tools</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div id="nadra-popup" class="service-popup">
-            <span class="close-btn" onclick="closePopup('nadra-popup')">&times;</span>
-            <h2>NADRA DATA SERVICES</h2>
-            <div class="service-grid">
-                <div class="service-item" onclick="showItemInfo('Sim data base', '2')">Sim data base</div>
-                <div class="service-item" onclick="showItemInfo('Cdr telenor', '3')">Cdr telenor</div>
-                <div class="service-item" onclick="showItemInfo('Cdr ufone', '4')">Cdr ufone</div>
-                <div class="service-item" onclick="showItemInfo('Cdr zong', '5')">Cdr zong</div>
-                <div class="service-item" onclick="showItemInfo('Cdr moblink', '6')">Cdr moblink</div>
-                <div class="service-item" onclick="showItemInfo('Cdr jazz', '7')">Cdr jazz</div>
-                <div class="service-item" onclick="showItemInfo('Cnic copy', '8')">Cnic copy</div>
-                <div class="service-item" onclick="showItemInfo('Issue data', '9')">Issue data</div>
-                <div class="service-item" onclick="showItemInfo('Family tree', '10')">Family tree</div>
-                <div class="service-item" onclick="showItemInfo('Family tree with pic', '11')">Family tree with pic</div>
-                <div class="service-item" onclick="showItemInfo('Traveling history', '12')">Traveling history</div>
-                <div class="service-item" onclick="showItemInfo('Password detail', '13')">Password detail</div>
-                <div class="service-item" onclick="showItemInfo('Imie tracking', '14')">Imie tracking</div>
-                <div class="service-item" onclick="showItemInfo('live location', '15')">live location</div>
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Premium Cyber Security & Hacking Solutions</h1>
+                <p class="hero-subtitle">We provide elite digital security services with complete anonymity and guaranteed results for all your needs.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn">Our Services</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
             </div>
+            
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cyber Security" class="hero-image">
         </div>
+    </section>
 
-        <div id="hacking-popup" class="service-popup">
-            <span class="close-btn" onclick="closePopup('hacking-popup')">&times;</span>
-            <h2>HACKING SERVICES</h2>
-            <div class="service-grid">
-                <div class="service-item" onclick="showItemInfo('Whatsapp temporary ban', '2')">Whatsapp temporary ban</div>
-                <div class="service-item" onclick="showItemInfo('WhatsApp permanent ban', '3')">WhatsApp permanent ban</div>
-                <div class="service-item" onclick="showItemInfo('whatsapp permanent unban', '4')">whatsapp permanent unban</div>
-                <div class="service-item" onclick="showItemInfo('92 game hack', '5')">92 game hack</div>
-                <div class="service-item" onclick="showItemInfo('Mobile hack', '6')">Mobile hack</div>
-                <div class="service-item" onclick="showItemInfo('gallery hack', '7')">gallery hack</div>
-                <div class="service-item" onclick="showItemInfo('mobile restore', '8')">mobile restore</div>
-                <div class="service-item" onclick="showItemInfo('whatsapp crash', '9')">whatsapp crash</div>
-                <div class="service-item" onclick="showItemInfo('Hacking course', '10')">Hacking course</div>
-                <div class="service-item" onclick="showItemInfo('whatsapp crash file', '11')">whatsapp crash file</div>
-                <div class="service-item" onclick="showItemInfo('simdata base method', '12')">simdata base method</div>
-                <div class="service-item" onclick="showItemInfo('simdata base own website', '13')">simdata base own website</div>
-                <div class="service-item" onclick="showItemInfo('whatsapp otp lock', '14')">whatsapp otp lock</div>
-                <div class="service-item" onclick="showItemInfo('fake number trick', '15')">fake number trick</div>
-                <div class="service-item" onclick="showItemInfo('call from unknown number', '16')">call from unknown number</div>
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="About Us">
             </div>
-        </div>
-
-        <div id="tools-popup" class="service-popup">
-            <span class="close-btn" onclick="closePopup('tools-popup')">&times;</span>
-            <h2>FREE HACKING TOOLS</h2>
-            <div style="text-align: center; padding: 20px;">
-                <p style="margin-bottom: 30px; color: #999;">Access our premium collection of hacking tools and resources</p>
-
-                <div style="background-color: rgba(30,30,30,0.7); border: 1px solid #444; border-radius: 8px; padding: 25px; max-width: 500px; margin: 0 auto;">
-                    <p style="margin-bottom: 15px; color: #999;">WhatsApp Channel:</p>
-                    <p style="margin-bottom: 30px; word-break: break-all; color: #4a90e2;">
-                        https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q
-                    </p>
-
-                    <p style="margin-bottom: 15px; color: #999;">Telegram:</p>
-                    <p style="margin-bottom: 30px; color: #ddd;">TECHBYHUZII</p>
-
-                    <p style="margin-bottom: 15px; color: #999;">Contact Number:</p>
-                    <p style="color: #ddd;">923058190234</p>
+            
+            <div class="about-content">
+                <h2 class="section-title">About Our Services</h2>
+                <p class="about-text">We are a team of professional hackers and security experts providing elite services since 2010. Our mission is to deliver secure, anonymous and reliable solutions for your digital needs.</p>
+                <p class="about-text">With over a decade of experience in cyber security, we've helped thousands of clients worldwide with their sensitive requirements.</p>
+                
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="about-feature-content">
+                            <h4>100% Secure</h4>
+                            <p>All operations are conducted with military-grade encryption and complete anonymity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <div class="about-feature-content">
+                            <h4>Completely Anonymous</h4>
+                            <p>Your identity and all communications remain completely confidential.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="about-feature-content">
+                            <h4>Guaranteed Results</h4>
+                            <p>We deliver what we promise or you get your money back, no questions asked.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div id="social-popup" class="service-popup">
-            <span class="close-btn" onclick="closePopup('social-popup')">&times;</span>
-            <h2>SOCIAL MEDIA SERVICES</h2>
-            <div style="padding: 20px;">
-                <p style="margin-bottom: 20px; color: #999; text-align: center;">
-                    Comprehensive social media solutions for all platforms
-                </p>
+    <!-- Services Section -->
+    <section class="services section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Premium Services</h2>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="service-title">NADRA Database</h3>
+                    <p class="service-description">Complete access to NADRA database including CNIC details, family tree, traveling history and more.</p>
+                    <a href="#nadra" class="service-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile Hacking</h3>
+                    <p class="service-description">Full access to any mobile device including calls, messages, gallery and real-time location tracking.</p>
+                    <a href="#hacking" class="service-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="service-title">WhatsApp Services</h3>
+                    <p class="service-description">WhatsApp hacking, unbanning, verification bypass and complete account access.</p>
+                    <a href="#hacking" class="service-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="service-title">Live Tracking</h3>
+                    <p class="service-description">Real-time GPS location tracking of any person or vehicle with precise coordinates.</p>
+                    <a href="#nadra" class="service-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="service-title">Email Hacking</h3>
+                    <p class="service-description">Full access to any email account including Gmail, Yahoo, Outlook and more.</p>
+                    <a href="#hacking" class="service-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3 class="service-title">Social Media</h3>
+                    <p class="service-description">Facebook, Instagram, Twitter and other social media account access and recovery.</p>
+                    <a href="#social" class="service-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div style="background-color: rgba(30,30,30,0.7); border: 1px solid #444; border-radius: 8px; padding: 25px;">
-                    <ul style="list-style-type: none;">
-                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
-                            <span style="position: absolute; left: 0; color: #666;">→</span>
-                            Account sales and purchases (TikTok, YouTube, Instagram, Facebook)
-                        </li>
-                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
-                            <span style="position: absolute; left: 0; color: #666;">→</span>
-                            Likes, followers, and views services
-                        </li>
-                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
-                            <span style="position: absolute; left: 0; color: #666;">→</span>
-                            Account recovery and verification services
-                        </li>
-                        <li style="margin-bottom: 15px; padding-left: 25px; position: relative; color: #ddd;">
-                            <span style="position: absolute; left: 0; color: #666;">→</span>
-                            Engagement boosting and marketing
-                        </li>
-                        <li style="padding-left: 25px; position: relative; color: #ddd;">
-                            <span style="position: absolute; left: 0; color: #666;">→</span>
-                            Custom solutions for your social media needs
-                        </li>
+    <!-- NADRA Services Section -->
+    <section class="nadra-services section" id="nadra">
+        <div class="container">
+            <h2 class="section-title">NADRA Data Services</h2>
+            
+            <div class="nadra-tabs">
+                <div class="nadra-tab active" data-tab="basic">Basic Services</div>
+                <div class="nadra-tab" data-tab="advanced">Advanced Services</div>
+                <div class="nadra-tab" data-tab="premium">Premium Services</div>
+            </div>
+            
+            <div class="nadra-content active" id="basic-tab">
+                <div class="nadra-grid">
+                    <div class="nadra-item" data-service="sim-data">
+                        <h3 class="nadra-item-title">Sim Data Base <span class="nadra-item-price">$2</span></h3>
+                        <p class="nadra-item-description">Complete SIM ownership details including registration data</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="cdr-telenor">
+                        <h3 class="nadra-item-title">CDR Telenor <span class="nadra-item-price">$3</span></h3>
+                        <p class="nadra-item-description">Call detail records for Telenor numbers</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="cdr-ufone">
+                        <h3 class="nadra-item-title">CDR Ufone <span class="nadra-item-price">$4</span></h3>
+                        <p class="nadra-item-description">Call detail records for Ufone numbers</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="cdr-zong">
+                        <h3 class="nadra-item-title">CDR Zong <span class="nadra-item-price">$5</span></h3>
+                        <p class="nadra-item-description">Call detail records for Zong numbers</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="cnic-copy">
+                        <h3 class="nadra-item-title">CNIC Copy <span class="nadra-item-price">$8</span></h3>
+                        <p class="nadra-item-description">Verified copy of CNIC with all details</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="issue-data">
+                        <h3 class="nadra-item-title">Issue Data <span class="nadra-item-price">$9</span></h3>
+                        <p class="nadra-item-description">Complete issue history from NADRA records</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nadra-content" id="advanced-tab">
+                <div class="nadra-grid">
+                    <div class="nadra-item" data-service="family-tree">
+                        <h3 class="nadra-item-title">Family Tree <span class="nadra-item-price">$10</span></h3>
+                        <p class="nadra-item-description">Complete family tree information from NADRA</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="family-tree-pic">
+                        <h3 class="nadra-item-title">Family Tree with Pic <span class="nadra-item-price">$11</span></h3>
+                        <p class="nadra-item-description">Family tree including photographs</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="travel-history">
+                        <h3 class="nadra-item-title">Traveling History <span class="nadra-item-price">$12</span></h3>
+                        <p class="nadra-item-description">Complete international travel history</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="password-detail">
+                        <h3 class="nadra-item-title">Password Detail <span class="nadra-item-price">$13</span></h3>
+                        <p class="nadra-item-description">Retrieve password information from records</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nadra-content" id="premium-tab">
+                <div class="nadra-grid">
+                    <div class="nadra-item" data-service="imie-tracking">
+                        <h3 class="nadra-item-title">IMIE Tracking <span class="nadra-item-price">$14</span></h3>
+                        <p class="nadra-item-description">Track mobile devices by IMIE number</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="live-location">
+                        <h3 class="nadra-item-title">Live Location <span class="nadra-item-price">$15</span></h3>
+                        <p class="nadra-item-description">Real-time location tracking of any CNIC holder</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="complete-profile">
+                        <h3 class="nadra-item-title">Complete Profile <span class="nadra-item-price">$50</span></h3>
+                        <p class="nadra-item-description">Everything included in one complete package</p>
+                    </div>
+                    
+                    <div class="nadra-item" data-service="custom-request">
+                        <h3 class="nadra-item-title">Custom Request <span class="nadra-item-price">Varies</span></h3>
+                        <p class="nadra-item-description">Special customized data requests</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hacking Services Section -->
+    <section class="hacking-services section" id="hacking">
+        <div class="container">
+            <h2 class="section-title">Hacking Services</h2>
+            
+            <div class="hacking-accordion">
+                <div class="hacking-accordion-item">
+                    <div class="hacking-accordion-header">
+                        <h3 class="hacking-accordion-title">WhatsApp Services</h3>
+                        <i class="fas fa-chevron-down hacking-accordion-icon"></i>
+                    </div>
+                    <div class="hacking-accordion-content">
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">WhatsApp Temporary Ban</span>
+                            <span class="hacking-service-price">$2</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">WhatsApp Permanent Ban</span>
+                            <span class="hacking-service-price">$3</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">WhatsApp Permanent Unban</span>
+                            <span class="hacking-service-price">$4</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">WhatsApp Crash</span>
+                            <span class="hacking-service-price">$9</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">WhatsApp Crash File</span>
+                            <span class="hacking-service-price">$11</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">WhatsApp OTP Lock</span>
+                            <span class="hacking-service-price">$14</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hacking-accordion-item">
+                    <div class="hacking-accordion-header">
+                        <h3 class="hacking-accordion-title">Mobile Hacking</h3>
+                        <i class="fas fa-chevron-down hacking-accordion-icon"></i>
+                    </div>
+                    <div class="hacking-accordion-content">
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">Mobile Hack</span>
+                            <span class="hacking-service-price">$6</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">Gallery Hack</span>
+                            <span class="hacking-service-price">$7</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">Mobile Restore</span>
+                            <span class="hacking-service-price">$8</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">IMEI Tracking</span>
+                            <span class="hacking-service-price">$14</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hacking-accordion-item">
+                    <div class="hacking-accordion-header">
+                        <h3 class="hacking-accordion-title">Other Services</h3>
+                        <i class="fas fa-chevron-down hacking-accordion-icon"></i>
+                    </div>
+                    <div class="hacking-accordion-content">
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">92 Game Hack</span>
+                            <span class="hacking-service-price">$5</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">Hacking Course</span>
+                            <span class="hacking-service-price">$10</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">SimData Base Method</span>
+                            <span class="hacking-service-price">$12</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">SimData Base Own Website</span>
+                            <span class="hacking-service-price">$13</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">Fake Number Trick</span>
+                            <span class="hacking-service-price">$15</span>
+                        </div>
+                        <div class="hacking-service">
+                            <span class="hacking-service-name">Call From Unknown Number</span>
+                            <span class="hacking-service-price">$16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools section" id="tools">
+        <div class="container">
+            <h2 class="section-title">Free Hacking Tools</h2>
+            
+            <div class="tools-container">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="tool-title">WhatsApp Channel</h3>
+                    <p class="tool-description">Join our WhatsApp channel for free tools and updates</p>
+                    <a href="https://whatsapp.com/channel/0029VaqyldOC6ZvZ6uSVmg2q" class="btn" target="_blank">Join Now</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3 class="tool-title">Telegram Group</h3>
+                    <p class="tool-description">Access our free tools collection on Telegram</p>
+                    <a href="#" class="btn">TECHBYHUZII</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="tool-title">Direct Contact</h3>
+                    <p class="tool-description">Get free tools and support via direct contact</p>
+                    <a href="#contact" class="btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media section" id="social">
+        <div class="container">
+            <h2 class="section-title">Social Media Services</h2>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3 class="service-title">Facebook Accounts</h3>
+                    <p class="service-description">Verified Facebook accounts for sale with complete access and recovery options.</p>
+                    <button class="btn" onclick="openModal('facebook-modal')">View Details</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="service-title">Instagram Accounts</h3>
+                    <p class="service-description">High-value Instagram accounts with followers and verification available.</p>
+                    <button class="btn" onclick="openModal('instagram-modal')">View Details</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3 class="service-title">TikTok Accounts</h3>
+                    <p class="service-description">Popular TikTok accounts with thousands of followers and views.</p>
+                    <button class="btn" onclick="openModal('tiktok-modal')">View Details</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 class="service-title">YouTube Accounts</h3>
+                    <p class="service-description">Monetized YouTube channels with subscribers and watch time.</p>
+                    <button class="btn" onclick="openModal('youtube-modal')">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Location</h4>
+                            <p>Secure Location, Anonymous</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Email</h4>
+                            <a href="mailto:contact@blackworld.com">contact@blackworld.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Phone</h4>
+                            <a href="tel:+923058190234">+92 305 8190234</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/923058190234">+92 305 8190234</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Telegram</h4>
+                            <a href="https://t.me/TECHBYHUZII">@TECHBYHUZII</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">BLACK<span>WORLD</span></a>
+                    <p>Providing elite cyber security and hacking solutions since 2010. Your privacy and security is our top priority.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Services</h3>
+                    <ul>
+                        <li><a href="#nadra" class="footer-link">NADRA Data</a></li>
+                        <li><a href="#hacking" class="footer-link">Hacking Services</a></li>
+                        <li><a href="#tools" class="footer-link">Free Tools</a></li>
+                        <li><a href="#social" class="footer-link">Social Media</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
                     </ul>
                 </div>
-
-                <p style="margin-top: 30px; color: #666; text-align: center;">
-                    Contact us for pricing and more information
-                </p>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#about" class="footer-link">About</a></li>
+                        <li><a href="#services" class="footer-link">Services</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3 class="footer-title">Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates and new services.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BLACK WORLD. All rights reserved. | Designed by TECHBYHUZII</p>
             </div>
         </div>
+    </footer>
 
-        <div id="item-info-popup" class="service-popup" style="max-width: 500px;">
-            <span class="close-btn" onclick="closePopup('item-info-popup')">&times;</span>
-            <h2 id="item-name"></h2>
-            <div style="padding: 20px;">
-                <p style="margin-bottom: 15px;"><span style="color: #999;">Price:</span> <span id="item-price" style="color: #fff; font-weight: 500;"></span></p>
-                <p><span style="color: #999;">Information:</span> <span id="item-info" style="color: #fff; font-weight: 500;"></span></p>
-            </div>
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Modal -->
+    <div class="modal" id="facebook-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('facebook-modal')">&times;</span>
+            <h3 class="modal-title">Facebook Accounts</h3>
+            <p>We offer verified Facebook accounts with complete access and recovery options. All accounts come with:</p>
+            <ul>
+                <li>Complete profile access</li>
+                <li>Email and password</li>
+                <li>Recovery options</li>
+                <li>Verified status available</li>
+                <li>Age: 1-5 years old accounts</li>
+            </ul>
+            <p>Prices start from $20 depending on account age, friends count and verification status.</p>
+            <a href="#contact" class="btn">Contact Us</a>
         </div>
-
-        <footer>
-            <p>© 2023 BLACK WORLD. All rights reserved.</p>
-            <p style="margin-top: 10px;">For educational purposes only</p>
-        </footer>
+    </div>
+    
+    <div class="modal" id="instagram-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('instagram-modal')">&times;</span>
+            <h3 class="modal-title">Instagram Accounts</h3>
+            <p>Premium Instagram accounts with followers and verification available. Features include:</p>
+            <ul>
+                <li>Accounts with 1K-100K followers</li>
+                <li>Verified accounts available</li>
+                <li>Complete access</li>
+                <li>Email and password included</li>
+                <li>Niche specific accounts</li>
+            </ul>
+            <p>Prices range from $50 to $500 based on followers count and engagement rate.</p>
+            <a href="#contact" class="btn">Contact Us</a>
+        </div>
+    </div>
+    
+    <div class="modal" id="tiktok-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('tiktok-modal')">&times;</span>
+            <h3 class="modal-title">TikTok Accounts</h3>
+            <p>Popular TikTok accounts with thousands of followers and views. Options include:</p>
+            <ul>
+                <li>Accounts with 10K-1M followers</li>
+                <li>High engagement rates</li>
+                <li>Verified accounts available</li>
+                <li>Niche specific content</li>
+                <li>Complete access transfer</li>
+            </ul>
+            <p>Prices start from $100 depending on followers count and video views.</p>
+            <a href="#contact" class="btn">Contact Us</a>
+        </div>
+    </div>
+    
+    <div class="modal" id="youtube-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('youtube-modal')">&times;</span>
+            <h3 class="modal-title">YouTube Accounts</h3>
+            <p>Monetized YouTube channels with subscribers and watch time. Features:</p>
+            <ul>
+                <li>Monetized channels</li>
+                <li>1K-100K subscribers</li>
+                <li>4000+ watch hours</li>
+                <li>Niche specific content</li>
+                <li>Complete access transfer</li>
+            </ul>
+            <p>Prices range from $200 to $2000 based on subscribers count and monthly earnings.</p>
+            <a href="#contact" class="btn">Contact Us</a>
+        </div>
     </div>
 
-    <a href="https://wa.me/923058190234" target="_blank" class="contact-btn whatsapp-btn" title="Contact on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="https://t.me/TECHBYHUZII" target="_blank" class="contact-btn telegram-btn" title="Contact on Telegram">
-        <i class="fab fa-telegram-plane"></i>
-    </a>
-
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Main JavaScript -->
     <script>
-        // Open service popup
-        function openServicePopup(service) {
-            document.getElementById(service + '-popup').style.display = 'block';
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('.nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Sticky Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // NADRA Tabs
+        const nadraTabs = document.querySelectorAll('.nadra-tab');
+        nadraTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                nadraTabs.forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.nadra-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Hacking Accordion
+        const hackingItems = document.querySelectorAll('.hacking-accordion-item');
+        hackingItems.forEach(item => {
+            const header = item.querySelector('.hacking-accordion-header');
+            
+            header.addEventListener('click', () => {
+                // Close all other items
+                hackingItems.forEach(i => {
+                    if (i !== item) {
+                        i.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTopBtn.classList.toggle('active', window.scrollY > 300);
+        });
+        
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-
-        // Close popup
-        function closePopup(popupId) {
-            document.getElementById(popupId).style.display = 'none';
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-
-        // Show item info
-        function showItemInfo(name, price) {
-            document.getElementById('item-name').textContent = name;
-            document.getElementById('item-price').textContent = price;
-            // You can customize the information based on the item if needed
-            document.getElementById('item-info').textContent = 'Detailed information for ' + name + ' goes here.';
-            document.getElementById('item-info-popup').style.display = 'block';
-        }
-
-        // Close popups when clicking outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('service-popup')) {
-                event.target.style.display = 'none';
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
             }
-        }
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Message sent successfully! We will contact you soon.');
+            contactForm.reset();
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Set active nav link based on scroll position
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Animation on Scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.service-card, .tool-card, .nadra-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animation
+        document.querySelectorAll('.service-card, .tool-card, .nadra-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
