@@ -1893,46 +1893,70 @@
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
     </script>
-    <!-- WhatsApp Floating Button (Paste right before </body>) -->
-<div class="wa-float" onclick="window.open('https://wa.me/923058190234')">
-  <div class="wa-text">MSG</div>
-  <i class="fab fa-whatsapp"></i>
-</div>
-
+<!-- WhatsApp Floating Button -->
 <style>
-  .wa-float {
+  .whatsapp-container {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
-    width: 42px;
-    height: 42px;
-    background: rgba(37,211,102,0.9);
-    color: white;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .whatsapp-text {
+    background-color: transparent;
+    color: #0f0;
+    font-size: 12px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 5px #0f0;
+  }
+
+  .whatsapp-button {
+    background-color: #25D366;
     border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 0 15px #25D366;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    transition: transform 0.3s;
+    animation: pulse 2s infinite;
+  }
+
+  .whatsapp-button:hover {
+    transform: scale(1.1);
     cursor: pointer;
-    z-index: 9999;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
   }
-  
-  .wa-text {
-    font-size: 9px;
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: -5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+
+  .whatsapp-button i {
+    color: white;
+    font-size: 28px;
   }
-  
-  .wa-float:hover {
-    transform: scale(1.05);
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 10px #25D366; }
+    50% { box-shadow: 0 0 20px #25D366; }
+    100% { box-shadow: 0 0 10px #25D366; }
   }
 </style>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<div class="whatsapp-container">
+  <div class="whatsapp-text">For any service, contact us on WhatsApp</div>
+  <div class="whatsapp-button" onclick="openWhatsApp()">
+    <i class="fab fa-whatsapp"></i>
+  </div>
+</div>
+
+<script>
+  function openWhatsApp() {
+    window.open('https://wa.me/923001234567', '_blank'); // Apna number change karein
+  }
+</script>
+
+<!-- Font Awesome Icon (required for WhatsApp icon) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>">
+</script>
 </body>
 </html>
