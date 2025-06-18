@@ -1893,65 +1893,46 @@
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
     </script>
-    <!-- WhatsApp Floating Button -->
-<div class="whatsapp-float" onclick="window.open('https://wa.me/923058190234')">
-  <div class="whatsapp-tooltip">For any service contact us on WhatsApp</div>
+    <!-- WhatsApp Floating Button (Paste right before </body>) -->
+<div class="wa-float" onclick="window.open('https://wa.me/923058190234')">
+  <div class="wa-text">MSG</div>
   <i class="fab fa-whatsapp"></i>
 </div>
 
 <style>
-  <!-- WhatsApp Floating Button -->
-<div class="whatsapp-float-container">
-  <div class="whatsapp-text">Contact Us</div>
-  <div class="whatsapp-float" onclick="window.open('https://wa.me/923058190234')">
-    <i class="fab fa-whatsapp"></i>
-  </div>
-</div>
-
-<style>
-  /* WhatsApp Floating Button Styles */
-  .whatsapp-float-container {
+  .wa-float {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .whatsapp-text {
-    color: white;
-    font-size: 12px;
-    margin-bottom: 5px;
-    font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 5px rgba(255,255,255,0.3);
-  }
-
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    background: rgba(37, 211, 102, 0.8);
-    backdrop-filter: blur(5px);
+    bottom: 15px;
+    right: 15px;
+    width: 42px;
+    height: 42px;
+    background: rgba(37,211,102,0.9);
     color: white;
     border-radius: 50%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s;
-    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
   }
-
-  .whatsapp-float:hover {
-    background: rgba(37, 211, 102, 0.9);
+  
+  .wa-text {
+    font-size: 9px;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: -5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .wa-float:hover {
     transform: scale(1.05);
   }
 </style>
 
-<!-- Font Awesome for WhatsApp icon -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-     
 </body>
 </html>
